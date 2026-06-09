@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vellano-editorial",
+      "settings": {
+        "fallback_image_url": "vellano_showerheads.png",
+        "image_alignment": "left",
+        "title": "The Vellano Filtration System",
+        "description": "<p>Engineered for high-performance routines. Our custom KDF-55 filtration removes up to 98% of chlorine, heavy metals, and hard water minerals — precisely at the point of use.</p>",
+        "btn_text": "Shop The System",
+        "btn_link": "/products/vellano-filtered-showerhead-starter-kit"
+      }
+    },
+    "science_cards": {
+      "type": "vellano-science-reviews",
+      "settings": {}
+    },
+    "water_quality": {
+      "type": "vellano-water-quality",
+      "settings": {}
+    },
+    "shop_cta": {
+      "type": "vellano-editorial",
+      "settings": {
+        "fallback_image_url": "filter_refills.png",
+        "image_alignment": "right",
+        "title": "Designed for pure water and pure aesthetics.",
+        "description": "<p>Every Vellano product is precision-engineered to integrate seamlessly into a luxury bathroom environment while delivering clinical-grade filtration performance.</p>",
+        "btn_text": "View All Products",
+        "btn_link": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "water_quality",
+    "science_cards",
+    "shop_cta"
+  ]
+}

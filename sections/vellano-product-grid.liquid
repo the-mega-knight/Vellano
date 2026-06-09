@@ -1,0 +1,148 @@
+{%- style -%}
+  .vellano-rec-sec {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 5%;
+    font-family: 'Jost', sans-serif;
+  }
+  .vellano-rec-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #111;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .vellano-rec-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .vellano-rec-card {
+    display: block;
+    text-decoration: none;
+    color: #111;
+  }
+  .vellano-rec-img-wrap {
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #E8E4DF;
+    margin-bottom: 16px;
+  }
+  .vellano-rec-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .vellano-rec-card:hover .vellano-rec-img-wrap img {
+    transform: scale(1.05);
+  }
+  .vellano-rec-info h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .vellano-rec-info p {
+    font-size: 13px;
+    color: #555;
+  }
+  .vellano-quick-add-btn {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    background: #111;
+    color: #F8F6F3;
+    border: 1px solid #111;
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+  }
+  .vellano-quick-add-btn:hover {
+    background: transparent;
+    color: #111;
+  }
+  @media (max-width: 900px) {
+    .vellano-rec-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+  @media (max-width: 500px) {
+    .vellano-rec-grid { grid-template-columns: 1fr; }
+  }
+{%- endstyle -%}
+
+<div class="vellano-rec-sec">
+  <h2 class="vellano-rec-title">{{ section.settings.title }}</h2>
+  <div class="vellano-rec-grid">
+    {% assign current_product_handle = product.handle %}
+    {% assign count = 0 %}
+    {% for rec_product in collections['all'].products %}
+      {% if rec_product.handle != current_product_handle and count < 4 %}
+        <a href="{{ rec_product.url }}" class="vellano-rec-card">
+          <div class="vellano-rec-img-wrap">
+            {% assign rec_img = 'vellano_product_hero.png' %}
+            {% if rec_product.handle == '1-year-filter-supply' %}
+              {% assign rec_img = 'filter_refills.png' %}
+            {% elsif rec_product.handle == 'vellano-filtered-showerhead-starter-kit' or rec_product.handle == 'vellano-starter-kit-dummy' %}
+              {% assign rec_img = 'vellano_product_hero.png' %}
+            {% elsif rec_product.handle contains 'vitamin' %}
+              {% assign rec_img = 'after_showerhead.png' %}
+            {% elsif rec_product.handle contains 'cleanser' or rec_product.handle contains 'body' %}
+              {% assign rec_img = 'vellano_suds.png' %}
+            {% endif %}
+            
+            {% if rec_product.featured_image %}
+              {{ rec_product.featured_image | image_url: width: 600 | image_tag: alt: rec_product.title, loading: 'lazy', width: 600, height: 750 }}
+            {% else %}
+              <img src="{{ rec_img | asset_url }}" alt="{{ rec_product.title | escape }}" loading="lazy" width="600" height="750">
+            {% endif %}
+          </div>
+          <div class="vellano-rec-info">
+            <h3>{{ rec_product.title }}</h3>
+            <p>{{ rec_product.price | money }}</p>
+            <form method="post" action="/cart/add" onsubmit="event.stopPropagation();">
+              <input type="hidden" name="id" value="{{ rec_product.variants.first.id }}">
+              <button type="submit" class="vellano-quick-add-btn">Add to Cart</button>
+            </form>
+          </div>
+        </a>
+        {% assign count = count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    
+    {% if count == 0 %}
+      <!-- Fallback if store has no other products -->
+      {% for i in (1..4) %}
+        <div class="vellano-rec-card">
+          <div class="vellano-rec-img-wrap">
+            {{ 'product-' | append: i | placeholder_svg_tag }}
+          </div>
+          <div class="vellano-rec-info">
+            <h3>Premium Product {{ i }}</h3>
+            <p>$49.00</p>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Recommended Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Recommended For You"
+    }
+  ],
+  "presets": [{"name": "Recommended Products"}]
+}
+{% endschema %}

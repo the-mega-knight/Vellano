@@ -1,0 +1,197 @@
+{%- style -%}
+  .vellano-announce-bar {
+    background: #111111;
+    color: #fff;
+    position: relative;
+    z-index: 1000;
+    overflow: hidden;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .vellano-announce-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .vellano-announce-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 48px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 500;
+  }
+  .vellano-announce-item .dot {
+    width: 4px;
+    height: 4px;
+    background: #B8A07A;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  @media (max-width: 600px) {
+    .vellano-announce-item {
+      padding: 0 24px;
+      font-size: 11px;
+    }
+  }
+  /* Discount Modal */
+  .vellano-announce-modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .vellano-announce-modal-bg.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .vellano-announce-modal {
+    background: #F8F6F3;
+    border-radius: 16px;
+    padding: 50px 40px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+  }
+  .vellano-announce-modal-bg.open .vellano-announce-modal {
+    transform: translateY(0);
+  }
+  .vellano-announce-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #111;
+    line-height: 1;
+  }
+  .vellano-announce-modal h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 12px;
+  }
+  .vellano-announce-modal p {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+  .vellano-announce-modal-form {
+    display: flex;
+    gap: 10px;
+  }
+  .vellano-announce-modal-form input[type="email"] {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #D9D4CE;
+    border-radius: 30px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    background: #fff;
+    outline: none;
+  }
+  .vellano-announce-modal-form button {
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .vellano-announce-modal-form button:hover { background: #333; }
+  .vellano-announce-modal-success {
+    display: none;
+    font-family: 'Jost', sans-serif;
+    color: #B8A07A;
+    font-size: 14px;
+    padding: 20px 0 0;
+  }
+  .vellano-announce-modal-badge {
+    display: inline-block;
+    background: #B8A07A;
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+{%- endstyle -%}
+
+<div class="vellano-announce-bar" id="vellano-announce-bar">
+  <div class="vellano-announce-track">
+    <span class="vellano-announce-item" style="padding: 0;">
+      Free Shipping on Orders Over $50 • Tap for 15% Off Your First Order
+    </span>
+  </div>
+</div>
+
+<!-- Discount capture modal -->
+<div class="vellano-announce-modal-bg" id="vellano-modal-bg">
+  <div class="vellano-announce-modal">
+    <button class="vellano-announce-modal-close" onclick="document.getElementById('vellano-modal-bg').classList.remove('open')">✕</button>
+    <span class="vellano-announce-modal-badge">Limited Offer</span>
+    <h2>Get 15% Off Your First Order</h2>
+    <p>Join thousands who've upgraded their shower. Enter your email for an exclusive discount code.</p>
+    {% form 'customer', class: 'vellano-announce-modal-form', id: 'vellano-modal-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" name="contact[email]" id="vellano-modal-email" placeholder="your@email.com" required>
+      <button type="submit">Claim 15%</button>
+      {% if form.posted_successfully? %}
+        <style>
+          #vellano-modal-form { display: none !important; }
+          #vellano-modal-success { display: block !important; }
+        </style>
+      {% endif %}
+    {% endform %}
+    <p class="vellano-announce-modal-success" id="vellano-modal-success">
+      ✓ Check your inbox — your code is on its way.
+    </p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('vellano-announce-bar').addEventListener('click', function() {
+    document.getElementById('vellano-modal-bg').classList.add('open');
+  });
+  document.getElementById('vellano-modal-bg').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Vellano Announcement Bar",
+  "presets": [{ "name": "Vellano Announcement Bar" }]
+}
+{% endschema %}

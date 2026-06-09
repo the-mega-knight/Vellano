@@ -1,0 +1,219 @@
+{% style %}
+  .vellano-exit-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(4px);
+  }
+  .vellano-exit-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  .vellano-exit-modal {
+    background: #F8F6F3;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .vellano-exit-overlay.is-visible .vellano-exit-modal {
+    transform: translateY(0);
+  }
+  @media (max-width: 768px) {
+    .vellano-exit-modal {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+  }
+  .vellano-exit-image {
+    background-image: url('{{ "vellano_showerheads.png" | asset_url }}');
+    background-size: cover;
+    background-position: center;
+    min-height: 250px;
+  }
+  .vellano-exit-content {
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  @media (max-width: 768px) {
+    .vellano-exit-content {
+      padding: 40px 30px;
+    }
+    .vellano-exit-image {
+      display: none; /* Hide image on mobile to save space */
+    }
+  }
+  .vellano-exit-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #111;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 2;
+  }
+  .vellano-exit-content h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 32px;
+    color: #111;
+    margin-bottom: 12px;
+    margin-top: 0;
+  }
+  .vellano-exit-content p {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+  .vellano-exit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .vellano-exit-form input[type="email"] {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #D9D4CE;
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
+  }
+  .vellano-exit-form button {
+    width: 100%;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .vellano-exit-form button:hover {
+    background: #333;
+  }
+  .vellano-exit-success {
+    display: none;
+    color: #B8A07A;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    margin-top: 20px;
+  }
+{% endstyle %}
+
+<div class="vellano-exit-overlay" id="vellanoExitOverlay">
+  <div class="vellano-exit-modal">
+    <button class="vellano-exit-close" id="vellanoExitClose" aria-label="Close modal">&times;</button>
+    <div class="vellano-exit-image"></div>
+    <div class="vellano-exit-content">
+      <h2>Unlock 15% Off</h2>
+      <p>Sign up to receive 15% off your first Vellano system, plus early access to new filter drops and body care releases.</p>
+      
+      {% form 'customer', id: 'vellanoExitForm', class: 'vellano-exit-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter, exit_intent">
+        <input type="email" name="contact[email]" placeholder="Email Address" required>
+        <button type="submit">Claim My 15%</button>
+        
+        {% if form.posted_successfully? %}
+          <style>
+            #vellanoExitForm { display: none !important; }
+            #vellanoExitSuccess { display: block !important; }
+            #vellanoExitOverlay { opacity: 1; visibility: visible; }
+            .vellano-exit-modal { transform: translateY(0); }
+          </style>
+          <div class="vellano-exit-success" id="vellanoExitSuccess">
+            Thank you! Please check your inbox for your 15% off code.
+          </div>
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const overlay = document.getElementById("vellanoExitOverlay");
+    const closeBtn = document.getElementById("vellanoExitClose");
+    const storageKey = "vellano_exit_dismissed";
+    
+    // Allow testing via URL parameter ?test_exit=true
+    const isTestMode = window.location.search.includes('test_exit=true');
+
+    if (localStorage.getItem(storageKey) && !isTestMode) {
+      return;
+    }
+
+    function showModal() {
+      if (!localStorage.getItem(storageKey) || isTestMode) {
+        overlay.classList.add("is-visible");
+        if (!isTestMode) {
+          localStorage.setItem(storageKey, "true");
+        }
+      }
+    }
+
+    // Exit Intent Detection (Desktop)
+    document.addEventListener("mouseleave", function(e) {
+      // clientY <= 20 is much more reliable across different browsers than < 0
+      if (e.clientY <= 20) {
+        showModal();
+      }
+    });
+
+    // Exit Intent Detection (Mobile - Fast scroll up near top)
+    let lastScrollY = window.scrollY;
+    document.addEventListener("scroll", function() {
+      let currentScrollY = window.scrollY;
+      let delta = currentScrollY - lastScrollY;
+      
+      // If scrolling up fast and near the top of the page
+      if (delta < -30 && currentScrollY < 300) {
+        showModal();
+      }
+      lastScrollY = currentScrollY;
+    }, { passive: true });
+
+    function closeModal() {
+      overlay.classList.remove("is-visible");
+    }
+
+    closeBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", function(e) {
+      if (e.target === overlay) {
+        closeModal();
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Vellano Exit Intent",
+  "settings": []
+}
+{% endschema %}

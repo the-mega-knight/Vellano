@@ -1,0 +1,52 @@
+{%- style -%}
+  .vellano-press-bar {
+    background-color: #111111;
+    padding: 40px 5%;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+  }
+  .vellano-press-title {
+    color: #a0a0a0;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  .vellano-press-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .vellano-press-logo {
+    color: #F8F6F3;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 24px;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  .vellano-press-logo:hover {
+    opacity: 1;
+  }
+  @media (max-width: 768px) {
+    .vellano-press-logos { gap: 30px; }
+  }
+{%- endstyle -%}
+
+<div class="vellano-press-bar vellano-animate">
+  <div class="vellano-press-title vellano-animate-fade-up">As seen in</div>
+  <div class="vellano-press-logos vellano-animate-fade-up vellano-animate-stagger-2">
+    <div class="vellano-press-logo">VOGUE</div>
+    <div class="vellano-press-logo" style="font-family: 'Jost', sans-serif; font-weight: 800; letter-spacing: -1px;">GQ</div>
+    <div class="vellano-press-logo" style="font-family: 'Jost', sans-serif; font-weight: 300;">Harper's BAZAAR</div>
+    <div class="vellano-press-logo">ELLE</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vellano Press Bar",
+  "presets": [ { "name": "Vellano Press Bar" } ]
+}
+{% endschema %}

@@ -1,0 +1,522 @@
+{%- style -%}
+  /* =====================================================
+     VELLANO HEADER — Full Klean-inspired redesign
+     ===================================================== */
+
+  .vellano-hdr {
+    background: #F8F6F3;
+    border-bottom: 1px solid #E8E4DF;
+    position: fixed;
+    top: 36px; /* below announcement bar */
+    width: 100%;
+    z-index: 998;
+    font-family: 'Jost', sans-serif;
+    transition: top 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+  .vellano-hdr-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 5%;
+    height: 68px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  /* LEFT: nav links */
+  .vellano-hdr-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+  }
+  .vellano-hdr-nav > a,
+  .vellano-hdr-nav > .vellano-hdr-dropdown-wrap > a {
+    color: #111;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.25s;
+    white-space: nowrap;
+  }
+  .vellano-hdr-nav > a:hover,
+  .vellano-hdr-nav > .vellano-hdr-dropdown-wrap > a:hover { color: #B8A07A; }
+
+  /* Dropdown nav item */
+  .vellano-hdr-dropdown-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 68px;
+  }
+  .vellano-hdr-dropdown-wrap > a { display: flex; align-items: center; gap: 4px; }
+  .vellano-hdr-dropdown-wrap > a svg { transition: transform 0.2s; }
+  .vellano-hdr-dropdown-wrap:hover > a svg { transform: rotate(180deg); }
+  .vellano-hdr-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    background: #F8F6F3;
+    border: 1px solid #E8E4DF;
+    border-radius: 12px;
+    padding: 16px 0;
+    min-width: 220px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+  .vellano-hdr-dropdown-wrap:hover .vellano-hdr-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .vellano-hdr-dropdown a {
+    display: block;
+    padding: 10px 24px;
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .vellano-hdr-dropdown a:hover { color: #111; padding-left: 30px; }
+
+  /* CENTER: logo */
+  .vellano-hdr-logo {
+    grid-column: 2;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 22px;
+    letter-spacing: 5px;
+    font-weight: 400;
+    color: #111;
+    text-decoration: none;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .vellano-hdr-logo img {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transform: translateY(-5px);
+  }
+  @media (max-width: 768px) {
+    .vellano-hdr-logo img {
+      width: 140px;
+    }
+  }
+
+  /* RIGHT: actions */
+  .vellano-hdr-actions {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+  .vellano-hdr-btn-quiz {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border: 1.5px solid #111;
+    border-radius: 30px;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #111;
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s;
+    white-space: nowrap;
+  }
+  .vellano-hdr-btn-quiz:hover { background: #111; color: #F8F6F3; }
+  .vellano-hdr-btn-shop {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 20px;
+    background: #111;
+    border: 1.5px solid #111;
+    border-radius: 30px;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #F8F6F3;
+    text-decoration: none;
+    transition: background 0.25s;
+    white-space: nowrap;
+  }
+  .vellano-hdr-btn-shop:hover { background: #333; border-color: #333; }
+  .vellano-hdr-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #111;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    transition: color 0.25s;
+    text-decoration: none;
+  }
+  .vellano-hdr-icon:hover { color: #B8A07A; }
+  .vellano-hdr-icon svg { width: 20px; height: 20px; display: block; }
+
+  /* Language selector */
+  .vellano-hdr-lang {
+    position: relative;
+  }
+  .vellano-hdr-lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #777;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 0;
+    transition: color 0.25s;
+  }
+  .vellano-hdr-lang-btn:hover { color: #111; }
+  .vellano-hdr-lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #F8F6F3;
+    border: 1px solid #E8E4DF;
+    border-radius: 12px;
+    padding: 10px 0;
+    min-width: 140px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+  .vellano-hdr-lang:hover .vellano-hdr-lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .vellano-hdr-lang-dropdown a {
+    display: block;
+    padding: 9px 18px;
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .vellano-hdr-lang-dropdown a:hover { color: #111; }
+
+  /* =====================================================
+     SEARCH DRAWER
+     ===================================================== */
+  .vellano-search-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .vellano-search-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .vellano-search-drawer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #F8F6F3;
+    padding: 28px 5%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+  .vellano-search-overlay.open .vellano-search-drawer {
+    transform: translateY(0);
+  }
+  .vellano-search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    border-bottom: 1.5px solid #111;
+    padding: 8px 4px;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 22px;
+    color: #111;
+    outline: none;
+    letter-spacing: 1px;
+  }
+  .vellano-search-input::placeholder { color: #ccc; }
+  .vellano-search-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #111;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  /* =====================================================
+     MOBILE HAMBURGER + FULL-SCREEN MENU
+     ===================================================== */
+  .vellano-hdr-burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 12px; /* Expanded for 44px touch target */
+    margin-right: 8px;
+  }
+  .vellano-hdr-burger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: #111;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .vellano-hdr-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .vellano-hdr-burger.open span:nth-child(2) { opacity: 0; }
+  .vellano-hdr-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .vellano-mobile-menu {
+    position: fixed;
+    top: 68px; /* mobile header height is usually smaller, but let's use 68px grid height */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 68px);
+    background: #F8F6F3;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 99;
+    padding: 32px 5%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .vellano-mobile-menu.open {
+    transform: translateX(0);
+  }
+  .vellano-mobile-menu-inner {
+    flex: 1;
+  }
+  .vellano-mobile-nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #111;
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid #E8E4DF;
+    transition: color 0.2s, padding-left 0.2s;
+    letter-spacing: 1px;
+  }
+  .vellano-mobile-nav-link:last-of-type { border-bottom: none; }
+  .vellano-mobile-nav-link:hover { color: #B8A07A; padding-left: 10px; }
+  .vellano-mobile-sub-link {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    color: #777;
+    text-decoration: none;
+    padding: 10px 0 10px 20px;
+    border-bottom: 1px solid #F0EDE9;
+    transition: color 0.2s;
+  }
+  .vellano-mobile-sub-link:hover { color: #111; }
+  .vellano-mobile-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .vellano-mobile-cta-quiz {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    border: 1.5px solid #111;
+    border-radius: 30px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #111;
+    text-decoration: none;
+  }
+  .vellano-mobile-cta-shop {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    background: #111;
+    border-radius: 30px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  @media (max-width: 960px) {
+    .vellano-hdr-inner {
+      grid-template-columns: auto 1fr auto;
+      padding: 0 5%;
+    }
+    .vellano-hdr-nav { display: none; }
+    .vellano-hdr-logo { grid-column: 2; text-align: center; }
+    .vellano-hdr-actions { grid-column: 3; }
+    .vellano-hdr-btn-quiz, .vellano-hdr-btn-shop, .vellano-hdr-lang,
+    .vellano-hdr-icon:not([aria-label="Cart"]) { display: none; }
+    .vellano-hdr-burger { display: flex; grid-column: 1; }
+  }
+  @media (min-width: 961px) {
+    .vellano-mobile-menu { display: none; }
+    .vellano-hdr-burger { display: none; }
+  }
+{%- endstyle -%}
+
+<!-- ===== HEADER ===== -->
+<div class="vellano-hdr" id="vellano-hdr">
+  <div class="vellano-hdr-inner">
+
+    <!-- Mobile hamburger -->
+    <button class="vellano-hdr-burger" id="vellano-burger" onclick="vellanoToggleMobileMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- LEFT NAV (desktop) -->
+    <nav class="vellano-hdr-nav" aria-label="Main">
+      <!-- Dropdown 1: Shop -->
+      <div class="vellano-hdr-dropdown-wrap">
+        <a href="/collections/all">
+          Shop
+          <svg viewBox="0 0 14 8" fill="none" width="10" height="6"><path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+        <div class="vellano-hdr-dropdown">
+          <a href="/collections/all" style="font-weight: 600; border-bottom: 1px solid #E8E4DF; padding-bottom: 14px; margin-bottom: 6px;">Shop All</a>
+          <a href="/products/vellano-filtered-showerhead-starter-kit">The Hardware</a>
+          <a href="/products/1-year-filter-supply">Filter Refills</a>
+          <a href="/products/vellano-hard-water-body-cleanser">Body Care</a>
+          <a href="/products/vitamin-c-infusion-attachment">Vitamin C</a>
+        </div>
+      </div>
+
+      <a href="/products/vellano-filtered-showerhead-starter-kit">The System</a>
+      <a href="/?view=science">The Science</a>
+      <a href="/pages/quiz">Take the Quiz</a>
+    </nav>
+
+    <!-- CENTER LOGO -->
+    <a href="/" class="vellano-hdr-logo" aria-label="Vellano Home">
+      <img src="{{ 'vellano_logo_black.png' | asset_url }}" alt="Vellano">
+    </a>
+
+    <!-- RIGHT ACTIONS -->
+    <div class="vellano-hdr-actions">
+      <!-- Search -->
+      {% render 'header-search', input_id: 'Vellano-Search' %}
+
+      <!-- Account -->
+      <a href="{{ routes.account_url }}" class="vellano-hdr-icon" aria-label="Account">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+      </a>
+
+      <!-- Cart -->
+      <a href="{{ routes.cart_url }}" class="vellano-hdr-icon" id="cart-icon-bubble" aria-label="Cart">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== MOBILE FULL-SCREEN MENU ===== -->
+<div class="vellano-mobile-menu" id="vellano-mobile-menu">
+  <div class="vellano-mobile-menu-inner">
+    {% for link in linklists.main-menu.links %}
+      <a href="{{ link.url }}" class="vellano-mobile-nav-link" onclick="vellanoToggleMobileMenu()">
+        {{ link.title }}
+        {% if link.links != blank %}
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        {% endif %}
+      </a>
+      {% if link.links != blank %}
+        {% for childlink in link.links %}
+          <a href="{{ childlink.url }}" class="vellano-mobile-sub-link" onclick="vellanoToggleMobileMenu()">→ {{ childlink.title }}</a>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+    <a href="/?view=about" class="vellano-mobile-nav-link" onclick="vellanoToggleMobileMenu()">About Vellano</a>
+  </div>
+
+  <div class="vellano-mobile-ctas">
+    <img src="{{ 'vellano_hero_product_1780898836907.png' | asset_url }}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px;" alt="Vellano System">
+    <a href="/pages/quiz" class="vellano-mobile-cta-quiz" onclick="vellanoToggleMobileMenu()">Take The Quiz</a>
+    <a href="/products/vellano-filtered-showerhead-starter-kit" class="vellano-mobile-cta-shop" onclick="vellanoToggleMobileMenu()">Shop The System</a>
+  </div>
+</div>
+
+<script>
+  function vellanoToggleMobileMenu() {
+    const burger = document.getElementById('vellano-burger');
+    const menu = document.getElementById('vellano-mobile-menu');
+    burger.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+
+  // Reveal on scroll up logic
+  let lastScrollTop = 0;
+  const header = document.querySelector('.vellano-hdr');
+  
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+      // Scrolling down & past top -> fade out / slide up
+      header.style.transform = 'translateY(-100%)';
+      header.style.opacity = '0';
+    } else {
+      // Scrolling up -> fade in / slide down
+      header.style.transform = 'translateY(0)';
+      header.style.opacity = '1';
+      // When at the very top, push it down below the announcement bar
+      if (scrollTop <= 36) {
+        header.style.top = '36px';
+      } else {
+        header.style.top = '0px';
+      }
+    }
+    lastScrollTop = scrollTop;
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Vellano Header",
+  "presets": [{ "name": "Vellano Header" }]
+}
+{% endschema %}

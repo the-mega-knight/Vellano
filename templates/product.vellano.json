@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product-vellano",
+      "settings": {
+      }
+    },
+    "medical_reviews": {
+      "type": "vellano-science-reviews",
+      "settings": {}
+    },
+    "why_choose_us": {
+      "type": "vellano-why-choose-us",
+      "settings": {}
+    },
+    "faq": {
+      "type": "vellano-accordion",
+      "settings": {}
+    },
+    "cross_sell": {
+      "type": "related-products",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "medical_reviews",
+    "why_choose_us",
+    "faq",
+    "cross_sell"
+  ]
+}

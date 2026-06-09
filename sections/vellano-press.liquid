@@ -1,0 +1,59 @@
+{%- style -%}
+  .vellano-press-sec {
+    background: #F8F6F3;
+    padding: 60px 5%;
+    border-bottom: 1px solid rgba(17,17,17,0.05);
+    text-align: center;
+  }
+  .vellano-press-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+  .vellano-press-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 48px;
+    opacity: 0.6;
+  }
+  .vellano-press-logo {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #111;
+  }
+  @media (max-width: 600px) {
+    .vellano-press-logos { gap: 24px; flex-direction: column; }
+    .vellano-press-sec { padding: 40px 5%; }
+  }
+{%- endstyle -%}
+
+<div class="vellano-press-sec">
+  <div class="vellano-press-label">As seen in</div>
+  <div class="vellano-press-logos">
+    <div class="vellano-press-logo">VOGUE</div>
+    <div class="vellano-press-logo">GLAMOUR</div>
+    <div class="vellano-press-logo">GQ</div>
+    <div class="vellano-press-logo">ALLURE</div>
+    <div class="vellano-press-logo" style="font-family: 'Jost', sans-serif; font-weight: 300;">marie claire</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Press Banner",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Press Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

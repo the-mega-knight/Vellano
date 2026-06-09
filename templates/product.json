@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vellano-product-hero",
+      "settings": {}
+    },
+    "accordion": {
+      "type": "vellano-accordion",
+      "settings": {}
+    },
+    "grid": {
+      "type": "vellano-product-grid",
+      "settings": {}
+    },
+    "press": {
+      "type": "vellano-press-editorial",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "accordion",
+    "grid",
+    "press"
+  ]
+}

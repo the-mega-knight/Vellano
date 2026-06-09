@@ -1,0 +1,424 @@
+{%- style -%}
+  .hk-product-hero {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: #F8F6F3;
+    font-family: 'Jost', sans-serif;
+  }
+  .hk-hero-gallery {
+    width: 60%;
+    padding: 40px;
+    background: #EBE7E2;
+    min-height: 100vh;
+  }
+  .hk-hero-info {
+    width: 40%;
+    padding: 60px 40px;
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+  .hk-product-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 36px;
+    color: #111111;
+    margin-bottom: 15px;
+  }
+  .hk-product-reviews {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #111111;
+    margin-bottom: 30px;
+  }
+  .hk-star {
+    color: #111111;
+    font-size: 16px;
+  }
+  .hk-color-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .hk-swatches {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  .hk-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .hk-swatch.active {
+    border-color: #111111;
+    padding: 2px;
+    background-clip: content-box;
+  }
+  .hk-product-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333333;
+    margin-bottom: 40px;
+  }
+  
+  /* Bundle Box UI */
+  .hk-bundle-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    margin-bottom: 40px;
+  }
+  .hk-bundle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .hk-bundle-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .hk-bundle-price {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .hk-bundle-price span {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+    margin-left: 8px;
+    font-weight: 400;
+  }
+  .hk-bundle-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px 0;
+  }
+  .hk-bundle-list li {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .hk-bundle-list li svg {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+  }
+  
+  /* Gifts grid */
+  .hk-gift-label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: block;
+  }
+  .hk-gifts {
+    display: flex;
+    gap: 10px;
+  }
+  .hk-gift-item {
+    flex: 1;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: block; /* label block */
+  }
+  .hk-gift-item.active {
+    border-color: #111111;
+    background: #FAFAFA;
+  }
+  .hk-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .hk-gift-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .hk-gift-name {
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .hk-gift-val {
+    font-size: 11px;
+    color: #999;
+  }
+  
+  /* Gallery Images */
+  .hk-gallery-main {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 900px) {
+    .hk-product-hero { flex-direction: column; }
+    .hk-hero-gallery, .hk-hero-info { width: 100%; min-height: auto; height: auto; position: static; }
+    .hk-hero-gallery { 
+      padding: 0;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .hk-hero-gallery::-webkit-scrollbar { display: none; }
+    .hk-gallery-main {
+      flex: 0 0 100vw;
+      scroll-snap-align: center;
+      border-radius: 0;
+      margin-bottom: 0;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+    .hk-hero-info { padding: 30px 20px; }
+    .hk-product-title { font-size: 28px; }
+    .hk-swatch { width: 44px; height: 44px; }
+    
+    /* Sticky Mobile Footer */
+    .hk-sticky-cart {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: #fff;
+      padding: 15px 20px calc(15px + env(safe-area-inset-bottom));
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      display: flex !important;
+      gap: 15px;
+      z-index: 99999;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+    }
+    .hk-sticky-cart.is-visible {
+      transform: translateY(0);
+    }
+    body { padding-bottom: 100px; } /* Prevent footer overlap */
+    
+    .hk-cta-row { flex-direction: column; }
+  }
+  .hk-sticky-cart { display: none; } /* Hidden on desktop */
+{%- endstyle -%}
+
+<div class="hk-product-hero">
+  <div class="hk-hero-gallery">
+    
+    
+    {% if product.title contains 'Body Cleanser' or product.title contains 'Wash' %}
+      <img src="{{ 'vellano_suds.png' | asset_url }}" class="hk-gallery-main" alt="{{ product.title }}" width="800" height="1000" fetchpriority="high" loading="eager">
+    {% elsif product.title contains 'Filter Supply' or product.title contains 'Refill' %}
+      <img src="{{ 'filter_refills.png' | asset_url }}" class="hk-gallery-main" alt="{{ product.title }}" width="800" height="1000" fetchpriority="high" loading="eager">
+    {% elsif product.title contains 'Vitamin C' %}
+      <img src="{{ 'vellano_showerheads.png' | asset_url }}" class="hk-gallery-main" alt="{{ product.title }}" width="800" height="1000" fetchpriority="high" loading="eager">
+      <img src="{{ 'vellano_suds.png' | asset_url }}" class="hk-gallery-main" alt="{{ product.title }} Detail" width="800" height="1000" loading="lazy">
+    {% else %}
+      <img src="{{ 'vellano_showerheads.png' | asset_url }}" class="hk-gallery-main" alt="Vellano Starter Kit" width="800" height="1000" fetchpriority="high" loading="eager">
+      <img src="{{ 'after_showerhead.png' | asset_url }}" class="hk-gallery-main" alt="Vellano Filter" width="800" height="1000" loading="lazy">
+    {% endif %}
+
+
+  </div>
+  
+  <div class="hk-hero-info">
+    <h1 class="hk-product-title">{{ product.title | default: "Shower Head 2.0" }}</h1>
+    
+    <div class="hk-product-reviews">
+      <div class="hk-stars" style="display:flex; gap:2px;">
+        <svg viewBox="0 0 24 24" fill="#111" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#111" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#111" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#111" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#111" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <span>428 Reviews</span>
+    </div>
+    
+    <span class="hk-color-label">Color: Matte Chrome</span>
+    <div class="hk-swatches">
+      <div class="hk-swatch active" style="background: #E0E0E0;"></div>
+      <div class="hk-swatch" style="background: #111111;"></div>
+      <div class="hk-swatch" style="background: #D4AF37;"></div>
+    </div>
+    
+    <div class="hk-product-desc">
+      
+      {% if product.description != blank %}
+        {{ product.description }}
+      {% elsif product.title contains 'Body Cleanser' or product.title contains 'Wash' %}
+        Soothe and nourish your skin with our mineral-rich, hard-water formulated body cleanser. Designed to wash away impurities without stripping your natural oils.
+      {% elsif product.title contains 'Filter Supply' or product.title contains 'Refill' %}
+        Maintain peak filtration performance. Our advanced KDF-55 cartridges ensure your water stays free of chlorine, heavy metals, and hard minerals for up to 3 months.
+      {% elsif product.title contains 'Vitamin C' %}
+        Infuse your shower with revitalizing Vitamin C. This attachment neutralizes residual chloramines and promotes collagen production for glowing skin and vibrant hair.
+      {% else %}
+        Better hair and skin with every rinse. The Vellano Shower Head reduces damaging chlorine, heavy metals, and impurities while intensifying water flow.
+      {% endif %}
+
+    </div>
+    
+    <div class="hk-bundle-box">
+      <div class="hk-bundle-header">
+        <div class="hk-bundle-title" style="display:flex; align-items:center;">
+          <span style="display:inline-block; width:16px; height:16px; border-radius:50%; border:5px solid #111; background:#111; margin-right:10px; box-sizing:border-box;"></span>
+          Starter Kit + Gift
+        </div>
+        <div class="hk-bundle-price">
+          {{ product.price | default: 12160 | money }} <span>$152.00</span>
+        </div>
+      </div>
+      
+      <ul class="hk-bundle-list">
+        <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Shower Head + Filter set</li>
+        <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Welcome gift (worth over $35)</li>
+        <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Refills delivered every 3 months</li>
+        <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Loyalty benefits + exclusive offers</li>
+      </ul>
+      
+      <span class="hk-gift-label">Choose Your Gift</span>
+      <div class="hk-gifts">
+        <label class="hk-gift-item active" onclick="selectGift(this)">
+          <input type="radio" name="welcome_gift" value="Nourishing Wash" class="hk-sr-only" checked>
+          <img src="{{ 'vellano_suds.png' | asset_url }}" class="hk-gift-img" alt="Nourishing Wash" width="80" height="80" loading="lazy">
+          <div class="hk-gift-name">Nourishing Wash</div>
+        </label>
+        <label class="hk-gift-item" onclick="selectGift(this)">
+          <input type="radio" name="welcome_gift" value="Clarifying Scrub" class="hk-sr-only">
+          <img src="{{ 'vellano_showerheads.png' | asset_url }}" class="hk-gift-img" alt="Clarifying Scrub" width="80" height="80" loading="lazy">
+          <div class="hk-gift-name">Clarifying Scrub</div>
+        </label>
+      </div>
+    </div> <!-- end hk-bundle-box -->
+    
+    <div class="hk-cta-row" style="display:flex; gap:15px; margin-bottom:40px; width:100%;">
+      <div style="display:flex; align-items:center; border:1px solid #111; border-radius:30px; padding:0 5px; background:#fff; height:60px;">
+        <button type="button" onclick="let q=document.getElementById('hk-qty'); if(q.value>1){q.value--; updateButtonPrice();}" style="background:none; border:none; font-size:20px; cursor:pointer; outline:none; padding: 0 20px; height: 100%;">-</button>
+        <input type="number" id="hk-qty" value="1" min="1" onchange="updateButtonPrice()" oninput="updateButtonPrice()" style="width:40px; text-align:center; border:none; background:none; font-family:'Jost', sans-serif; font-size:16px; outline:none; -moz-appearance:textfield;">
+        <button type="button" onclick="let q=document.getElementById('hk-qty'); q.value++; updateButtonPrice();" style="background:none; border:none; font-size:20px; cursor:pointer; outline:none; padding: 0 20px; height: 100%;">+</button>
+      </div>
+      <button id="hk-add-btn" style="flex:1; background:#111111; color:#fff; border-radius:30px; justify-content:center; padding:0 20px; font-size:14px; font-family:'Jost', sans-serif; letter-spacing:1px; text-transform:uppercase; border:none; cursor:pointer; height:60px; display:flex; align-items:center;" onclick="addToCartAjax('{{ product.variants.first.id }}', parseInt(document.getElementById('hk-qty').value))">
+        ADD TO CART &mdash; {{ product.price | default: 12160 | money }}
+      </button>
+    </div>
+    
+    <script>
+      // Gift selection
+      function selectGift(el) {
+        document.querySelectorAll('.hk-gift-item').forEach(function(el){
+          el.classList.remove('active');
+          // uncheck internal radio
+          var radio = el.querySelector('input[type="radio"]');
+          if (radio) radio.checked = false;
+        });
+        el.classList.add('active');
+        var selectedRadio = el.querySelector('input[type="radio"]');
+        if (selectedRadio) selectedRadio.checked = true;
+      }
+
+      // Price updater
+      function updateButtonPrice() {
+        const basePrice = {{ product.price | default: 12160 }};
+        const qty = parseInt(document.getElementById('hk-qty').value) || 1;
+        const total = basePrice * qty;
+        const formattedPrice = '$' + (total / 100).toFixed(2);
+        const btn = document.getElementById('hk-add-btn');
+        if(btn) btn.innerHTML = 'ADD TO CART &mdash; ' + formattedPrice;
+      }
+
+      // Add to cart — passes gift choice as a line item property
+      function addToCartAjax(variantId, qty) {
+        const giftRadio = document.querySelector('input[name="welcome_gift"]:checked');
+        const gift = giftRadio ? giftRadio.value : 'Nourishing Wash';
+        const btn = document.getElementById('hk-add-btn');
+        btn.innerHTML = 'ADDING...';
+        btn.disabled = true;
+
+        fetch((window.Shopify && window.Shopify.routes ? window.Shopify.routes.root : '/') + 'cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            items: [{
+              id: variantId,
+              quantity: qty,
+              properties: { 'Welcome Gift': gift }
+            }]
+          })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function() {
+          btn.innerHTML = '✓ ADDED TO CART';
+          setTimeout(function() {
+            updateButtonPrice();
+            btn.disabled = false;
+            if (typeof openCart === 'function') openCart();
+          }, 1000);
+        })
+        .catch(function() {
+          btn.innerHTML = 'ERROR — TRY AGAIN';
+          btn.disabled = false;
+        });
+      }
+
+      // Sticky Cart Intersection Observer
+      document.addEventListener("DOMContentLoaded", function() {
+        const addBtn = document.getElementById('hk-add-btn');
+        const stickyCart = document.getElementById('hk-sticky-cart');
+        if(!addBtn || !stickyCart || window.innerWidth > 900) return;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if(!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+              // Button scrolled past the top
+              stickyCart.classList.add('is-visible');
+            } else {
+              stickyCart.classList.remove('is-visible');
+            }
+          });
+        }, { threshold: 0 });
+
+        observer.observe(addBtn);
+      });
+    </script>
+
+    <!-- Mobile Sticky Cart -->
+    <div class="hk-sticky-cart" id="hk-sticky-cart">
+      <button style="flex:1; background:#111111; color:#fff; border-radius:30px; justify-content:center; padding:0 20px; font-size:14px; font-family:'Jost', sans-serif; letter-spacing:1px; text-transform:uppercase; border:none; cursor:pointer; height:50px; display:flex; align-items:center;" onclick="document.getElementById('hk-add-btn').click();">
+        ADD TO CART
+      </button>
+    </div>
+
+  </div> <!-- end hk-hero-info -->
+</div> <!-- end hk-product-hero -->
+
+{% schema %}
+{
+  "name": "Product Hero",
+  "presets": [{"name": "Product Hero"}]
+}
+{% endschema %}

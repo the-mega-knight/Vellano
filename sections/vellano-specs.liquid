@@ -1,0 +1,42 @@
+{%- style -%}
+  .hk-specs-page { max-width: 1000px; margin: 100px auto; padding: 0 5%; font-family: 'Jost', sans-serif; color: #111; }
+  .hk-specs-header { text-align: center; margin-bottom: 60px; }
+  .hk-specs-title { font-family: 'Bodoni Moda', serif; font-size: 48px; margin-bottom: 20px; }
+  .hk-specs-desc { font-size: 16px; color: #555; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+  
+  .hk-specs-table { width: 100%; border-collapse: collapse; margin-bottom: 60px; }
+  .hk-specs-table th, .hk-specs-table td { padding: 25px 20px; border-bottom: 1px solid #eee; text-align: left; }
+  .hk-specs-table th { width: 30%; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #777; }
+  .hk-specs-table td { font-size: 16px; font-weight: 500; }
+  
+  .hk-specs-img { width: 100%; border-radius: 16px; aspect-ratio: 16/9; object-fit: cover; margin-bottom: 80px; }
+{%- endstyle -%}
+
+<div class="hk-specs-page">
+  <div class="hk-specs-header">
+    <h1 class="hk-specs-title">Technical Specifications</h1>
+    <p class="hk-specs-desc">Precision engineered to optimize your daily routine. Every component of the Vellano system is built for maximum filtration efficiency and premium aesthetic integration.</p>
+  </div>
+  
+  <table class="hk-specs-table">
+    <tbody>
+      <tr><th>Dimensions</th><td>11.2" (Length) x 3.1" (Width) x 4.5" (Depth)</td></tr>
+      <tr><th>Weight</th><td>1.2 lbs (Empty) / 1.8 lbs (Filled with water)</td></tr>
+      <tr><th>Materials</th><td>Aerospace-grade Aluminum, BPA-Free Tritan, Matte Anodized Finish</td></tr>
+      <tr><th>Filtration Tech</th><td>KDF-55 (Kinetic Degradation Fluxion) & Calcium Sulfite</td></tr>
+      <tr><th>Flow Rate</th><td>1.8 GPM (Gallons Per Minute) - EPA WaterSense Certified</td></tr>
+      <tr><th>Filter Lifespan</th><td>13,000 Gallons (Approximately 3 to 4 months of use)</td></tr>
+      <tr><th>Compatibility</th><td>Universal 1/2" NPT thread. Fits standard shower arms.</td></tr>
+      <tr><th>Certifications</th><td>NSF/ANSI Standard 177 for Free Available Chlorine Reduction</td></tr>
+    </tbody>
+  </table>
+  
+  <img src="{{ 'vellano_showerheads.png' | asset_url }}" class="hk-specs-img" alt="Vellano Specs Schematic">
+</div>
+
+{% schema %}
+{
+  "name": "Technical Specs",
+  "presets": [{"name": "Technical Specs"}]
+}
+{% endschema %}

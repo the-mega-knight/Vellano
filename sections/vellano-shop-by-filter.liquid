@@ -1,0 +1,341 @@
+{%- style -%}
+  .vellano-shop-filter {
+    background-color: #F8F6F3;
+    display: flex;
+    flex-direction: column;
+  }
+  .vellano-sf-hero {
+    position: relative;
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    background-color: #111111; /* Vellano dark brand color fallback */
+  }
+  .vellano-sf-media-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .vellano-sf-media-wrapper {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .vellano-sf-media-wrapper.active {
+    opacity: 1;
+  }
+  .vellano-sf-media {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .vellano-sf-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 2;
+  }
+  .vellano-sf-titles-container {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    width: 100%;
+  }
+  .vellano-sf-title {
+    color: #FFFFFF;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 48px;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease-in-out;
+    white-space: nowrap;
+  }
+  .vellano-sf-title.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    transform: translate(0, 0);
+    top: auto; left: auto;
+  }
+  .vellano-sf-tabs-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 50px;
+    padding: 6px;
+    display: flex;
+    gap: 5px;
+    width: max-content;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  .vellano-sf-tab {
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: none;
+    color: #FFFFFF;
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+  .vellano-sf-tab.active, .vellano-sf-tab:hover {
+    background-color: #FFFFFF;
+    color: #111111;
+  }
+  .vellano-sf-grid-container {
+    padding: 100px 5% 80px;
+    background-color: #F8F6F3;
+  }
+  .vellano-sf-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  .vellano-sf-product {
+    background-color: transparent;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #111111;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .vellano-sf-product.hidden {
+    display: none;
+  }
+  .vellano-sf-product-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+    background-color: #EBE8E3;
+    border-radius: 12px;
+  }
+  .vellano-sf-product-info {
+    padding: 20px 0;
+    text-align: center;
+  }
+  .vellano-sf-product-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
+  .vellano-sf-product-price {
+    font-size: 14px;
+    color: #777777;
+  }
+  @media (max-width: 1024px) {
+    .vellano-sf-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .vellano-sf-grid { grid-template-columns: 1fr; }
+    .vellano-sf-title { font-size: 32px; }
+    .vellano-sf-tab { padding: 10px 16px; font-size: 11px; }
+  }
+{%- endstyle -%}
+
+<div class="vellano-shop-filter">
+  
+  <div class="vellano-sf-hero">
+    <!-- Base Media ("Filter" or "All" tab) -->
+    <div class="vellano-sf-media-bg">
+      <div class="vellano-sf-media-wrapper active" data-content-id="sf-all-{{ section.id }}">
+        {% if section.settings.video != blank %}
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'vellano-sf-media' }}
+        {% elsif section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 2400 | image_tag: class: 'vellano-sf-media', fetchpriority: 'high' }}
+        {% endif %}
+      </div>
+      
+      <!-- Block Media -->
+      {% for block in section.blocks %}
+        <div class="vellano-sf-media-wrapper" data-content-id="sf-block-{{ block.id }}">
+          {% if block.settings.video != blank %}
+            {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'vellano-sf-media' }}
+          {% elsif block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 2400 | image_tag: class: 'vellano-sf-media', fetchpriority: 'low' }}
+          {% endif %}
+        </div>
+      {% endfor %}
+      
+      <div class="vellano-sf-overlay"></div>
+    </div>
+    
+    <div class="vellano-sf-titles-container">
+      <!-- Base Title -->
+      <h2 class="vellano-sf-title active" data-content-id="sf-all-{{ section.id }}">{{ section.settings.title | default: 'Shop by Filter' }}</h2>
+      
+      <!-- Block Titles -->
+      {% for block in section.blocks %}
+        {% if block.settings.heading != blank %}
+          <h2 class="vellano-sf-title" data-content-id="sf-block-{{ block.id }}">{{ block.settings.heading }}</h2>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    <div class="vellano-sf-tabs-container" id="sf-tabs-{{ section.id }}">
+      <button class="vellano-sf-tab active" data-tab-target="sf-all-{{ section.id }}" data-filter="all">Filter</button>
+      {% for block in section.blocks %}
+        {% if block.settings.title != blank %}
+          <button class="vellano-sf-tab" data-tab-target="sf-block-{{ block.id }}" data-filter="{{ block.settings.title | handleize }}">{{ block.settings.title }}</button>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  
+  <div class="vellano-sf-grid-container">
+    <div class="vellano-sf-grid" id="sf-grid-{{ section.id }}">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection] %}
+        {% if collection != blank %}
+          {% for product in collection.products limit: 4 %}
+            <a href="{{ product.url }}" class="vellano-sf-product" data-category="{{ block.settings.title | handleize }}">
+              <img src="{{ product.featured_image | img_url: '600x' }}" class="vellano-sf-product-img" alt="{{ product.title | escape }}">
+              <div class="vellano-sf-product-info">
+                <h3 class="vellano-sf-product-title">{{ product.title }}</h3>
+                <div class="vellano-sf-product-price">{{ product.price | money }}</div>
+              </div>
+            </a>
+          {% endfor %}
+        {% else %}
+          {% for i in (1..4) %}
+            <div class="vellano-sf-product" data-category="{{ block.settings.title | handleize }}">
+              {{ 'product-' | append: i | placeholder_svg_tag: 'vellano-sf-product-img' }}
+              <div class="vellano-sf-product-info">
+                <h3 class="vellano-sf-product-title">Sample Product</h3>
+                <div class="vellano-sf-product-price">$49.00</div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('#sf-tabs-{{ section.id }} .vellano-sf-tab');
+    const products = document.querySelectorAll('#sf-grid-{{ section.id }} .vellano-sf-product');
+    const medias = document.querySelectorAll('.vellano-sf-hero .vellano-sf-media-wrapper');
+    const titles = document.querySelectorAll('.vellano-sf-hero .vellano-sf-title');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // 1. Update Tabs
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const filter = tab.getAttribute('data-filter');
+        const targetId = tab.getAttribute('data-tab-target');
+        
+        // 2. Update Grid
+        products.forEach(product => {
+          if (filter === 'all' || product.getAttribute('data-category') === filter) {
+            product.classList.remove('hidden');
+          } else {
+            product.classList.add('hidden');
+          }
+        });
+        
+        // 3. Update Media Crossfade
+        medias.forEach(media => {
+          if (media.getAttribute('data-content-id') === targetId) {
+            media.classList.add('active');
+          } else {
+            media.classList.remove('active');
+          }
+        });
+        
+        // 4. Update Titles
+        titles.forEach(title => {
+          if (title.getAttribute('data-content-id') === targetId) {
+            title.classList.add('active');
+          } else {
+            title.classList.remove('active');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Shop By Filter",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Base Background Video (For 'Filter' Tab)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Base Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Base Heading",
+      "default": "Shop by Filter"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Tab Name (e.g., Hair)"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Main Heading (e.g., Shop by Hair)"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Background Video for this Tab"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image for this Tab"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection to pull products from"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop By Filter"
+    }
+  ]
+}
+{% endschema %}

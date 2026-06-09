@@ -1,0 +1,106 @@
+{%- style -%}
+  .vellano-ps-section {
+    background-color: #F8F6F3;
+    padding: 100px 5%;
+    color: #111111;
+  }
+  .vellano-ps-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .vellano-ps-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  .vellano-ps-subtitle {
+    color: #111111;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .vellano-ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 20px;
+  }
+  .vellano-ps-card {
+    background-color: #F8F6F3;
+    padding: 50px 40px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .vellano-ps-card.solution {
+    background-color: #151a28;
+    border: 1px solid #B8A07A;
+  }
+  .vellano-ps-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  .vellano-ps-card-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  .vellano-ps-list {
+    text-align: left;
+    margin: 0 auto;
+    display: inline-block;
+  }
+  .vellano-ps-list li {
+    font-size: 14px;
+    color: #111111;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .vellano-ps-card.solution .vellano-ps-list li {
+    color: #eaeaea;
+  }
+  @media (max-width: 768px) {
+    .vellano-ps-grid { grid-template-columns: 1fr; }
+  }
+{%- endstyle -%}
+
+<div class="vellano-ps-section vellano-animate">
+  <div class="vellano-ps-header vellano-animate-fade-up">
+    <h2 class="vellano-ps-title">The Hidden Source of Damage</h2>
+    <div class="vellano-ps-subtitle">Your products aren't failing you. The heavy metals and chlorine in your water are neutralizing them.</div>
+  </div>
+  
+  <div class="vellano-ps-grid">
+    <div class="vellano-ps-card vellano-animate-slide-right vellano-animate-stagger-1">
+      <div class="vellano-ps-icon">💧</div>
+      <div class="vellano-ps-card-title">Untreated Water</div>
+      <ul class="vellano-ps-list">
+        <li>✕ Strips natural oils from skin</li>
+        <li>✕ Leaves hair dull and brassy</li>
+        <li>✕ Causes micro-irritation</li>
+        <li>✕ Blocks skincare absorption</li>
+      </ul>
+    </div>
+    
+    <div class="vellano-ps-card solution vellano-animate-slide-left vellano-animate-stagger-2">
+      <div class="vellano-ps-icon">✨</div>
+      <div class="vellano-ps-card-title">The Vellano Solution</div>
+      <ul class="vellano-ps-list">
+        <li>✓ Restores natural moisture barrier</li>
+        <li>✓ Unlocks hair shine and volume</li>
+        <li>✓ Soothes and protects skin</li>
+        <li>✓ Maximizes product efficacy</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vellano Problem Solution",
+  "presets": [ { "name": "Vellano Problem Solution" } ]
+}
+{% endschema %}

@@ -1,0 +1,388 @@
+{%- style -%}
+  .vellano-science {
+    background: #F8F6F3;
+    color: #111;
+    font-family: 'Jost', sans-serif;
+    overflow: hidden;
+  }
+
+  /* ─── PART 1: INTRO BLOCK ─── */
+  .vellano-sci-intro-block {
+    padding: 120px 5% 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+  }
+  .vellano-sci-intro-left { }
+  .vellano-sci-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #B8A07A;
+    margin-bottom: 28px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .vellano-sci-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: #B8A07A;
+  }
+  .vellano-sci-main-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 400;
+    line-height: 1.05;
+    color: #111;
+    margin: 0;
+  }
+  .vellano-sci-intro-right {
+    padding-bottom: 8px;
+  }
+  .vellano-sci-intro-text {
+    font-size: 17px;
+    line-height: 1.75;
+    color: rgba(17,17,17,0.55);
+    margin-bottom: 36px;
+  }
+  .vellano-sci-intro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #B8A07A;
+    text-decoration: none;
+    font-weight: 500;
+    transition: gap 0.25s;
+  }
+  .vellano-sci-intro-link:hover { gap: 16px; }
+
+  /* ─── PART 2: STATS BAR ─── */
+  .vellano-sci-stats-wrapper {
+    border-top: 1px solid rgba(17,17,17,0.08);
+    border-bottom: 1px solid rgba(17,17,17,0.08);
+  }
+  .vellano-sci-stats-bar {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .vellano-sci-stat {
+    padding: 60px 0;
+    position: relative;
+  }
+  .vellano-sci-stat + .vellano-sci-stat::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: rgba(17,17,17,0.08);
+  }
+  .vellano-sci-stat:nth-child(2) { padding-left: 48px; }
+  .vellano-sci-stat:nth-child(3) { padding-left: 48px; }
+  .vellano-sci-stat-num {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(56px, 7vw, 96px);
+    font-weight: 400;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  .vellano-sci-stat-num span { color: #B8A07A; }
+  .vellano-sci-stat-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #B8A07A;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .vellano-sci-stat-desc {
+    font-size: 13px;
+    color: rgba(17,17,17,0.5);
+    line-height: 1.6;
+    max-width: 240px;
+  }
+
+  /* ─── PART 3: FEATURE LIST ─── */
+  .vellano-sci-features {
+    padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+  }
+  .vellano-sci-feat {
+    padding: 48px 48px 48px 0;
+    border-right: 1px solid rgba(17,17,17,0.08);
+  }
+  .vellano-sci-feat:last-child {
+    border-right: none;
+    padding-right: 0;
+    padding-left: 48px;
+  }
+  .vellano-sci-feat:nth-child(2) {
+    padding-left: 48px;
+  }
+  .vellano-sci-feat-num {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 13px;
+    color: rgba(17,17,17,0.3);
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+  }
+  .vellano-sci-feat-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(184,160,122,0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    color: #B8A07A;
+  }
+  .vellano-sci-feat-icon svg { width: 20px; height: 20px; }
+  .vellano-sci-feat-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+  .vellano-sci-feat-text {
+    font-size: 14px;
+    color: rgba(17,17,17,0.6);
+    line-height: 1.75;
+  }
+
+  /* ─── PART 4: IMAGE + FACTS SPLIT ─── */
+  .vellano-sci-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+    border-top: 1px solid rgba(17,17,17,0.08);
+  }
+  .vellano-sci-split-img-wrap {
+    overflow: hidden;
+    position: relative;
+    margin: 24px 0 24px 24px;
+    border-radius: 24px;
+  }
+  .vellano-sci-split-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 500px;
+    transition: transform 8s ease;
+  }
+  .vellano-sci-split-img-wrap:hover .vellano-sci-split-img {
+    transform: scale(1.04);
+  }
+  .vellano-sci-split-content {
+    padding: 80px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fff;
+  }
+  .vellano-sci-split-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #B8A07A;
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+  .vellano-sci-split-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(24px, 2.5vw, 36px);
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 24px;
+    line-height: 1.25;
+  }
+  .vellano-sci-split-body {
+    font-size: 15px;
+    color: rgba(17,17,17,0.6);
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+  .vellano-sci-fact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+  .vellano-sci-fact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 14px;
+    color: rgba(17,17,17,0.6);
+    line-height: 1.5;
+  }
+  .vellano-sci-fact-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid #B8A07A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: #B8A07A;
+    font-size: 10px;
+  }
+  .vellano-sci-split-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #B8A07A;
+    text-decoration: none;
+    font-weight: 500;
+    transition: gap 0.25s;
+  }
+  .vellano-sci-split-link:hover { gap: 16px; }
+
+  @media (max-width: 900px) {
+    .vellano-sci-intro-block { grid-template-columns: 1fr; gap: 32px; padding: 80px 6% 60px; }
+    .vellano-sci-stats-bar { grid-template-columns: 1fr; }
+    .vellano-sci-stat + .vellano-sci-stat::before { width: 60%; height: 1px; top: 0; left: 20%; }
+    .vellano-sci-features { grid-template-columns: 1fr; padding: 60px 6%; }
+    .vellano-sci-feat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 40px 0; }
+    .vellano-sci-feat:last-child { border-bottom: none; }
+    .vellano-sci-feat:nth-child(2), .vellano-sci-feat:last-child { padding-left: 0; }
+    .vellano-sci-split { grid-template-columns: 1fr; }
+    .vellano-sci-split-img-wrap { min-height: 360px; }
+  }
+{%- endstyle -%}
+
+<div class="vellano-science" id="vellano-science">
+
+  <!-- PART 1: INTRO -->
+  <div class="vellano-sci-intro-block">
+    <div class="vellano-sci-intro-left">
+      <p class="vellano-sci-eyebrow">The Science Behind It</p>
+      <h2 class="vellano-sci-main-title">Your water is<br>the problem.<br>We solved it.</h2>
+    </div>
+    <div class="vellano-sci-intro-right">
+      <p class="vellano-sci-intro-text">Most shower water contains chlorine, heavy metals, and hard mineral deposits. These aren't just cosmetic concerns — they're measurable damage to your hair's cuticle and your skin's barrier function. No serum or conditioner fixes what happens upstream.</p>
+      <a href="/?view=science" class="vellano-sci-intro-link">Read the full research →</a>
+    </div>
+  </div>
+
+  <!-- PART 2: STATS BAR -->
+  <div class="vellano-sci-stats-bar">
+    <div class="vellano-sci-stat vellano-animate-fade-up">
+      <div class="vellano-sci-stat-num">98<span>%</span></div>
+      <div class="vellano-sci-stat-label">Chlorine Removed</div>
+      <div class="vellano-sci-stat-desc">KDF-55 oxidation-reduction eliminates chlorine within milliseconds of contact at any water temperature</div>
+    </div>
+    <div class="vellano-sci-stat vellano-animate-fade-up vellano-animate-stagger-1">
+      <div class="vellano-sci-stat-num">14<span> days</span></div>
+      <div class="vellano-sci-stat-label">To Noticeable Results</div>
+      <div class="vellano-sci-stat-desc">Most customers report measurably softer hair and skin within two weeks of consistent use</div>
+    </div>
+    <div class="vellano-sci-stat vellano-animate-fade-up vellano-animate-stagger-2">
+      <div class="vellano-sci-stat-num">6<span>mo</span></div>
+      <div class="vellano-sci-stat-label">Filter Lifespan</div>
+      <div class="vellano-sci-stat-desc">Each cartridge handles up to 10,000 gallons before performance drops below threshold — no early replacing</div>
+    </div>
+  </div>
+
+  <!-- PART 3: FEATURE LIST -->
+  <div class="vellano-sci-features">
+    <div class="vellano-sci-feat">
+      <div class="vellano-sci-feat-num">01</div>
+      <div class="vellano-sci-feat-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+      </div>
+      <h3 class="vellano-sci-feat-title">KDF-55 Electrochemical Filtration</h3>
+      <p class="vellano-sci-feat-text">High-purity copper-zinc alloy strips chlorine, chloramines, and heavy metals through a redox reaction — no chemicals, no maintenance, just physics working in your favour. EPA-registered and NSF/ANSI Standard 42 certified.</p>
+    </div>
+
+    <div class="vellano-sci-feat">
+      <div class="vellano-sci-feat-num">02</div>
+      <div class="vellano-sci-feat-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <h3 class="vellano-sci-feat-title">Skin Microbiome Protection</h3>
+      <p class="vellano-sci-feat-text">Chlorinated tap water disrupts your skin's natural acid mantle (pH 4.5–5.5). Filtered water lets your skin self-regulate, reducing chronic dryness and the inflammatory response that causes breakouts and sensitivity.</p>
+    </div>
+
+    <div class="vellano-sci-feat">
+      <div class="vellano-sci-feat-num">03</div>
+      <div class="vellano-sci-feat-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <h3 class="vellano-sci-feat-title">Hair Cuticle Restoration</h3>
+      <p class="vellano-sci-feat-text">Hard water calcium and magnesium bond to the hair shaft, forcing the cuticle open and weighing it down. Filtered water lets the cuticle lie flat — reflecting light, retaining moisture, and breaking significantly less.</p>
+    </div>
+  </div>
+
+  <!-- PART 4: SPLIT IMAGE + FACTS -->
+  <div class="vellano-sci-split">
+    <div class="vellano-sci-split-img-wrap">
+      <img
+        src="{{ 'vellano_science_water.png' | asset_url }}"
+        class="vellano-sci-split-img"
+        alt="Vellano water science"
+        onerror="this.src='{{ 'vellano_hero_lifestyle.png' | asset_url }}'"
+      >
+    </div>
+    <div class="vellano-sci-split-content">
+      <p class="vellano-sci-split-eyebrow">How It Actually Works</p>
+      <h3 class="vellano-sci-split-title">The shower is the highest-exposure point in your entire skincare routine.</h3>
+      <p class="vellano-sci-split-body">The average shower runs 8 minutes. At that rate, your skin is in continuous contact with chlorinated, mineral-laden water for over 45 hours per month. No serum reverses that upstream. We filter it before it touches you.</p>
+      <div class="vellano-sci-fact-list">
+        <div class="vellano-sci-fact-item">
+          <span class="vellano-sci-fact-check">✓</span>
+          KDF-55 is EPA-registered and NSF-approved for water treatment
+        </div>
+        <div class="vellano-sci-fact-item">
+          <span class="vellano-sci-fact-check">✓</span>
+          Removes chlorine, heavy metals, iron, hydrogen sulfide, and microorganisms
+        </div>
+        <div class="vellano-sci-fact-item">
+          <span class="vellano-sci-fact-check">✓</span>
+          Maintains full efficacy at shower temperature and pressure
+        </div>
+        <div class="vellano-sci-fact-item">
+          <span class="vellano-sci-fact-check">✓</span>
+          No drop in water pressure — 2.5 GPM maintained throughout filter life
+        </div>
+      </div>
+      <a href="/products/vellano-filtered-showerhead-starter-kit" class="vellano-sci-split-link">Explore The System →</a>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Vellano Science",
+  "presets": [{ "name": "Vellano Science" }]
+}
+{% endschema %}

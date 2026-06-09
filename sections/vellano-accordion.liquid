@@ -1,0 +1,37 @@
+{%- style -%}
+  .hk-accordion-sec { max-width: 800px; margin: 80px auto; font-family: 'Jost', sans-serif; padding: 0 5%; }
+  .hk-acc-item { border-bottom: 1px solid #111; }
+  .hk-acc-item:first-child { border-top: 1px solid #111; }
+  .hk-acc-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 16px; font-weight: 500; list-style: none; outline: none; padding: 20px 0; }
+  .hk-acc-header::-webkit-details-marker { display: none; }
+  .hk-acc-icon { font-size: 20px; transition: transform 0.3s; }
+  .hk-acc-content { color: #555; font-size: 14px; line-height: 1.6; padding-top: 10px; padding-bottom: 20px; }
+  details[open] .hk-acc-icon { transform: rotate(45deg); }
+{%- endstyle -%}
+<div class="hk-accordion-sec">
+  <details class="hk-acc-item">
+    <summary class="hk-acc-header">Benefits <span class="hk-acc-icon">+</span></summary>
+    <div class="hk-acc-content">
+      <ul>
+        <li>98% chlorine reduction and 82% limescale reduction.</li>
+        <li>Cuts water use by 25%.</li>
+        <li>Assembles in 1 minute.</li>
+        <li>Includes 1-year warranty.</li>
+        <li>Each Shower Head includes a filter set that lasts 3 to 4 months.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="hk-acc-item">
+    <summary class="hk-acc-header">Results <span class="hk-acc-icon">+</span></summary>
+    <div class="hk-acc-content">Softer hair, clearer skin, and significantly less mineral buildup after just 14 days of use.</div>
+  </details>
+  <details class="hk-acc-item">
+    <summary class="hk-acc-header">Vellano Filtration <span class="hk-acc-icon">+</span></summary>
+    <div class="hk-acc-content">Our multi-step KDF-55 filtration system targets the exact heavy metals and hard minerals that damage hair follicles.</div>
+  </details>
+  <details class="hk-acc-item">
+    <summary class="hk-acc-header">How To Install <span class="hk-acc-icon">+</span></summary>
+    <div class="hk-acc-content">Simply unscrew your old showerhead and twist ours on. No plumbers, no tape needed. It takes exactly 60 seconds.</div>
+  </details>
+</div>
+{% schema %}{ "name": "Accordion", "presets": [{"name": "Accordion"}] }{% endschema %}

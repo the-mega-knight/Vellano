@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vellano-editorial",
+      "settings": {
+        "title": "Shop The Collection",
+        "description": "<p>Upgrade your daily ritual with our premium water filtration systems and body care.</p>",
+        "btn_text": "Discover",
+        "btn_link": "#catalog"
+      }
+    },
+    "catalog": {
+      "type": "vellano-bestsellers",
+      "settings": {
+        "title": "All Products"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "catalog"
+  ]
+}

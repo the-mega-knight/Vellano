@@ -1,0 +1,27 @@
+{%- style -%}
+  .vellano-highlight {
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    background-color: #F8F6F3;
+  }
+  .vellano-highlight img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+{%- endstyle -%}
+
+<div class="vellano-highlight vellano-animate">
+  <img src="https://cdn.instant.so/tmp/2026-06-05/FcztKP6LbnVak6rx.png" class="vellano-hero-bg" alt="Highlight">
+</div>
+
+{% schema %}
+{
+  "name": "Vellano Image Highlight",
+  "presets": [ { "name": "Vellano Image Highlight" } ]
+}
+{% endschema %}

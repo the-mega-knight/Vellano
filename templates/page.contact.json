@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "vellano-page",
+      "settings": {}
+    },
+    "form": {
+      "type": "vellano-contact",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "form"
+  ]
+}

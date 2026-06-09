@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "intro": {
+      "type": "vellano-editorial",
+      "settings": {
+        "fallback_image_url": "vellano_shower_action.png",
+        "image_alignment": "right",
+        "title": "Shop The Collection",
+        "description": "<p>Upgrade your daily ritual with our premium water filtration systems and body care. Every product is engineered for a noticeable difference in 14 days.</p>",
+        "btn_text": "Learn The Science",
+        "btn_link": "/?view=science"
+      }
+    },
+    "catalog": {
+      "type": "vellano-bestsellers",
+      "settings": {
+        "title": "All Products"
+      }
+    }
+  },
+  "order": [
+    "intro",
+    "catalog"
+  ]
+}

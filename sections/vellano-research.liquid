@@ -1,0 +1,125 @@
+{%- style -%}
+  .vellano-research {
+    background: #F8F6F3;
+    color: #111;
+    font-family: 'Jost', sans-serif;
+    padding: 80px 5% 120px;
+  }
+  .vellano-research-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 80px;
+  }
+  .vellano-research-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #B8A07A;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .vellano-research-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .vellano-research-sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  .vellano-research-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+  .vellano-research-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .vellano-research-block:nth-child(even) {
+    direction: rtl;
+  }
+  .vellano-research-block:nth-child(even) > * {
+    direction: ltr;
+  }
+  .vellano-research-img-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+  .vellano-research-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .vellano-research-text h3 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+  .vellano-research-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 24px;
+  }
+  .vellano-research-stat {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 48px;
+    color: #B8A07A;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 960px) {
+    .vellano-research-block { grid-template-columns: 1fr; gap: 40px; }
+    .vellano-research-block:nth-child(even) { direction: ltr; }
+  }
+{%- endstyle -%}
+
+<div class="vellano-research">
+  <div class="vellano-research-header">
+    <div class="vellano-research-eyebrow">Clinical Evidence</div>
+    <h1 class="vellano-research-title">The hard truth about hard water.</h1>
+    <p class="vellano-research-sub">We spent two years engineering the KDF-55 filtration matrix. Here is the clinical breakdown of exactly what it removes from your shower, and how it restores your skin barrier.</p>
+  </div>
+
+  <div class="vellano-research-content">
+    <div class="vellano-research-block">
+      <div class="vellano-research-text">
+        <span class="vellano-research-stat">98%</span>
+        <h3>Chlorine & Heavy Metal Reduction</h3>
+        <p>Municipal water is heavily chlorinated to prevent bacteria, but this same chemical strips the natural oils from your skin and hair. Our kinetic degradation fluxion (KDF) filter utilizes a high-purity copper-zinc formulation to reduce chlorine and heavy metals by up to 98% via an electrochemical oxidation-reduction process.</p>
+      </div>
+      <div class="vellano-research-img-wrap">
+        <img src="{{ 'vellano_water_flow.png' | asset_url }}" alt="Filtration Tech">
+      </div>
+    </div>
+
+    <div class="vellano-research-block">
+      <div class="vellano-research-text">
+        <span class="vellano-research-stat">pH 5.5</span>
+        <h3>Acid Mantle Restoration</h3>
+        <p>Hard water is highly alkaline (pH 8+), which disrupts your skin's natural acid mantle (pH 5.5). This causes micro-tears in the lipid barrier, leading to eczema, acne, and trans-epidermal water loss. By neutralizing the water, Vellano allows your skin to naturally regulate its pH balance.</p>
+      </div>
+      <div class="vellano-research-img-wrap">
+        <img src="{{ 'vellano_body_cleanser.png' | asset_url }}" alt="Skin Barrier">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vellano Research",
+  "presets": [{ "name": "Vellano Research" }]
+}
+{% endschema %}

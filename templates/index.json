@@ -1,0 +1,128 @@
+{
+  "sections": {
+    "home_hero": {
+      "type": "vellano-home-hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "The intelligent shower",
+            "title": "Meet your water's new standard.",
+            "subtitle": "The first shower system engineered to protect your skin and hair barrier.",
+            "btn1_label": "Shop The System",
+            "btn1_link": "shopify:\/\/products\/vellano-filtered-showerhead-starter-kit",
+            "btn2_label": "Take The Quiz",
+            "btn2_link": "shopify:\/\/pages\/quiz"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Hard water defense",
+            "title": "Neutralize heavy metals & chlorine.",
+            "subtitle": "Our 3-step filtration process purifies water before it touches your body.",
+            "btn1_label": "Explore The Science",
+            "btn1_link": "/?view=science",
+            "btn2_label": "Take The Quiz",
+            "btn2_link": "/pages/quiz"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Effortless Maintenance",
+            "title": "Smart Refill Plans. Zero Hassle.",
+            "subtitle": "Delivered exactly when you need them. Cancel anytime.",
+            "btn1_label": "Shop Refills",
+            "btn1_link": "/products/1-year-filter-supply",
+            "btn2_label": "Take The Quiz",
+            "btn2_link": "/pages/quiz"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2"
+      ],
+      "settings": {}
+    },
+
+    "editorial_1": {
+      "type": "vellano-editorial",
+      "settings": {
+        "fallback_image_url": "vellano_showerheads.png",
+        "image_alignment": "right",
+        "title": "Your daily rinse impacts your hair and skin beyond your products. Optimise your water to tackle the real problem, not the symptoms.",
+        "btn_text": "Discover The System",
+        "btn_link": "/?view=system"
+      }
+    },
+    "editorial_2": {
+      "type": "vellano-editorial",
+      "settings": {
+        "fallback_image_url": "vellano_suds.png",
+        "image_alignment": "left",
+        "title": "Most routines treat surface symptoms. We start with water: tackling dryness, dullness, and buildup at their source.",
+        "btn_text": "Read The Science",
+        "btn_link": "/?view=science"
+      }
+    },
+    "press_banner": {
+      "type": "vellano-testimonials",
+      "settings": {}
+    },
+
+    "bestsellers": {
+      "type": "vellano-bestsellers",
+      "blocks": {
+        "prod_1": {
+          "type": "product",
+          "settings": {
+            "product": "vellano-filtered-showerhead-starter-kit",
+            "subtitle": "Complete hard water defense system."
+          }
+        },
+        "prod_2": {
+          "type": "product",
+          "settings": {
+            "product": "vitamin-c-infusion-attachment",
+            "subtitle": "Neutralizes residual chloramines."
+          }
+        },
+        "prod_3": {
+          "type": "product",
+          "settings": {
+            "product": "1-year-filter-supply",
+            "subtitle": "Maintains peak KDF-55 filtration."
+          }
+        },
+        "prod_4": {
+          "type": "product",
+          "settings": {
+            "product": "vellano-hard-water-body-cleanser",
+            "subtitle": "Soothes and repairs the skin barrier."
+          }
+        }
+      },
+      "block_order": [
+        "prod_1",
+        "prod_2",
+        "prod_3",
+        "prod_4"
+      ],
+      "settings": {}
+    },
+    "before_after": {
+      "type": "vellano-quiz",
+      "settings": {}
+    }
+  },
+  "order": [
+    "home_hero",
+    "bestsellers",
+    "editorial_1",
+    "press_banner",
+    "editorial_2",
+    "before_after"
+  ]
+}

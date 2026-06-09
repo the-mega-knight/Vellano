@@ -1,0 +1,438 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+<style>
+  .vellano-pdp {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    font-family: 'Inter', sans-serif;
+    color: #111111;
+  }
+  
+  /* Gallery */
+  .vellano-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .vellano-main-image {
+    width: 100%;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+  .vellano-main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  .vellano-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #2B59FF;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .vellano-thumbnails {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+  .vellano-thumb {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+  .vellano-thumb.active {
+    border-color: #111111;
+  }
+  .vellano-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Product Details */
+  .vellano-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .vellano-tags {
+    font-size: 11px;
+    font-weight: 600;
+    color: #2B59FF;
+    letter-spacing: 0.5px;
+  }
+  .vellano-title {
+    font-size: 36px;
+    font-weight: 400;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    line-height: 1.2;
+    color: #111111;
+  }
+  .vellano-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: -10px 0 0 0;
+  }
+  .vellano-reviews-summary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+  }
+  .vellano-stars {
+    color: #F5A623;
+    letter-spacing: 2px;
+  }
+  .vellano-price {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+  
+  .vellano-bullets {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.8;
+  }
+  .vellano-bullets li {
+    margin-bottom: 6px;
+  }
+
+  /* Quantity Selector */
+  .vellano-qty-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 10px 0 10px 0;
+  }
+  .vellano-qty-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .vellano-qty-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fff;
+  }
+  .vellano-qty-card:hover {
+    border-color: #111111;
+  }
+  .vellano-qty-card.selected {
+    border-color: #111111;
+    background: #fafafa;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+  .vellano-qty-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .vellano-radio {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vellano-qty-card.selected .vellano-radio::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #F8F6F3;
+    border-radius: 50%;
+  }
+  .vellano-qty-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .vellano-qty-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111111;
+  }
+  .vellano-qty-desc {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+  }
+  .vellano-qty-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111111;
+  }
+
+  /* Add to cart */
+  .vellano-add-btn {
+    width: 100%;
+    background: #F8F6F3;
+    color: #fff;
+    border: none;
+    padding: 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+  .vellano-add-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+  }
+
+  /* Badges */
+  .vellano-trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .vellano-trust-badge {
+    font-size: 11px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+
+  /* Accordion */
+  .vellano-accordion {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+  }
+  .vellano-accordion-item {
+    border-bottom: 1px solid #eee;
+  }
+  .vellano-accordion-header {
+    padding: 20px 0;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vellano-accordion-content {
+    padding-bottom: 20px;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+    display: none;
+  }
+  .vellano-accordion-item.active .vellano-accordion-content {
+    display: block;
+  }
+
+  @media(max-width: 900px) {
+    .vellano-pdp {
+      grid-template-columns: 1fr;
+      padding: 30px 20px;
+      gap: 40px;
+    }
+  }
+</style>
+
+<div class="vellano-pdp">
+  <!-- Left Gallery -->
+  <div class="vellano-gallery">
+    <div class="vellano-main-image">
+      <div class="vellano-badge">BEST SELLER</div>
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | img_url: '1000x' }}" alt="{{ product.title }}" id="VellanoMainImage">
+      {% else %}
+        <div style="width:100%; height: 500px; background:#f0f0f0; display:flex; align-items:center; justify-content:center; color:#999;">No Image</div>
+      {% endif %}
+    </div>
+    
+    {% if product.images.size > 1 %}
+    <div class="vellano-thumbnails">
+      {% for image in product.images %}
+        <div class="vellano-thumb {% if forloop.first %}active{% endif %}" onclick="changeVellanoImage('{{ image | img_url: '1000x' }}', this)">
+          <img src="{{ image | img_url: '200x' }}" alt="{{ product.title }}">
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Right Details -->
+  <div class="vellano-details">
+    <div class="vellano-tags">HSA | FSA ✓</div>
+    <h1 class="vellano-title">{{ product.title }}</h1>
+    <p class="vellano-subtitle">Premium Wellness Accessory</p>
+    
+    <div class="vellano-reviews-summary">
+      <span class="vellano-stars">★★★★★</span>
+      <span>(406)</span>
+    </div>
+    
+    <div class="vellano-price" id="VellanoPriceDisplay">{{ current_variant.price | money }}</div>
+    
+    <div style="font-size: 13px; font-weight: 700; margin-top: 10px;">Details</div>
+    <ul class="vellano-bullets">
+      <li>Eliminates 99% of chlorine and harmful heavy metals</li>
+      <li>Restores your hair's natural shine and skin's moisture</li>
+      <li>Quick 2-minute installation on any standard shower arm</li>
+    </ul>
+
+    <form action="/cart/add" method="post" id="VellanoForm">
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+      <input type="hidden" name="quantity" id="VellanoQtyInput" value="1">
+
+      <div class="vellano-qty-title">Select Quantity & Save</div>
+      <div class="vellano-qty-options">
+        
+        <!-- Option 1 -->
+        <div class="vellano-qty-card selected" onclick="selectVellanoQty(1, {{ current_variant.price }}, this)">
+          <div class="vellano-qty-left">
+            <div class="vellano-radio"></div>
+            <div class="vellano-qty-info">
+              <span class="vellano-qty-name">1 Item</span>
+              <span class="vellano-qty-desc">Try it out</span>
+            </div>
+          </div>
+          <div class="vellano-qty-price">{{ current_variant.price | money }}</div>
+        </div>
+
+        <!-- Option 2 -->
+        <div class="vellano-qty-card" onclick="selectVellanoQty(2, {{ current_variant.price | times: 0.85 }}, this)">
+          <div class="vellano-qty-left">
+            <div class="vellano-radio"></div>
+            <div class="vellano-qty-info">
+              <span class="vellano-qty-name">2 Items</span>
+              <span class="vellano-qty-desc">Double the comfort (15% Off)</span>
+            </div>
+          </div>
+          <div class="vellano-qty-price">{{ current_variant.price | times: 2 | times: 0.85 | money }}</div>
+        </div>
+
+        <!-- Option 3 -->
+        <div class="vellano-qty-card" onclick="selectVellanoQty(3, {{ current_variant.price | times: 0.75 }}, this)">
+          <div class="vellano-qty-left">
+            <div class="vellano-radio"></div>
+            <div class="vellano-qty-info">
+              <span class="vellano-qty-name">3 Items</span>
+              <span class="vellano-qty-desc">Never run out (25% Off)</span>
+            </div>
+          </div>
+          <div class="vellano-qty-price">{{ current_variant.price | times: 3 | times: 0.75 | money }}</div>
+        </div>
+
+      </div>
+
+      <button type="submit" class="vellano-add-btn">ADD TO CART</button>
+    </form>
+
+    <div class="vellano-trust-badges">
+      <div class="vellano-trust-badge">🛡️ 18-Month Warranty</div>
+      <div class="vellano-trust-badge">↩️ 30-Day Money-Back</div>
+      <div class="vellano-trust-badge">📦 Free Shipping</div>
+    </div>
+
+    <div class="vellano-accordion">
+      <div class="vellano-accordion-item active">
+        <div class="vellano-accordion-header" onclick="toggleVellanoAccordion(this)">
+          Description <span>-</span>
+        </div>
+        <div class="vellano-accordion-content">
+          {{ product.description | default: "Engineered to transform your daily shower into a spa-like wellness experience. Our advanced multi-stage filtration system strips away skin-damaging minerals while enriching your water with essential vitamins." }}
+        </div>
+      </div>
+      <div class="vellano-accordion-item">
+        <div class="vellano-accordion-header" onclick="toggleVellanoAccordion(this)">
+          Safety First <span>+</span>
+        </div>
+        <div class="vellano-accordion-content">
+          All our products are vigorously tested by dermatologists and safety engineers. We use 100% medical-grade materials that are safe for all skin types.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function changeVellanoImage(src, el) {
+    document.getElementById('VellanoMainImage').src = src;
+    document.querySelectorAll('.vellano-thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function selectVellanoQty(qty, unitPriceRaw, el) {
+    // Update hidden quantity input
+    document.getElementById('VellanoQtyInput').value = qty;
+    
+    // Update active UI state
+    document.querySelectorAll('.vellano-qty-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+
+    // Update main price display (unitPriceRaw is passed in cents)
+    // Shopify prices are in cents, so we need to format it back to dollars
+    const totalPrice = (unitPriceRaw * qty) / 100;
+    document.getElementById('VellanoPriceDisplay').innerText = '$' + totalPrice.toFixed(2);
+  }
+
+  function toggleVellanoAccordion(header) {
+    const item = header.parentElement;
+    const isActive = item.classList.contains('active');
+    
+    // Close all
+    document.querySelectorAll('.vellano-accordion-item').forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('span').innerText = '+';
+    });
+
+    if (!isActive) {
+      item.classList.add('active');
+      header.querySelector('span').innerText = '-';
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Vellano Main Product",
+  "settings": [
+  ],
+  "presets": [
+    {
+      "name": "Vellano Main Product"
+    }
+  ]
+}
+{% endschema %}

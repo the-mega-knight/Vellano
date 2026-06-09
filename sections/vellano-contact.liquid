@@ -1,0 +1,67 @@
+{%- style -%}
+  .vellano-contact-wrap { max-width: 800px; margin: 100px auto; padding: 0 5%; font-family: 'Jost', sans-serif; }
+  .vellano-contact-header { text-align: center; margin-bottom: 60px; }
+  .vellano-contact-title { font-family: 'Bodoni Moda', serif; font-size: 48px; color: #111111; margin-bottom: 20px; font-weight: 400; }
+  .vellano-contact-subtitle { font-size: 16px; color: #555; line-height: 1.6; }
+  
+  .vellano-form-group { margin-bottom: 25px; }
+  .vellano-form-label { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #111111; margin-bottom: 10px; font-weight: 600; }
+  .vellano-form-input, .vellano-form-textarea { width: 100%; padding: 18px 20px; border: 1px solid #ddd; border-radius: 8px; background: #fff; font-family: 'Jost', sans-serif; font-size: 15px; color: #333; transition: border-color 0.3s, box-shadow 0.3s; }
+  .vellano-form-input:focus, .vellano-form-textarea:focus { outline: none; border-color: #111111; box-shadow: 0 0 0 1px #111111; }
+  .vellano-form-textarea { min-height: 150px; resize: vertical; }
+  
+  .vellano-form-btn { display: inline-block; width: 100%; padding: 20px; background: #111111; color: #F8F6F3; font-family: 'Jost', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; border: none; border-radius: 30px; cursor: pointer; transition: background 0.3s; }
+  .vellano-form-btn:hover { background: #333; }
+  
+  .vellano-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 600px) { .vellano-contact-grid { grid-template-columns: 1fr; } }
+{%- endstyle -%}
+
+<div class="vellano-contact-wrap vellano-animate-fade-up">
+  <div class="vellano-contact-header">
+    <h1 class="vellano-contact-title">Client Services</h1>
+    <p class="vellano-contact-subtitle">Whether you have questions about our filtration technology or need assistance with your system, our concierges are here to assist you.</p>
+  </div>
+  
+  {%- form 'contact', id: 'ContactForm' -%}
+    {%- if form.posted_successfully? -%}
+      <div style="background: #e6f4ea; color: #1e4620; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center;">
+        Your message has been sent successfully. A concierge will reach out shortly.
+      </div>
+    {%- elsif form.errors -%}
+      <div style="background: #fce8e6; color: #c5221f; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+        Please check the fields below and try again.
+      </div>
+    {%- endif -%}
+
+    <div class="vellano-contact-grid">
+      <div class="vellano-form-group">
+        <label class="vellano-form-label" for="ContactForm-name">Full Name</label>
+        <input class="vellano-form-input" autocomplete="name" type="text" id="ContactForm-name" name="contact[Name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="Jane Doe">
+      </div>
+      <div class="vellano-form-group">
+        <label class="vellano-form-label" for="ContactForm-email">Email Address <span aria-hidden="true">*</span></label>
+        <input class="vellano-form-input" autocomplete="email" type="email" id="ContactForm-email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-required="true" placeholder="jane@example.com" required>
+      </div>
+    </div>
+    
+    <div class="vellano-form-group">
+      <label class="vellano-form-label" for="ContactForm-phone">Order Number (Optional)</label>
+      <input class="vellano-form-input" type="tel" id="ContactForm-phone" autocomplete="tel" name="contact[Phone number]" pattern="[0-9-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="#10293">
+    </div>
+
+    <div class="vellano-form-group">
+      <label class="vellano-form-label" for="ContactForm-body">How can we help?</label>
+      <textarea class="vellano-form-textarea" rows="10" id="ContactForm-body" name="contact[Comment]" placeholder="Write your message here...">{{- form.body -}}</textarea>
+    </div>
+    
+    <button type="submit" class="vellano-form-btn">Send Message</button>
+  {%- endform -%}
+</div>
+
+{% schema %}
+{
+  "name": "Vellano Contact",
+  "presets": [{ "name": "Vellano Contact" }]
+}
+{% endschema %}

@@ -1,0 +1,132 @@
+{%- style -%}
+  .vellano-wq { padding: 100px 5%; background: #F8F6F3; font-family: 'Jost', sans-serif; }
+  .vellano-wq-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .vellano-wq-img-wrap { border-radius: 20px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.1); }
+  .vellano-wq-img { width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/5; }
+
+  .vellano-wq-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #B8A07A; margin-bottom: 18px; font-weight: 500; }
+  .vellano-wq-title { font-family: 'Bodoni Moda', serif; font-size: clamp(28px, 3.5vw, 44px); color: #111; margin-bottom: 22px; line-height: 1.15; font-weight: 400; }
+  .vellano-wq-body { font-size: 16px; color: #666; line-height: 1.75; margin-bottom: 40px; }
+  
+  .vellano-wq-facts { display: flex; flex-direction: column; gap: 18px; margin-bottom: 44px; }
+  .vellano-wq-fact {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px 18px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #E8E4DF;
+    transition: border-color 0.25s;
+  }
+  .vellano-wq-fact:hover { border-color: #B8A07A; }
+  .vellano-wq-fact-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(184,160,122,0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #B8A07A;
+  }
+  .vellano-wq-fact-icon svg { width: 18px; height: 18px; }
+  .vellano-wq-fact-content { }
+  .vellano-wq-fact-title { font-size: 14px; font-weight: 600; color: #111; margin-bottom: 4px; }
+  .vellano-wq-fact-desc { font-size: 13px; color: #888; line-height: 1.5; }
+
+  .vellano-wq-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .vellano-wq-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 36px;
+    background: #111;
+    color: #F8F6F3;
+    border-radius: 30px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s;
+  }
+  .vellano-wq-btn:hover { background: #333; }
+  .vellano-wq-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 36px;
+    border: 1.5px solid #111;
+    color: #111;
+    border-radius: 30px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s;
+  }
+  .vellano-wq-btn-secondary:hover { background: #111; color: #fff; }
+
+  @media (max-width: 900px) {
+    .vellano-wq-container { grid-template-columns: 1fr; gap: 48px; }
+  }
+{%- endstyle -%}
+
+<div class="vellano-wq">
+  <div class="vellano-wq-container">
+
+    <div class="vellano-wq-img-wrap vellano-animate-slide-right">
+      <img src="{{ 'vellano_shower_action.png' | asset_url }}" class="vellano-wq-img" alt="Vellano filtered water" onerror="this.src='{{ 'vellano_hero_lifestyle.png' | asset_url }}'">
+    </div>
+
+    <div class="vellano-wq-text vellano-animate-slide-left">
+      <p class="vellano-wq-eyebrow">Hard Water Facts</p>
+      <h2 class="vellano-wq-title">85% of US homes have hard water. Is yours one of them?</h2>
+      <p class="vellano-wq-body">If you're spending on high-end shampoos and skincare but still seeing dull hair and dry skin — your water is the culprit. Hard water deposits calcium and magnesium directly onto your hair shaft and into your skin's pores every single shower.</p>
+
+      <div class="vellano-wq-facts">
+        <div class="vellano-wq-fact">
+          <div class="vellano-wq-fact-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+          <div class="vellano-wq-fact-content">
+            <div class="vellano-wq-fact-title">Chlorine strips hair protein</div>
+            <div class="vellano-wq-fact-desc">Municipal water chlorine oxidises the keratin bonds in your hair, directly causing breakage and loss of elasticity.</div>
+          </div>
+        </div>
+        <div class="vellano-wq-fact">
+          <div class="vellano-wq-fact-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="vellano-wq-fact-content">
+            <div class="vellano-wq-fact-title">Mineral buildup blocks follicles</div>
+            <div class="vellano-wq-fact-desc">Calcium and magnesium coat the scalp and hair follicle openings, reducing sebum flow and stunting growth over time.</div>
+          </div>
+        </div>
+        <div class="vellano-wq-fact">
+          <div class="vellano-wq-fact-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <div class="vellano-wq-fact-content">
+            <div class="vellano-wq-fact-title">Skin barrier is disrupted daily</div>
+            <div class="vellano-wq-fact-desc">Hard water raises your skin's surface pH from its natural 4.5 to over 6.0 — activating enzymes that break down its protective lipid matrix.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vellano-wq-ctas">
+        <a href="/products/vellano-filtered-showerhead-starter-kit" class="vellano-wq-btn">Fix My Water</a>
+        <a href="/?view=science" class="vellano-wq-btn-secondary">Read The Science</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vellano Water Quality",
+  "presets": [{ "name": "Vellano Water Quality" }]
+}
+{% endschema %}

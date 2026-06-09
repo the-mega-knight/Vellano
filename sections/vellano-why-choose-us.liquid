@@ -1,0 +1,92 @@
+<style>
+  .vellano-why-section {
+    background-color: #faf9f5;
+    padding: 60px 20px;
+    font-family: 'Jost', sans-serif;
+  }
+  .vellano-why-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .vellano-why-kicker {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .vellano-why-title {
+    font-size: 32px;
+    font-family: 'Bodoni Moda', serif;
+    color: #111111;
+    margin-bottom: 40px;
+  }
+  .vellano-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .vellano-why-card {
+    background: transparent;
+    border: 1px solid #e0dfdb;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .vellano-why-icon {
+    font-size: 24px;
+    color: #B8A07A;
+    margin-bottom: 16px;
+  }
+  .vellano-why-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111111;
+    margin-bottom: 12px;
+  }
+  .vellano-why-card-text {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  @media(max-width: 768px) {
+    .vellano-why-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="vellano-why-section">
+  <div class="vellano-why-container">
+    <div class="vellano-why-kicker">THE VELLANO STANDARD</div>
+    <div class="vellano-why-title">Why Choose Us</div>
+    
+    <div class="vellano-why-grid">
+      <div class="vellano-why-card">
+        <div class="vellano-why-icon">✦</div>
+        <div class="vellano-why-card-title">20M+ Global Users</div>
+        <div class="vellano-why-card-text">Trusted worldwide by a community dedicated to proactive wellness and elevated living.</div>
+      </div>
+      
+      <div class="vellano-why-card">
+        <div class="vellano-why-icon">✓</div>
+        <div class="vellano-why-card-title">Risk-Free Guarantee</div>
+        <div class="vellano-why-card-text">Enjoy free shipping, a 30-day home trial period, and a comprehensive 1-year warranty on all our products.</div>
+      </div>
+      
+      <div class="vellano-why-card">
+        <div class="vellano-why-icon">✚</div>
+        <div class="vellano-why-card-title">FSA / HSA Eligible</div>
+        <div class="vellano-why-card-text">Many of our recovery and footwear products are eligible for purchase using your FSA or HSA funds.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vellano Why Choose Us",
+  "presets": [{"name":"Vellano Why Choose Us"}]
+}
+{% endschema %}

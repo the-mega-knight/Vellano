@@ -1,0 +1,372 @@
+{%- style -%}
+  .vellano-hero-slider {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 104px); /* Account for header */
+    min-height: 600px;
+    padding: 16px;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    display: flex;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .vellano-hero-slider::-webkit-scrollbar { display: none; }
+  
+  .vellano-hero-slide {
+    flex: 0 0 calc(100vw - 32px);
+    height: 100%;
+    scroll-snap-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #111;
+  }
+  
+  /* Full Background Layout */
+  .vellano-hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: right center; /* Keep subject on right */
+    z-index: 1;
+  }
+  
+  /* Text container constrained to left */
+  .vellano-hero-content {
+    position: relative;
+    z-index: 10;
+    padding: 60px 8%;
+    color: #F8F6F3;
+    max-width: 700px;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .vellano-hero-content > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .vellano-hero-slide.is-active .vellano-hero-eyebrow { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+  .vellano-hero-slide.is-active .vellano-hero-title { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+  .vellano-hero-slide.is-active .vellano-hero-sub { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+  .vellano-hero-slide.is-active .vellano-hero-ctas { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+  
+  .vellano-hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .vellano-hero-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(48px, 6vw, 84px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: #F8F6F3 !important;
+  }
+  .vellano-hero-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.5;
+    margin-bottom: 40px;
+    opacity: 0.9;
+  }
+  .vellano-hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .vellano-hero-btn-primary {
+    padding: 18px 42px;
+    background: #F8F6F3;
+    color: #111;
+    border-radius: 30px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .vellano-hero-btn-primary:hover { transform: translateY(-2px); }
+  .vellano-hero-btn-primary:focus-visible { outline: 2px solid #F8F6F3; outline-offset: 4px; }
+  .vellano-hero-btn-secondary {
+    padding: 18px 20px;
+    background: transparent;
+    color: #F8F6F3;
+    border: none;
+    border-bottom: 1px solid rgba(248, 246, 243, 0.4);
+    border-radius: 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s, border-color 0.2s;
+  }
+  .vellano-hero-btn-secondary:hover { opacity: 0.7; border-bottom-color: #F8F6F3; }
+  .vellano-hero-btn-secondary:focus-visible { outline: 2px solid #F8F6F3; outline-offset: 4px; }
+  
+  @media (max-width: 768px) {
+    .vellano-hero-ctas {
+      flex-direction: column;
+      width: 100%;
+    }
+    .vellano-hero-btn-primary, .vellano-hero-btn-secondary {
+      width: 100%;
+      text-align: center;
+      display: block;
+      box-sizing: border-box;
+    }
+  }
+  
+  .vellano-hero-dots {
+    position: absolute;
+    bottom: 46px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 5;
+  }
+  .vellano-hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(248, 246, 243, 0.4);
+    transition: background 0.3s;
+  }
+  .vellano-hero-dot.active { background: #F8F6F3; }
+  
+  .vellano-hero-arrows {
+    position: absolute;
+    bottom: 38px;
+    right: 50px;
+    display: flex;
+    gap: 12px;
+    z-index: 5;
+  }
+  .vellano-hero-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(248, 246, 243, 0.4);
+    background: transparent;
+    color: #F8F6F3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .vellano-hero-arrow:hover {
+    background: rgba(248, 246, 243, 0.1);
+    border-color: #F8F6F3;
+  }
+  .vellano-hero-arrow:focus-visible {
+    outline: 2px solid #F8F6F3;
+    outline-offset: 2px;
+  }
+  .vellano-hero-arrow svg { width: 16px; height: 16px; fill: currentColor; }
+  
+  /* Optional dimming overlay to ensure text is readable */
+  .vellano-hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 60%);
+    z-index: 2;
+  }
+{%- endstyle -%}
+
+<div class="vellano-hero-slider" id="vellano-slider">
+  {% for block in section.blocks %}
+    <div class="vellano-hero-slide" {{ block.shopify_attributes }}>
+      {% if block.settings.video != blank %}
+        {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'vellano-hero-bg', image_size: '2400x' }}
+      {% elsif block.settings.image != blank %}
+        {{ block.settings.image | image_url: width: 2400 | image_tag: class: 'vellano-hero-bg', fetchpriority: 'high' }}
+      {% else %}
+        <!-- Placeholder fallback -->
+        <img src="{{ 'vellano_product_hero.png' | asset_url }}" class="vellano-hero-bg" alt="Placeholder" width="2400" height="1200" fetchpriority="high">
+      {% endif %}
+      
+      <div class="vellano-hero-overlay"></div>
+      
+      <div class="vellano-hero-content">
+        {% if block.settings.eyebrow != blank %}
+          <div class="vellano-hero-eyebrow">{{ block.settings.eyebrow }}</div>
+        {% endif %}
+        
+        {% if block.settings.title != blank %}
+          <h1 class="vellano-hero-title">{{ block.settings.title }}</h1>
+        {% endif %}
+        
+        {% if block.settings.subtitle != blank %}
+          <p class="vellano-hero-sub">{{ block.settings.subtitle }}</p>
+        {% endif %}
+        
+        <div class="vellano-hero-ctas">
+          {% if block.settings.btn1_label != blank %}
+            <a href="{{ block.settings.btn1_link }}" class="vellano-hero-btn-primary">{{ block.settings.btn1_label }}</a>
+          {% endif %}
+          
+          {% if block.settings.btn2_label != blank %}
+            <a href="{{ block.settings.btn2_link }}" class="vellano-hero-btn-secondary">{{ block.settings.btn2_label }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% if section.blocks.size > 1 %}
+  <div class="vellano-hero-dots">
+    {% for block in section.blocks %}
+      <div class="vellano-hero-dot {% if forloop.first %}active{% endif %}"></div>
+    {% endfor %}
+  </div>
+
+  <div class="vellano-hero-arrows">
+    <button class="vellano-hero-arrow" id="vellano-prev" aria-label="Previous Slide">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <button class="vellano-hero-arrow" id="vellano-next" aria-label="Next Slide">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+  </div>
+{% endif %}
+
+<script>
+  const slider = document.getElementById('vellano-slider');
+  const slides = document.querySelectorAll('.vellano-hero-slide');
+  const dots = document.querySelectorAll('.vellano-hero-dot');
+  const prevBtn = document.getElementById('vellano-prev');
+  const nextBtn = document.getElementById('vellano-next');
+  let currentIndex = 0;
+  
+  if(slider && slides.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('is-active');
+          currentIndex = Array.from(slides).indexOf(entry.target);
+          dots.forEach((dot, i) => {
+            if(i === currentIndex) dot.classList.add('active');
+            else dot.classList.remove('active');
+          });
+        } else {
+          entry.target.classList.remove('is-active');
+        }
+      });
+    }, { root: slider, threshold: 0.5 });
+    
+    slides.forEach(slide => observer.observe(slide));
+
+    if(prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          slides[currentIndex - 1].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (currentIndex < slides.length - 1) {
+          slides[currentIndex + 1].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+      });
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Home Hero Carousel",
+  "max_blocks": 5,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Background Video"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Fallback Background Image"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow Text",
+          "default": "The intelligent shower"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Meet your water's new standard."
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "The first shower system engineered to protect your skin and hair barrier."
+        },
+        {
+          "type": "text",
+          "id": "btn1_label",
+          "label": "Primary Button Label",
+          "default": "Shop The System"
+        },
+        {
+          "type": "url",
+          "id": "btn1_link",
+          "label": "Primary Button Link"
+        },
+        {
+          "type": "text",
+          "id": "btn2_label",
+          "label": "Secondary Button Label",
+          "default": "Take The Quiz"
+        },
+        {
+          "type": "url",
+          "id": "btn2_link",
+          "label": "Secondary Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Hero Carousel",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

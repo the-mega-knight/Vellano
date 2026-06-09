@@ -1,0 +1,59 @@
+
+/* Vellano Animation Engine */
+.vellano-animate-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vellano-animate-fade-in {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.vellano-animate-slide-left {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vellano-animate-slide-right {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Staggering delays for children */
+.vellano-animate-stagger-1 { transition-delay: 0.1s; }
+.vellano-animate-stagger-2 { transition-delay: 0.2s; }
+.vellano-animate-stagger-3 { transition-delay: 0.3s; }
+.vellano-animate-stagger-4 { transition-delay: 0.4s; }
+.vellano-animate-stagger-5 { transition-delay: 0.5s; }
+.vellano-animate-stagger-6 { transition-delay: 0.6s; }
+
+/* Trigger class added by JS */
+.is-visible.vellano-animate-fade-up,
+.is-visible .vellano-animate-fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+.is-visible.vellano-animate-fade-in,
+.is-visible .vellano-animate-fade-in {
+  opacity: 1;
+}
+.is-visible.vellano-animate-slide-left,
+.is-visible .vellano-animate-slide-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+.is-visible.vellano-animate-slide-right,
+.is-visible .vellano-animate-slide-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Hero Zoom Parallax */
+.vellano-hero-bg {
+  transform: scale(1.1);
+  transition: transform 10s ease-out;
+}
+.vellano-hero.is-visible .vellano-hero-bg {
+  transform: scale(1);
+}

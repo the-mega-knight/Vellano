@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "specs": {
+      "type": "vellano-specs",
+      "settings": {}
+    }
+  },
+  "order": [
+    "specs"
+  ]
+}

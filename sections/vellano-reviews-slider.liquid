@@ -1,0 +1,87 @@
+{%- style -%}
+  .vellano-reviews {
+    background-color: #F8F6F3;
+    padding: 80px 5%;
+    color: #111111;
+    overflow: hidden;
+  }
+  .vellano-reviews-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .vellano-reviews-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+  .vellano-reviews-slider {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 40px;
+    scrollbar-width: none; /* Firefox */
+  }
+  .vellano-reviews-slider::-webkit-scrollbar {
+    display: none; /* Chrome */
+  }
+  .vellano-review-card {
+    min-width: 350px;
+    background-color: #151a28;
+    padding: 40px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .vellano-review-stars {
+    color: #B8A07A;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  .vellano-review-text {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #eaeaea;
+  }
+  .vellano-review-author {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #B6B0AA;
+  }
+{%- endstyle -%}
+
+<div class="vellano-reviews vellano-animate">
+  <div class="vellano-reviews-header vellano-animate-fade-up">
+    <h2 class="vellano-reviews-title">Real Results</h2>
+  </div>
+  
+  <div class="vellano-reviews-slider vellano-animate-fade-in vellano-animate-stagger-2">
+    <div class="vellano-review-card">
+      <div class="vellano-review-stars">★★★★★</div>
+      <div class="vellano-review-text">"My hair has never felt softer. The hard water in my city was completely ruining my skin and hair, but the Vellano system changed everything."</div>
+      <div class="vellano-review-author">SARAH T.</div>
+    </div>
+    <div class="vellano-review-card">
+      <div class="vellano-review-stars">★★★★★</div>
+      <div class="vellano-review-text">"The aesthetics alone are incredible, but the actual water pressure and purity is unmatched. Highly recommend the starter kit."</div>
+      <div class="vellano-review-author">EMILY R.</div>
+    </div>
+    <div class="vellano-review-card">
+      <div class="vellano-review-stars">★★★★★</div>
+      <div class="vellano-review-text">"I suffered from dry, flaky skin for years. After 2 weeks with the Vellano filter and cleanser, my skin is completely transformed."</div>
+      <div class="vellano-review-author">JESSICA M.</div>
+    </div>
+    <div class="vellano-review-card">
+      <div class="vellano-review-stars">★★★★★</div>
+      <div class="vellano-review-text">"Installation was a breeze. Looks stunning in my matte black bathroom setup."</div>
+      <div class="vellano-review-author">ALEX K.</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vellano Reviews",
+  "presets": [ { "name": "Vellano Reviews" } ]
+}
+{% endschema %}

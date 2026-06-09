@@ -1,0 +1,448 @@
+{%- style -%}
+  /* =====================================================
+     VELLANO BUNDLE QUIZ — Multi-step product recommender
+     Modelled on Hello Klean's quiz approach
+     ===================================================== */
+  .vellano-quiz-section {
+    padding: 100px 5%;
+    background: #F8F6F3;
+    font-family: 'Jost', sans-serif;
+  }
+  .vellano-quiz-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .vellano-quiz-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #B8A07A;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .vellano-quiz-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 14px;
+    line-height: 1.1;
+  }
+  .vellano-quiz-subtitle {
+    font-size: 15px;
+    color: rgba(17,17,17,0.5);
+    margin-bottom: 56px;
+    line-height: 1.6;
+  }
+
+  /* Step */
+  .vellano-quiz-step {
+    display: none;
+    animation: quiz-step-in 0.4s ease;
+  }
+  .vellano-quiz-step.active { display: block; }
+  @keyframes quiz-step-in {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .vellano-quiz-step-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(17,17,17,0.3);
+    margin-bottom: 20px;
+  }
+  .vellano-quiz-question {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    color: #111;
+    margin-bottom: 36px;
+    line-height: 1.3;
+    font-weight: 400;
+  }
+  .vellano-quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .vellano-quiz-option {
+    background: #fff;
+    border: 1.5px solid #E8E4DF;
+    border-radius: 12px;
+    padding: 20px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    text-align: left;
+  }
+  .vellano-quiz-option:hover {
+    border-color: #B8A07A;
+    background: #faf9f8;
+    transform: translateY(-2px);
+  }
+  .vellano-quiz-option.selected {
+    border-color: #B8A07A;
+    background: #faf9f8;
+  }
+  .vellano-quiz-option-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .vellano-quiz-option-text {
+    font-size: 14px;
+    color: #111;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+  .vellano-quiz-option-sub {
+    font-size: 12px;
+    color: rgba(17,17,17,0.45);
+    margin-top: 4px;
+  }
+
+  /* Progress bar */
+  .vellano-quiz-progress {
+    height: 2px;
+    background: rgba(17,17,17,0.1);
+    border-radius: 2px;
+    margin-bottom: 48px;
+    overflow: hidden;
+  }
+  .vellano-quiz-progress-fill {
+    height: 100%;
+    background: #B8A07A;
+    transition: width 0.4s ease;
+    border-radius: 2px;
+  }
+
+  /* Result */
+  .vellano-quiz-result {
+    display: none;
+    animation: quiz-step-in 0.5s ease;
+  }
+  .vellano-quiz-result.active { display: block; }
+  .vellano-quiz-result-badge {
+    display: inline-block;
+    background: #B8A07A;
+    color: #111;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 24px;
+  }
+  .vellano-quiz-result-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 28px;
+    color: #111;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .vellano-quiz-result-desc {
+    font-size: 14px;
+    color: rgba(17,17,17,0.55);
+    margin-bottom: 36px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .vellano-quiz-result-products {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .vellano-quiz-result-product {
+    background: #fff;
+    border: 1px solid #E8E4DF;
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
+    max-width: 180px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .vellano-quiz-result-product:hover { border-color: #B8A07A; transform: translateY(-4px); }
+  .vellano-quiz-result-product-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 auto 12px;
+    display: block;
+  }
+  .vellano-quiz-result-product-name {
+    font-size: 13px;
+    color: #111;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .vellano-quiz-result-product-price {
+    font-size: 12px;
+    color: #B8A07A;
+    margin-top: 6px;
+  }
+  .vellano-quiz-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 16px 40px;
+    background: #111;
+    color: #F8F6F3;
+    border-radius: 30px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s;
+    margin-bottom: 20px;
+  }
+  .vellano-quiz-cta:hover { background: #333; }
+  .vellano-quiz-restart {
+    display: block;
+    font-size: 12px;
+    color: rgba(17,17,17,0.3);
+    cursor: pointer;
+    margin-top: 12px;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .vellano-quiz-restart:hover { color: rgba(17,17,17,0.6); }
+
+  @media (max-width: 600px) {
+    .vellano-quiz-options { grid-template-columns: 1fr; }
+    .vellano-quiz-result-products { flex-direction: column; align-items: center; }
+  }
+{%- endstyle -%}
+
+<div class="vellano-quiz-section" id="vellano-quiz">
+  <div class="vellano-quiz-inner">
+    <p class="vellano-quiz-eyebrow">Find Your Match</p>
+    <h2 class="vellano-quiz-title">What's your water<br>doing to you?</h2>
+    <p class="vellano-quiz-subtitle">Answer 3 quick questions and we'll build the right Vellano system for your hair and skin.</p>
+
+    <!-- Progress -->
+    <div class="vellano-quiz-progress">
+      <div class="vellano-quiz-progress-fill" id="vellano-quiz-bar" style="width: 0%"></div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="vellano-quiz-step active" id="vellano-step-1">
+      <p class="vellano-quiz-step-label">Step 1 of 3</p>
+      <p class="vellano-quiz-question">What's your biggest concern?</p>
+      <div class="vellano-quiz-options">
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(1, 'hair', this)">
+          <div class="vellano-quiz-option-icon">💆</div>
+          <div class="vellano-quiz-option-text">Hair damage</div>
+          <div class="vellano-quiz-option-sub">Dry, brittle, or dull strands</div>
+        </button>
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(1, 'skin', this)">
+          <div class="vellano-quiz-option-icon">🌿</div>
+          <div class="vellano-quiz-option-text">Skin irritation</div>
+          <div class="vellano-quiz-option-sub">Tight, dry, or reactive skin</div>
+        </button>
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(1, 'both', this)">
+          <div class="vellano-quiz-option-icon">✦</div>
+          <div class="vellano-quiz-option-text">Both</div>
+          <div class="vellano-quiz-option-sub">Hair and skin suffering equally</div>
+        </button>
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(1, 'water', this)">
+          <div class="vellano-quiz-option-icon">💧</div>
+          <div class="vellano-quiz-option-text">Purest water possible</div>
+          <div class="vellano-quiz-option-sub">I want maximum filtration</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="vellano-quiz-step" id="vellano-step-2">
+      <p class="vellano-quiz-step-label">Step 2 of 3</p>
+      <p class="vellano-quiz-question">How does your water feel?</p>
+      <div class="vellano-quiz-options">
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(2, 'hard', this)">
+          <div class="vellano-quiz-option-icon">🪨</div>
+          <div class="vellano-quiz-option-text">Very hard</div>
+          <div class="vellano-quiz-option-sub">I see limescale and deposits</div>
+        </button>
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(2, 'moderate', this)">
+          <div class="vellano-quiz-option-icon">🌊</div>
+          <div class="vellano-quiz-option-text">Moderate</div>
+          <div class="vellano-quiz-option-sub">Some buildup, some dryness</div>
+        </button>
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(2, 'unknown', this)">
+          <div class="vellano-quiz-option-icon">🔍</div>
+          <div class="vellano-quiz-option-text">Not sure</div>
+          <div class="vellano-quiz-option-sub">I want to find out</div>
+        </button>
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(2, 'soft', this)">
+          <div class="vellano-quiz-option-icon">🫧</div>
+          <div class="vellano-quiz-option-text">Seems soft</div>
+          <div class="vellano-quiz-option-sub">But I still have issues</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="vellano-quiz-step" id="vellano-step-3">
+      <p class="vellano-quiz-step-label">Step 3 of 3</p>
+      <p class="vellano-quiz-question">What are you currently using?</p>
+      <div class="vellano-quiz-options">
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(3, 'nothing', this)">
+          <div class="vellano-quiz-option-icon">🚿</div>
+          <div class="vellano-quiz-option-text">Basic shower head</div>
+          <div class="vellano-quiz-option-sub">No filter at all</div>
+        </button>
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(3, 'basic', this)">
+          <div class="vellano-quiz-option-icon">⚗️</div>
+          <div class="vellano-quiz-option-text">A basic filter</div>
+          <div class="vellano-quiz-option-sub">Want better results</div>
+        </button>
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(3, 'vitamins', this)">
+          <div class="vellano-quiz-option-icon">🍋</div>
+          <div class="vellano-quiz-option-text">Vitamin C filter</div>
+          <div class="vellano-quiz-option-sub">Looking to upgrade</div>
+        </button>
+        <button type="button" class="vellano-quiz-option" onclick="vellanoQuizAnswer(3, 'vellano', this)">
+          <div class="vellano-quiz-option-icon">✅</div>
+          <div class="vellano-quiz-option-text">Already Vellano</div>
+          <div class="vellano-quiz-option-sub">Need refills or add-ons</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="vellano-quiz-result" id="vellano-quiz-result">
+      <span class="vellano-quiz-result-badge">Your Recommendation</span>
+      <h3 class="vellano-quiz-result-title" id="vellano-result-title">The Starter Kit</h3>
+      <p class="vellano-quiz-result-desc" id="vellano-result-desc">Based on your answers, this is the Vellano system built for your water and skin type.</p>
+      <div class="vellano-quiz-result-products" id="vellano-result-products"></div>
+      <a href="#" class="vellano-quiz-cta" id="vellano-result-cta">Shop My Recommendation</a>
+      <br>
+      <button class="vellano-quiz-restart" onclick="vellanoQuizRestart()">Start Over</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var vellanoQuizAnswers = {};
+  var vellanoCurrentStep = 1;
+
+  var vellanoProducts = {
+    starter: {
+      name: 'The Handheld Filter',
+      price: '$79.99',
+      url: '/products/vellano-filtered-showerhead-starter-kit',
+      img: '{{ "vellano_product_hero.png" | asset_url }}'
+    },
+    refill: {
+      name: '1-Year Filter Supply',
+      price: '$49.99',
+      url: '/products/1-year-filter-supply',
+      img: '{{ "vellano_refill_cartridge.png" | asset_url }}'
+    },
+    cleanser: {
+      name: 'Hard Water Body Cleanser',
+      price: '$34.99',
+      url: '/products/vellano-hard-water-body-cleanser',
+      img: '{{ "vellano_body_cleanser.png" | asset_url }}'
+    },
+    vitaminC: {
+      name: 'Vitamin C Attachment',
+      price: '$49.99',
+      url: '/products/vitamin-c-infusion-attachment',
+      img: '{{ "vellano_vitaminc_attachment.png" | asset_url }}'
+    }
+  };
+
+  function vellanoQuizAnswer(step, answer, el) {
+    vellanoQuizAnswers['step' + step] = answer;
+    var options = document.querySelectorAll('#vellano-step-' + step + ' .vellano-quiz-option');
+    options.forEach(function(o) { o.classList.remove('selected'); });
+    el.classList.add('selected');
+    setTimeout(function() { vellanoQuizNext(step); }, 350);
+  }
+
+  function vellanoQuizNext(currentStep) {
+    document.getElementById('vellano-step-' + currentStep).classList.remove('active');
+    if (currentStep < 3) {
+      vellanoCurrentStep = currentStep + 1;
+      document.getElementById('vellano-step-' + vellanoCurrentStep).classList.add('active');
+      document.getElementById('vellano-quiz-bar').style.width = (vellanoCurrentStep - 1) * 33.3 + '%';
+    } else {
+      document.getElementById('vellano-quiz-bar').style.width = '100%';
+      vellanoShowResult();
+    }
+  }
+
+  function vellanoShowResult() {
+    var concern = vellanoQuizAnswers['step1'];
+    var resultProducts = [];
+    var title, desc, ctaUrl;
+    
+    if (concern === 'hair') {
+      title = 'The Hair Revival System';
+      desc = 'Hard water calcium is the #1 cause of brittle, dull hair. Your KDF-55 filter removes up to 98% of chlorine and heavy metals — so your hair gets clean water, not chemical-stripped water.';
+      resultProducts = [vellanoProducts.starter, vellanoProducts.refill];
+      ctaUrl = '/products/vellano-filtered-showerhead-starter-kit';
+    } else if (concern === 'skin') {
+      title = 'The Skin Barrier Bundle';
+      desc = 'Chlorinated water strips your skin\'s natural acid mantle, causing tightness and breakouts. Filter your water and wash with our hard-water cleanser — formulated specifically for mineral-heavy water.';
+      resultProducts = [vellanoProducts.starter, vellanoProducts.cleanser];
+      ctaUrl = '/products/vellano-filtered-showerhead-starter-kit';
+    } else if (concern === 'both') {
+      title = 'The Complete System';
+      desc = 'For full-body transformation. Filtered water at the source, 1-year refill supply, and a body cleanser formulated to work with purified water — the complete Vellano ecosystem.';
+      resultProducts = [vellanoProducts.starter, vellanoProducts.cleanser, vellanoProducts.refill];
+      ctaUrl = '/collections/all';
+    } else {
+      title = 'Maximum Filtration Setup';
+      desc = 'For those who want the most clinical-grade filtration. KDF-55 removes chlorine, chloramines, and heavy metals. Add the Vitamin C attachment for residual chloramine neutralisation.';
+      resultProducts = [vellanoProducts.starter, vellanoProducts.vitaminC, vellanoProducts.refill];
+      ctaUrl = '/products/vitamin-c-infusion-attachment';
+    }
+
+    document.getElementById('vellano-result-title').textContent = title;
+    document.getElementById('vellano-result-desc').textContent = desc;
+    document.getElementById('vellano-result-cta').href = ctaUrl;
+
+    var html = '';
+    resultProducts.forEach(function(p) {
+      html += '<a href="' + p.url + '" class="vellano-quiz-result-product">';
+      html += '<img src="' + p.img + '" class="vellano-quiz-result-product-img" alt="' + p.name + '">';
+      html += '<div class="vellano-quiz-result-product-name">' + p.name + '</div>';
+      html += '<div class="vellano-quiz-result-product-price">' + p.price + '</div>';
+      html += '</a>';
+    });
+    document.getElementById('vellano-result-products').innerHTML = html;
+    document.getElementById('vellano-quiz-result').classList.add('active');
+  }
+
+  function vellanoQuizRestart() {
+    vellanoQuizAnswers = {};
+    vellanoCurrentStep = 1;
+    document.querySelectorAll('.vellano-quiz-step').forEach(function(s) { s.classList.remove('active'); });
+    document.getElementById('vellano-quiz-result').classList.remove('active');
+    document.getElementById('vellano-quiz-bar').style.width = '0%';
+    document.querySelectorAll('.vellano-quiz-option').forEach(function(o) { o.classList.remove('selected'); });
+    document.getElementById('vellano-step-1').classList.add('active');
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Vellano Bundle Quiz",
+  "presets": [{ "name": "Vellano Bundle Quiz" }]
+}
+{% endschema %}

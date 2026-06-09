@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "vellano-accordion",
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about The System."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
