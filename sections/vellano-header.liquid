@@ -430,6 +430,8 @@
     <a href="/" class="vellano-hdr-logo" aria-label="Vellano Home">
       {% if section.settings.logo != blank %}
         <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ section.settings.logo.alt | escape }}">
+      {% elsif section.settings.logo_text != blank %}
+        <div style="font-size: 24px; font-weight: bold;">{{ section.settings.logo_text }}</div>
       {% else %}
         <div style="font-size: 24px; font-weight: bold;">{{ shop.name }}</div>
       {% endif %}
@@ -530,6 +532,13 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text (Fallback)",
+      "default": "VELLANO",
+      "info": "Displayed if no logo image is uploaded."
     },
     {
       "type": "image_picker",
