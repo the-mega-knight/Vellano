@@ -9,29 +9,77 @@
   details[open] .hk-acc-icon { transform: rotate(45deg); }
 {%- endstyle -%}
 <div class="hk-accordion-sec">
-  <details class="hk-acc-item">
-    <summary class="hk-acc-header">Benefits <span class="hk-acc-icon">+</span></summary>
-    <div class="hk-acc-content">
-      <ul>
-        <li>98% chlorine reduction and 82% limescale reduction.</li>
-        <li>Cuts water use by 25%.</li>
-        <li>Assembles in 1 minute.</li>
-        <li>Includes 1-year warranty.</li>
-        <li>Each Shower Head includes a filter set that lasts 3 to 4 months.</li>
-      </ul>
-    </div>
-  </details>
-  <details class="hk-acc-item">
-    <summary class="hk-acc-header">Results <span class="hk-acc-icon">+</span></summary>
-    <div class="hk-acc-content">Softer hair, clearer skin, and significantly less mineral buildup after just 14 days of use.</div>
-  </details>
-  <details class="hk-acc-item">
-    <summary class="hk-acc-header">Vellano Filtration <span class="hk-acc-icon">+</span></summary>
-    <div class="hk-acc-content">Our multi-step KDF-55 filtration system targets the exact heavy metals and hard minerals that damage hair follicles.</div>
-  </details>
-  <details class="hk-acc-item">
-    <summary class="hk-acc-header">How To Install <span class="hk-acc-icon">+</span></summary>
-    <div class="hk-acc-content">Simply unscrew your old showerhead and twist ours on. No plumbers, no tape needed. It takes exactly 60 seconds.</div>
-  </details>
+  {% for block in section.blocks %}
+    <details class="hk-acc-item" {{ block.shopify_attributes }}>
+      <summary class="hk-acc-header">{{ block.settings.title | escape }} <span class="hk-acc-icon">+</span></summary>
+      <div class="hk-acc-content">{{ block.settings.content }}</div>
+    </details>
+  {% else %}
+    <!-- Fallback if no blocks -->
+    <details class="hk-acc-item">
+      <summary class="hk-acc-header">Add an accordion item <span class="hk-acc-icon">+</span></summary>
+      <div class="hk-acc-content"><p>Use the section blocks to add your own accordion items.</p></div>
+    </details>
+  {% endfor %}
 </div>
-{% schema %}{ "name": "Accordion", "presets": [{"name": "Accordion"}] }{% endschema %}
+
+{% schema %}
+{
+  "name": "Accordion",
+  "blocks": [
+    {
+      "type": "accordion_item",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Accordion Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Accordion description goes here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordion",
+      "blocks": [
+        {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Benefits",
+            "content": "<ul><li>98% chlorine reduction and 82% limescale reduction.</li><li>Cuts water use by 25%.</li><li>Assembles in 1 minute.</li><li>Includes 1-year warranty.</li><li>Each Shower Head includes a filter set that lasts 3 to 4 months.</li></ul>"
+          }
+        },
+        {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Results",
+            "content": "<p>Softer hair, clearer skin, and significantly less mineral buildup after just 14 days of use.</p>"
+          }
+        },
+        {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Vellano Filtration",
+            "content": "<p>Our multi-step KDF-55 filtration system targets the exact heavy metals and hard minerals that damage hair follicles.</p>"
+          }
+        },
+        {
+          "type": "accordion_item",
+          "settings": {
+            "title": "How To Install",
+            "content": "<p>Simply unscrew your old showerhead and twist ours on. No plumbers, no tape needed. It takes exactly 60 seconds.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

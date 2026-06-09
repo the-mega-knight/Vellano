@@ -50,7 +50,7 @@
     "editorial_1": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "vellano_showerheads.png",
+        "fallback_image_url": "",
         "image_alignment": "right",
         "title": "Your daily rinse impacts your hair and skin beyond your products. Optimise your water to tackle the real problem, not the symptoms.",
         "btn_text": "Discover The System",
@@ -60,7 +60,7 @@
     "editorial_2": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "vellano_suds.png",
+        "fallback_image_url": "",
         "image_alignment": "left",
         "title": "Most routines treat surface symptoms. We start with water: tackling dryness, dullness, and buildup at their source.",
         "btn_text": "Read The Science",
@@ -69,6 +69,62 @@
     },
     "press_banner": {
       "type": "vellano-testimonials",
+      "settings": {}
+    },
+    "ugc_grid": {
+      "type": "ugc-masonry-grid",
+      "blocks": {
+        "post_1": {
+          "type": "ugc_post",
+          "settings": {
+            "username": "skincare_junkie",
+            "is_video": true
+          }
+        },
+        "post_2": {
+          "type": "ugc_post",
+          "settings": {
+            "username": "healthyhair_club",
+            "is_video": false
+          }
+        },
+        "post_3": {
+          "type": "ugc_post",
+          "settings": {
+            "username": "beautyroutine",
+            "is_video": true
+          }
+        },
+        "post_4": {
+          "type": "ugc_post",
+          "settings": {
+            "username": "glowingskin",
+            "is_video": false
+          }
+        },
+        "post_5": {
+          "type": "ugc_post",
+          "settings": {
+            "username": "selfcare_sunday",
+            "is_video": true
+          }
+        },
+        "post_6": {
+          "type": "ugc_post",
+          "settings": {
+            "username": "vellano_lover",
+            "is_video": false
+          }
+        }
+      },
+      "block_order": [
+        "post_1",
+        "post_2",
+        "post_3",
+        "post_4",
+        "post_5",
+        "post_6"
+      ],
       "settings": {}
     },
 
@@ -122,6 +178,7 @@
     "bestsellers",
     "editorial_1",
     "press_banner",
+    "ugc_grid",
     "editorial_2",
     "before_after"
   ]

@@ -3,7 +3,7 @@
     "hero": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "filter_refills.png",
+        "fallback_image_url": "",
         "image_alignment": "right",
         "title": "The Science of KDF-55 Filtration",
         "description": "<p>Hard water minerals, chlorine, and heavy metals accumulate in your pipes and flow directly onto your skin every day. Vellano's proprietary KDF-55 media neutralises these threats at the molecular level.</p>",
@@ -22,7 +22,7 @@
     "shop_cta": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "vellano_product_hero.png",
+        "fallback_image_url": "",
         "image_alignment": "left",
         "title": "Clinically proven. Dermatologist recommended.",
         "description": "<p>Independent laboratory testing confirms a 98% reduction in chlorine and a 95% reduction in heavy metals after a single pass through the Vellano filter cartridge.</p>",

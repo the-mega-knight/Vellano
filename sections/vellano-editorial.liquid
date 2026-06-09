@@ -25,7 +25,7 @@
     object-fit: cover;
   }
   .vellano-ed-title {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 32px;
     line-height: 1.3;
     font-weight: 400;
@@ -64,14 +64,8 @@
     <div class="vellano-ed-img-side vellano-animate-slide-left vellano-animate-stagger-2">
       {% if section.settings.image != blank %}
         <img src="{{ section.settings.image | img_url: 'master' }}" class="vellano-ed-img" alt="Editorial">
-      {% elsif section.settings.fallback_image_url != blank %}
-        {% if section.settings.fallback_image_url contains 'http' %}
-          <img src="{{ section.settings.fallback_image_url }}" class="vellano-ed-img" alt="Editorial">
-        {% else %}
-          <img src="{{ section.settings.fallback_image_url | asset_url }}" class="vellano-ed-img" alt="Editorial">
-        {% endif %}
       {% else %}
-        <img src="{{ 'vellano_water_flow.png' | asset_url }}" class="vellano-ed-img" alt="Vellano Editorial">
+        {{ 'image' | placeholder_svg_tag: 'vellano-ed-img' }}
       {% endif %}
     </div>
   </div>
@@ -81,7 +75,6 @@
 {
   "name": "Vellano Editorial (HK)",
   "settings": [
-    { "type": "text", "id": "fallback_image_url", "label": "Fallback Image URL" },
     {
       "type": "select",
       "id": "image_alignment",

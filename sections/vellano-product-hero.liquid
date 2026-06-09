@@ -1,10 +1,11 @@
 {%- style -%}
   .hk-product-hero {
     display: flex;
+    align-items: stretch;
     max-width: 1400px;
     margin: 0 auto;
     background: #F8F6F3;
-    font-family: 'Jost', sans-serif;
+    font-family: var(--font-body-family), 'Jost', sans-serif;
   }
   .hk-hero-gallery {
     width: 60%;
@@ -21,7 +22,7 @@
     overflow-y: auto;
   }
   .hk-product-title {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family), var(--font-heading-family);
     font-size: 36px;
     color: #111111;
     margin-bottom: 15px;
@@ -229,25 +230,19 @@
 
 <div class="hk-product-hero">
   <div class="hk-hero-gallery">
-    
-    
-    {% if product.title contains 'Body Cleanser' or product.title contains 'Wash' %}
-      <img src="{{ 'vellano_suds.png' | asset_url }}" class="hk-gallery-main" alt="{{ product.title }}" width="800" height="1000" fetchpriority="high" loading="eager">
-    {% elsif product.title contains 'Filter Supply' or product.title contains 'Refill' %}
-      <img src="{{ 'filter_refills.png' | asset_url }}" class="hk-gallery-main" alt="{{ product.title }}" width="800" height="1000" fetchpriority="high" loading="eager">
-    {% elsif product.title contains 'Vitamin C' %}
-      <img src="{{ 'vellano_showerheads.png' | asset_url }}" class="hk-gallery-main" alt="{{ product.title }}" width="800" height="1000" fetchpriority="high" loading="eager">
-      <img src="{{ 'vellano_suds.png' | asset_url }}" class="hk-gallery-main" alt="{{ product.title }} Detail" width="800" height="1000" loading="lazy">
+    {% if product.media.size > 0 %}
+      {% for media in product.media %}
+        {% if media.media_type == 'image' %}
+          <img src="{{ media | image_url: width: 800 }}" class="hk-gallery-main" alt="{{ media.alt | escape | default: product.title }}" width="800" height="1000" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}">
+        {% endif %}
+      {% endfor %}
     {% else %}
-      <img src="{{ 'vellano_showerheads.png' | asset_url }}" class="hk-gallery-main" alt="Vellano Starter Kit" width="800" height="1000" fetchpriority="high" loading="eager">
-      <img src="{{ 'after_showerhead.png' | asset_url }}" class="hk-gallery-main" alt="Vellano Filter" width="800" height="1000" loading="lazy">
+      {{ 'product-1' | placeholder_svg_tag: 'hk-gallery-main' }}
     {% endif %}
-
-
   </div>
   
   <div class="hk-hero-info">
-    <h1 class="hk-product-title">{{ product.title | default: "Shower Head 2.0" }}</h1>
+    <h1 class="hk-product-title">{{ product.title | default: "Product Title" }}</h1>
     
     <div class="hk-product-reviews">
       <div class="hk-stars" style="display:flex; gap:2px;">
@@ -257,10 +252,11 @@
         <svg viewBox="0 0 24 24" fill="#111" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         <svg viewBox="0 0 24 24" fill="#111" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
       </div>
-      <span>428 Reviews</span>
+      <span>{{ section.settings.review_count | default: '0 Reviews' }}</span>
     </div>
     
-    <span class="hk-color-label">Color: Matte Chrome</span>
+    <!-- Static color swatches for visual structure for now -->
+    <span class="hk-color-label">Color Options</span>
     <div class="hk-swatches">
       <div class="hk-swatch active" style="background: #E0E0E0;"></div>
       <div class="hk-swatch" style="background: #111111;"></div>
@@ -268,53 +264,56 @@
     </div>
     
     <div class="hk-product-desc">
-      
       {% if product.description != blank %}
         {{ product.description }}
-      {% elsif product.title contains 'Body Cleanser' or product.title contains 'Wash' %}
-        Soothe and nourish your skin with our mineral-rich, hard-water formulated body cleanser. Designed to wash away impurities without stripping your natural oils.
-      {% elsif product.title contains 'Filter Supply' or product.title contains 'Refill' %}
-        Maintain peak filtration performance. Our advanced KDF-55 cartridges ensure your water stays free of chlorine, heavy metals, and hard minerals for up to 3 months.
-      {% elsif product.title contains 'Vitamin C' %}
-        Infuse your shower with revitalizing Vitamin C. This attachment neutralizes residual chloramines and promotes collagen production for glowing skin and vibrant hair.
       {% else %}
-        Better hair and skin with every rinse. The Vellano Shower Head reduces damaging chlorine, heavy metals, and impurities while intensifying water flow.
+        <p>Your product description will appear here. Add it in the Shopify admin.</p>
       {% endif %}
-
     </div>
     
+    {% if section.settings.show_bundle_box %}
     <div class="hk-bundle-box">
       <div class="hk-bundle-header">
         <div class="hk-bundle-title" style="display:flex; align-items:center;">
           <span style="display:inline-block; width:16px; height:16px; border-radius:50%; border:5px solid #111; background:#111; margin-right:10px; box-sizing:border-box;"></span>
-          Starter Kit + Gift
+          {{ section.settings.bundle_title }}
         </div>
         <div class="hk-bundle-price">
-          {{ product.price | default: 12160 | money }} <span>$152.00</span>
+          {{ product.price | money }} 
+          {% if product.compare_at_price > product.price %}
+            <span>{{ product.compare_at_price | money }}</span>
+          {% endif %}
         </div>
       </div>
       
       <ul class="hk-bundle-list">
-        <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Shower Head + Filter set</li>
-        <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Welcome gift (worth over $35)</li>
-        <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Refills delivered every 3 months</li>
-        <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Loyalty benefits + exclusive offers</li>
+        {% for block in section.blocks %}
+          {% if block.type == 'bullet_point' %}
+            <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> {{ block.settings.text }}</li>
+          {% endif %}
+        {% endfor %}
       </ul>
       
-      <span class="hk-gift-label">Choose Your Gift</span>
+      <span class="hk-gift-label">{{ section.settings.gift_label }}</span>
       <div class="hk-gifts">
-        <label class="hk-gift-item active" onclick="selectGift(this)">
-          <input type="radio" name="welcome_gift" value="Nourishing Wash" class="hk-sr-only" checked>
-          <img src="{{ 'vellano_suds.png' | asset_url }}" class="hk-gift-img" alt="Nourishing Wash" width="80" height="80" loading="lazy">
-          <div class="hk-gift-name">Nourishing Wash</div>
-        </label>
-        <label class="hk-gift-item" onclick="selectGift(this)">
-          <input type="radio" name="welcome_gift" value="Clarifying Scrub" class="hk-sr-only">
-          <img src="{{ 'vellano_showerheads.png' | asset_url }}" class="hk-gift-img" alt="Clarifying Scrub" width="80" height="80" loading="lazy">
-          <div class="hk-gift-name">Clarifying Scrub</div>
-        </label>
+        {% assign gift_count = 0 %}
+        {% for block in section.blocks %}
+          {% if block.type == 'gift_item' %}
+            <label class="hk-gift-item {% if gift_count == 0 %}active{% endif %}" onclick="selectGift(this)">
+              <input type="radio" name="welcome_gift" value="{{ block.settings.gift_name | escape }}" class="hk-sr-only" {% if gift_count == 0 %}checked{% endif %}>
+              {% if block.settings.gift_image %}
+                <img src="{{ block.settings.gift_image | image_url: width: 160 }}" class="hk-gift-img" alt="{{ block.settings.gift_name | escape }}" width="80" height="80" loading="lazy">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'hk-gift-img' }}
+              {% endif %}
+              <div class="hk-gift-name">{{ block.settings.gift_name }}</div>
+            </label>
+            {% assign gift_count = gift_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
       </div>
     </div> <!-- end hk-bundle-box -->
+    {% endif %}
     
     <div class="hk-cta-row" style="display:flex; gap:15px; margin-bottom:40px; width:100%;">
       <div style="display:flex; align-items:center; border:1px solid #111; border-radius:30px; padding:0 5px; background:#fff; height:60px;">
@@ -323,16 +322,17 @@
         <button type="button" onclick="let q=document.getElementById('hk-qty'); q.value++; updateButtonPrice();" style="background:none; border:none; font-size:20px; cursor:pointer; outline:none; padding: 0 20px; height: 100%;">+</button>
       </div>
       <button id="hk-add-btn" style="flex:1; background:#111111; color:#fff; border-radius:30px; justify-content:center; padding:0 20px; font-size:14px; font-family:'Jost', sans-serif; letter-spacing:1px; text-transform:uppercase; border:none; cursor:pointer; height:60px; display:flex; align-items:center;" onclick="addToCartAjax('{{ product.variants.first.id }}', parseInt(document.getElementById('hk-qty').value))">
-        ADD TO CART &mdash; {{ product.price | default: 12160 | money }}
+        ADD TO CART &mdash; {{ product.price | money }}
       </button>
     </div>
+    
+    {% render 'product-mini-reviews' %}
     
     <script>
       // Gift selection
       function selectGift(el) {
         document.querySelectorAll('.hk-gift-item').forEach(function(el){
           el.classList.remove('active');
-          // uncheck internal radio
           var radio = el.querySelector('input[type="radio"]');
           if (radio) radio.checked = false;
         });
@@ -343,7 +343,7 @@
 
       // Price updater
       function updateButtonPrice() {
-        const basePrice = {{ product.price | default: 12160 }};
+        const basePrice = {{ product.price | default: 0 }};
         const qty = parseInt(document.getElementById('hk-qty').value) || 1;
         const total = basePrice * qty;
         const formattedPrice = '$' + (total / 100).toFixed(2);
@@ -351,23 +351,27 @@
         if(btn) btn.innerHTML = 'ADD TO CART &mdash; ' + formattedPrice;
       }
 
-      // Add to cart — passes gift choice as a line item property
+      // Add to cart
       function addToCartAjax(variantId, qty) {
         const giftRadio = document.querySelector('input[name="welcome_gift"]:checked');
-        const gift = giftRadio ? giftRadio.value : 'Nourishing Wash';
+        const gift = giftRadio ? giftRadio.value : '';
         const btn = document.getElementById('hk-add-btn');
         btn.innerHTML = 'ADDING...';
         btn.disabled = true;
+        
+        let itemsData = {
+          id: variantId,
+          quantity: qty
+        };
+        if (gift !== '') {
+          itemsData.properties = { 'Welcome Gift': gift };
+        }
 
         fetch((window.Shopify && window.Shopify.routes ? window.Shopify.routes.root : '/') + 'cart/add.js', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            items: [{
-              id: variantId,
-              quantity: qty,
-              properties: { 'Welcome Gift': gift }
-            }]
+            items: [itemsData]
           })
         })
         .then(function(r) { return r.json(); })
@@ -394,7 +398,6 @@
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if(!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-              // Button scrolled past the top
               stickyCart.classList.add('is-visible');
             } else {
               stickyCart.classList.remove('is-visible');
@@ -418,7 +421,64 @@
 
 {% schema %}
 {
-  "name": "Product Hero",
-  "presets": [{"name": "Product Hero"}]
+  "name": "Product Hero (Dynamic)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review Count Text",
+      "default": "428 Reviews"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bundle_box",
+      "label": "Show Bundle/Gift Box",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "bundle_title",
+      "label": "Bundle Title",
+      "default": "Starter Kit + Gift"
+    },
+    {
+      "type": "text",
+      "id": "gift_label",
+      "label": "Gift Label",
+      "default": "Choose Your Gift"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet_point",
+      "name": "Bundle Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Feature Text",
+          "default": "Premium Feature"
+        }
+      ]
+    },
+    {
+      "type": "gift_item",
+      "name": "Gift Option",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "gift_image",
+          "label": "Gift Image"
+        },
+        {
+          "type": "text",
+          "id": "gift_name",
+          "label": "Gift Name",
+          "default": "Free Gift"
+        }
+      ]
+    }
+  ],
+  "presets": [{"name": "Product Hero (Dynamic)"}]
 }
 {% endschema %}

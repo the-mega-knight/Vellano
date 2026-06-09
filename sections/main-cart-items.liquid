@@ -100,15 +100,7 @@
                               height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
                             >
                           {% else %}
-                            <img
-                              src="{{ 'vellano_product_hero.png' | asset_url }}"
-                              class="cart-item__image {% if item.parent_relationship.parent != null %}global-media-settings{% endif %}"
-                              alt="{{ item.title | escape }}"
-                              loading="lazy"
-                              width="150"
-                              height="150"
-                              style="object-fit: cover;"
-                            >
+                            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' | replace: '<svg', '<svg class="cart-item__image" style="width:150px;height:150px;object-fit:cover;"' }}
                           {% endif %}
                         </div>
                     </td>

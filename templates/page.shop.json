@@ -66,7 +66,7 @@
       "type": "vellano-editorial",
       "settings": {
         "image_alignment": "right",
-        "fallback_image_url": "vellano_shower_action.png",
+        "fallback_image_url": "",
         "title": "Hard water damages the skin barrier. The Vellano filter prevents dryness at the source.",
         "btn_text": "Read the Science",
         "btn_link": "/products/vellano-filtered-showerhead-starter-kit"
@@ -79,7 +79,7 @@
     "hero_bottom": {
       "type": "vellano-home-hero",
       "settings": {
-        "fallback_image_url": "vellano_hero_dark.png",
+        "fallback_image_url": "",
         "title": "Purer water. Better beauty.",
         "text": "Stop washing with heavy metals. The Vellano system guarantees a noticeable difference in 14 days.",
         "kicker": "JOIN THE REVOLUTION",

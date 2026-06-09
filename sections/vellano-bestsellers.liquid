@@ -2,7 +2,7 @@
   .vellano-shop { padding: 80px 5%; background: #F8F6F3; font-family: 'Jost', sans-serif; }
   .vellano-shop-header { text-align: center; margin-bottom: 40px; }
   .vellano-shop-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #B8A07A; margin-bottom: 14px; font-weight: 500; }
-  .vellano-shop-title { font-family: 'Bodoni Moda', serif; font-size: 42px; font-weight: 400; color: #111; margin-bottom: 10px; }
+  .vellano-shop-title { font-family: var(--font-heading-family); font-size: 42px; font-weight: 400; color: #111; margin-bottom: 10px; }
 
   /* Responsive Grid/Carousel */
   .vellano-shop-carousel {
@@ -76,7 +76,7 @@
   
   .vellano-shop-card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
   .vellano-shop-card-cat { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #B8A07A; margin-bottom: 6px; font-weight: 500; }
-  .vellano-shop-card-name { font-family: 'Bodoni Moda', serif; font-size: 18px; color: #111; margin-bottom: 8px; font-weight: 400; line-height: 1.25; }
+  .vellano-shop-card-name { font-family: var(--font-heading-family); font-size: 18px; color: #111; margin-bottom: 8px; font-weight: 400; line-height: 1.25; }
   .vellano-shop-card-desc { font-size: 12px; color: #888; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
   .vellano-shop-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
   .vellano-shop-card-price { font-size: 16px; font-weight: 600; color: #111; }
@@ -122,15 +122,7 @@
             {% if product.featured_image %}
               {{ product.featured_image | image_url: width: 600 | image_tag: class: 'vellano-shop-card-img', loading: 'lazy' }}
             {% else %}
-              {% assign mock_img = "vellano_showerheads.png" %}
-              {% if product.handle contains "vitamin" %}
-                {% assign mock_img = "vellano_vitaminc_attachment.png" %}
-              {% elsif product.handle contains "1-year" or product.handle contains "refill" %}
-                {% assign mock_img = "vellano_refill_cartridge.png" %}
-              {% elsif product.handle contains "cleanser" or product.handle contains "body" %}
-                {% assign mock_img = "vellano_body_cleanser.png" %}
-              {% endif %}
-              <img src="{{ mock_img | asset_url }}" class="vellano-shop-card-img" alt="{{ product.title }}" width="600" height="600" loading="lazy">
+              {{ 'product-1' | placeholder_svg_tag: 'vellano-shop-card-img' }}
             {% endif %}
           </div>
           <div class="vellano-shop-card-body">
@@ -148,41 +140,16 @@
           </div>
         </a>
       {% else %}
-        <!-- Mock Card (when product doesn't exist in backend) -->
-        {% assign mock_title = "The Showerhead System" %}
-        {% assign mock_img = "vellano_showerheads.png" %}
-        {% assign mock_price = 14900 %}
-        {% assign mock_badge = "Award Winning" %}
-        
-        {% if forloop.index == 2 %}
-          {% assign mock_title = "Vitamin C Attachment" %}
-          {% assign mock_img = "vellano_vitaminc_attachment.png" %}
-          {% assign mock_price = 4500 %}
-          {% assign mock_badge = "" %}
-        {% elsif forloop.index == 3 %}
-          {% assign mock_title = "1-Year Filter Supply" %}
-          {% assign mock_img = "vellano_refill_cartridge.png" %}
-          {% assign mock_price = 12000 %}
-          {% assign mock_badge = "Save 15%" %}
-        {% elsif forloop.index == 4 %}
-          {% assign mock_title = "Hard Water Body Cleanser" %}
-          {% assign mock_img = "vellano_body_cleanser.png" %}
-          {% assign mock_price = 3200 %}
-          {% assign mock_badge = "" %}
-        {% endif %}
-
+        <!-- Mock Card (when product isn't selected) -->
         <a href="#" class="vellano-shop-card" {{ block.shopify_attributes }}>
           <div class="vellano-shop-card-img-wrap">
-             {% if mock_badge != blank %}
-              <div class="vellano-shop-card-badge">{{ mock_badge }}</div>
-             {% endif %}
-             <img src="{{ mock_img | asset_url }}" class="vellano-shop-card-img" alt="{{ mock_title }}" width="600" height="600" loading="lazy">
+             {{ 'product-1' | placeholder_svg_tag: 'vellano-shop-card-img' }}
           </div>
           <div class="vellano-shop-card-body">
-            <div class="vellano-shop-card-name">{{ mock_title }}</div>
-            <div class="vellano-shop-card-desc">Enhance your daily routine.</div>
+            <div class="vellano-shop-card-name">Product Title</div>
+            <div class="vellano-shop-card-desc">Your custom product description will appear here.</div>
             <div class="vellano-shop-card-footer">
-              <div class="vellano-shop-card-price">{{ mock_price | money }}</div>
+              <div class="vellano-shop-card-price">$0.00</div>
               <button class="vellano-shop-card-add">
                 Add <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
               </button>

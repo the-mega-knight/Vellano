@@ -1,0 +1,90 @@
+<style>
+  .product-mini-reviews {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(var(--color-foreground), 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(var(--color-foreground), 0.08);
+  }
+  .pmr-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .pmr-stars {
+    color: #ffb800;
+    letter-spacing: 2px;
+  }
+  .pmr-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
+  }
+  .pmr-carousel::-webkit-scrollbar {
+    height: 6px;
+  }
+  .pmr-carousel::-webkit-scrollbar-track {
+    background: rgba(var(--color-foreground), 0.05);
+    border-radius: 4px;
+  }
+  .pmr-carousel::-webkit-scrollbar-thumb {
+    background: rgba(var(--color-foreground), 0.3);
+    border-radius: 4px;
+  }
+  .pmr-item {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+  .pmr-author {
+    font-weight: 600;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .pmr-verified {
+    color: #3b82f6;
+    width: 12px;
+    height: 12px;
+  }
+  .pmr-notice {
+    font-size: 1.1rem;
+    color: rgba(var(--color-foreground), 0.6);
+    margin-top: 1rem;
+    text-align: center;
+    font-style: italic;
+  }
+</style>
+
+<div class="product-mini-reviews">
+  <div class="pmr-header">
+    <span class="pmr-stars">★★★★★</span>
+    <span>4.9/5 from 1,200+ Reviews</span>
+  </div>
+  <div class="pmr-carousel">
+    <div class="pmr-item">
+      "Absolutely transformed my morning routine. My skin hasn't felt this soft in years. Highly recommend!"
+      <div class="pmr-author">Sarah M. <svg class="pmr-verified" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+    </div>
+    <div class="pmr-item">
+      "I was skeptical at first, but the water pressure is amazing and my hair is noticeably less frizzy."
+      <div class="pmr-author">Jessica T. <svg class="pmr-verified" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+    </div>
+    <div class="pmr-item">
+      "Easy to install and looks beautiful in my bathroom. Worth every penny."
+      <div class="pmr-author">Emily R. <svg class="pmr-verified" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg></div>
+    </div>
+  </div>
+  <div class="pmr-notice">
+    Placeholder widget. Replace with Review App snippet when installed.
+  </div>
+</div>

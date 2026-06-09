@@ -88,7 +88,7 @@
   /* CENTER: logo */
   .vellano-hdr-logo {
     grid-column: 2;
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 22px;
     letter-spacing: 5px;
     font-weight: 400;
@@ -256,7 +256,7 @@
     border: none;
     border-bottom: 1.5px solid #111;
     padding: 8px 4px;
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 22px;
     color: #111;
     outline: none;
@@ -321,7 +321,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 36px;
     font-weight: 400;
     color: #111;
@@ -428,7 +428,11 @@
 
     <!-- CENTER LOGO -->
     <a href="/" class="vellano-hdr-logo" aria-label="Vellano Home">
-      <img src="{{ 'vellano_logo_black.png' | asset_url }}" alt="Vellano">
+      {% if section.settings.logo != blank %}
+        <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ section.settings.logo.alt | escape }}">
+      {% else %}
+        <div style="font-size: 24px; font-weight: bold;">{{ shop.name }}</div>
+      {% endif %}
     </a>
 
     <!-- RIGHT ACTIONS -->
@@ -474,7 +478,11 @@
   </div>
 
   <div class="vellano-mobile-ctas">
-    <img src="{{ 'vellano_hero_product_1780898836907.png' | asset_url }}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px;" alt="Vellano System">
+    {% if section.settings.mobile_hero != blank %}
+      <img src="{{ section.settings.mobile_hero | image_url: width: 800 }}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px;" alt="{{ section.settings.mobile_hero.alt | escape }}">
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' | replace: '<svg', '<svg style="width: 100%; height: 180px; border-radius: 12px; margin-bottom: 12px;"' }}
+    {% endif %}
     <a href="/pages/quiz" class="vellano-mobile-cta-quiz" onclick="vellanoToggleMobileMenu()">Take The Quiz</a>
     <a href="/products/vellano-filtered-showerhead-starter-kit" class="vellano-mobile-cta-shop" onclick="vellanoToggleMobileMenu()">Shop The System</a>
   </div>
@@ -517,6 +525,18 @@
 {% schema %}
 {
   "name": "Vellano Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_hero",
+      "label": "Mobile Menu Hero Image"
+    }
+  ],
   "presets": [{ "name": "Vellano Header" }]
 }
 {% endschema %}

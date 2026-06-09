@@ -19,7 +19,7 @@
     margin-bottom: 24px;
   }
   .vellano-research-title {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: clamp(40px, 5vw, 64px);
     line-height: 1.1;
     margin-bottom: 32px;
@@ -61,7 +61,7 @@
     display: block;
   }
   .vellano-research-text h3 {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 32px;
     margin-bottom: 24px;
   }
@@ -72,7 +72,7 @@
     margin-bottom: 24px;
   }
   .vellano-research-stat {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 48px;
     color: #B8A07A;
     display: block;
@@ -87,31 +87,39 @@
 
 <div class="vellano-research">
   <div class="vellano-research-header">
-    <div class="vellano-research-eyebrow">Clinical Evidence</div>
-    <h1 class="vellano-research-title">The hard truth about hard water.</h1>
-    <p class="vellano-research-sub">We spent two years engineering the KDF-55 filtration matrix. Here is the clinical breakdown of exactly what it removes from your shower, and how it restores your skin barrier.</p>
+    <div class="vellano-research-eyebrow">{{ section.settings.eyebrow | default: "Clinical Evidence" }}</div>
+    <h1 class="vellano-research-title">{{ section.settings.title | default: "The hard truth about hard water." }}</h1>
+    <p class="vellano-research-sub">{{ section.settings.subtitle | default: "We spent two years engineering the KDF-55 filtration matrix. Here is the clinical breakdown of exactly what it removes from your shower, and how it restores your skin barrier." }}</p>
   </div>
 
   <div class="vellano-research-content">
     <div class="vellano-research-block">
       <div class="vellano-research-text">
-        <span class="vellano-research-stat">98%</span>
-        <h3>Chlorine & Heavy Metal Reduction</h3>
-        <p>Municipal water is heavily chlorinated to prevent bacteria, but this same chemical strips the natural oils from your skin and hair. Our kinetic degradation fluxion (KDF) filter utilizes a high-purity copper-zinc formulation to reduce chlorine and heavy metals by up to 98% via an electrochemical oxidation-reduction process.</p>
+        <span class="vellano-research-stat">{{ section.settings.stat_1 | default: "98%" }}</span>
+        <h3>{{ section.settings.title_1 | default: "Chlorine & Heavy Metal Reduction" }}</h3>
+        <p>{{ section.settings.desc_1 | default: "Municipal water is heavily chlorinated to prevent bacteria, but this same chemical strips the natural oils from your skin and hair. Our kinetic degradation fluxion (KDF) filter utilizes a high-purity copper-zinc formulation to reduce chlorine and heavy metals by up to 98% via an electrochemical oxidation-reduction process." }}</p>
       </div>
       <div class="vellano-research-img-wrap">
-        <img src="{{ 'vellano_water_flow.png' | asset_url }}" alt="Filtration Tech">
+        {% if section.settings.image_1 != blank %}
+          <img src="{{ section.settings.image_1 | image_url: width: 800 }}" alt="{{ section.settings.image_1.alt | escape }}">
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
       </div>
     </div>
 
     <div class="vellano-research-block">
       <div class="vellano-research-text">
-        <span class="vellano-research-stat">pH 5.5</span>
-        <h3>Acid Mantle Restoration</h3>
-        <p>Hard water is highly alkaline (pH 8+), which disrupts your skin's natural acid mantle (pH 5.5). This causes micro-tears in the lipid barrier, leading to eczema, acne, and trans-epidermal water loss. By neutralizing the water, Vellano allows your skin to naturally regulate its pH balance.</p>
+        <span class="vellano-research-stat">{{ section.settings.stat_2 | default: "pH 5.5" }}</span>
+        <h3>{{ section.settings.title_2 | default: "Acid Mantle Restoration" }}</h3>
+        <p>{{ section.settings.desc_2 | default: "Hard water is highly alkaline (pH 8+), which disrupts your skin's natural acid mantle (pH 5.5). This causes micro-tears in the lipid barrier, leading to eczema, acne, and trans-epidermal water loss. By neutralizing the water, Vellano allows your skin to naturally regulate its pH balance." }}</p>
       </div>
       <div class="vellano-research-img-wrap">
-        <img src="{{ 'vellano_body_cleanser.png' | asset_url }}" alt="Skin Barrier">
+        {% if section.settings.image_2 != blank %}
+          <img src="{{ section.settings.image_2 | image_url: width: 800 }}" alt="{{ section.settings.image_2.alt | escape }}">
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
       </div>
     </div>
   </div>
@@ -120,6 +128,80 @@
 {% schema %}
 {
   "name": "Vellano Research",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Clinical Evidence"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The hard truth about hard water."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We spent two years engineering the KDF-55 filtration matrix."
+    },
+    {
+      "type": "header",
+      "content": "Block 1"
+    },
+    {
+      "type": "text",
+      "id": "stat_1",
+      "label": "Stat 1",
+      "default": "98%"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Title 1",
+      "default": "Chlorine & Heavy Metal Reduction"
+    },
+    {
+      "type": "textarea",
+      "id": "desc_1",
+      "label": "Description 1",
+      "default": "Municipal water is heavily chlorinated..."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "First Image"
+    },
+    {
+      "type": "header",
+      "content": "Block 2"
+    },
+    {
+      "type": "text",
+      "id": "stat_2",
+      "label": "Stat 2",
+      "default": "pH 5.5"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Title 2",
+      "default": "Acid Mantle Restoration"
+    },
+    {
+      "type": "textarea",
+      "id": "desc_2",
+      "label": "Description 2",
+      "default": "Hard water is highly alkaline..."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Second Image"
+    }
+  ],
   "presets": [{ "name": "Vellano Research" }]
 }
 {% endschema %}

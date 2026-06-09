@@ -43,6 +43,12 @@
       "skillPath": "skills/aso/SKILL.md",
       "computedHash": "4d62e3140773159b279b00810c8f46048333d91dfb6114cc0d3667ed1a7ed5f9"
     },
+    "beautiful-article": {
+      "source": "ConardLi/garden-skills",
+      "sourceType": "github",
+      "skillPath": "skills/beautiful-article/SKILL.md",
+      "computedHash": "69e61d19b43f865b005dd84b3a7dfb18a1d5ab486a7a63f32d00d1a390eb44bb"
+    },
     "best-practices": {
       "source": "addyosmani/web-quality-skills",
       "sourceType": "github",
@@ -139,11 +145,23 @@
       "skillPath": "skills/free-tools/SKILL.md",
       "computedHash": "0266eedaea37e19e4c9e2f1cc7ef6cdc8c7ee0726c6f2b5837a061c6ac7f9376"
     },
+    "gpt-image-2": {
+      "source": "ConardLi/garden-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gpt-image-2/SKILL.md",
+      "computedHash": "69b037d22cfa2eb5f51f640e69bd03c4e96f2f8a8a36444c9ad49db52b797b7d"
+    },
     "image": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
       "skillPath": "skills/image/SKILL.md",
       "computedHash": "179c3e3a8b786b90361ee135279cc8d42e4082e3f545cd7b484a00db27be1dca"
+    },
+    "kb-retriever": {
+      "source": "ConardLi/garden-skills",
+      "sourceType": "github",
+      "skillPath": "skills/kb-retriever/SKILL.md",
+      "computedHash": "aa228657d333e5259ab46569f6e53386be7c4eb6db31b774836b0d26b55cf128"
     },
     "launch": {
       "source": "coreyhaines31/marketingskills",
@@ -175,6 +193,18 @@
       "skillPath": "skills/marketing-psychology/SKILL.md",
       "computedHash": "d057044710ce7b7f9b90b84b3ab64e9359aaf47982b922ec10daca3822185ede"
     },
+    "mysql": {
+      "source": "planetscale/database-skills",
+      "sourceType": "github",
+      "skillPath": "skills/mysql/SKILL.md",
+      "computedHash": "a74d7d018c4a9cfe4fd6e37f8758ef03272cde3f3dc2444c4f299636f4b3d275"
+    },
+    "neki": {
+      "source": "planetscale/database-skills",
+      "sourceType": "github",
+      "skillPath": "skills/neki/SKILL.md",
+      "computedHash": "90f086fa9fb4e19e909713378e427f3beac6163c6baa41b1aebfdc21ec0fcf99"
+    },
     "onboarding": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
@@ -198,6 +228,12 @@
       "sourceType": "github",
       "skillPath": "skills/popups/SKILL.md",
       "computedHash": "f6a8d630cee8d07bcb8dced3e4717b9533fd79a8f31bfeb3f244058520900512"
+    },
+    "postgres": {
+      "source": "planetscale/database-skills",
+      "sourceType": "github",
+      "skillPath": "skills/postgres/SKILL.md",
+      "computedHash": "f0632544d951152bf28c4f5cbb02593af296a3abe75f8949d003718c61a9a90b"
     },
     "pricing": {
       "source": "coreyhaines31/marketingskills",
@@ -295,11 +331,29 @@
       "skillPath": "skills/video/SKILL.md",
       "computedHash": "3b222617f41c03a3eb870747977d07159bf92861c905ea6b5af2de15d51bcabb"
     },
+    "vitess": {
+      "source": "planetscale/database-skills",
+      "sourceType": "github",
+      "skillPath": "skills/vitess/SKILL.md",
+      "computedHash": "160a706dcc059d68bb0705c55df087bb9c8eaecd6a0575fa10555df478a51281"
+    },
+    "web-design-engineer": {
+      "source": "ConardLi/garden-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-engineer/SKILL.md",
+      "computedHash": "598cc3ea9da6f3d7d4676edf53c320aaeccab1eefbb74d6a6b86358886ba578f"
+    },
     "web-quality-audit": {
       "source": "addyosmani/web-quality-skills",
       "sourceType": "github",
       "skillPath": "skills/web-quality-audit/SKILL.md",
       "computedHash": "10db799d6bff4fc98a4067aa04fdee2e9f34eaca1c42fd4207a89aafe644a6f0"
+    },
+    "web-video-presentation": {
+      "source": "ConardLi/garden-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-video-presentation/SKILL.md",
+      "computedHash": "a760be4be109d4f259559760dbbfdcbef616b061cdc181472e5a45e330025773"
     }
   }
 }

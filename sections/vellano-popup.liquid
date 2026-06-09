@@ -76,9 +76,9 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
     {% if section.settings.image != blank %}
-      <img src="{{ section.settings.image | img_url: '600x' }}" class="vellano-popup-img" alt="Offer">
+      <img src="{{ section.settings.image | image_url: width: 600 }}" class="vellano-popup-img" alt="{{ section.settings.image.alt | escape }}">
     {% else %}
-      <img src="{{ 'vellano_filter_dark.png' | asset_url }}" class="vellano-popup-img" alt="Offer Placeholder">
+      {{ 'image' | placeholder_svg_tag: 'vellano-popup-img' }}
     {% endif %}
     <div class="vellano-popup-text">
       {{ section.settings.text | default: 'Get 15% off the Vellano Starter Kit' }}

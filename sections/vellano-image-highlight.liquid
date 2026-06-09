@@ -16,12 +16,23 @@
 {%- endstyle -%}
 
 <div class="vellano-highlight vellano-animate">
-  <img src="https://cdn.instant.so/tmp/2026-06-05/FcztKP6LbnVak6rx.png" class="vellano-hero-bg" alt="Highlight">
+  {% if section.settings.bg_image != blank %}
+    <img src="{{ section.settings.bg_image | image_url: width: 2000 }}" class="vellano-hero-bg" alt="{{ section.settings.bg_image.alt | escape }}">
+  {% else %}
+    {{ 'lifestyle-2' | placeholder_svg_tag: 'vellano-hero-bg placeholder-svg' }}
+  {% endif %}
 </div>
 
 {% schema %}
 {
   "name": "Vellano Image Highlight",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    }
+  ],
   "presets": [ { "name": "Vellano Image Highlight" } ]
 }
 {% endschema %}

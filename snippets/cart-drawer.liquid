@@ -144,15 +144,7 @@
                             >
                           {% else %}
                             <a href="{{ item.url }}" class="cart-item__link" tabindex="-1" aria-hidden="true"> </a>
-                            <img
-                              class="cart-item__image"
-                              src="{{ 'vellano_product_hero.png' | asset_url }}"
-                              alt="{{ item.title | escape }}"
-                              loading="lazy"
-                              width="150"
-                              height="150"
-                              style="object-fit: cover; border-radius: 4px;"
-                            >
+                            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' | replace: '<svg', '<svg class="cart-item__image" style="width:150px;height:150px;object-fit:cover;border-radius:4px;"' }}
                           {% endif %}
                         </td>
 

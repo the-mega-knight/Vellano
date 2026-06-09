@@ -15,7 +15,7 @@
     padding-bottom: 60px;
   }
   .vellano-footer-col h4 {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 24px;
@@ -95,7 +95,11 @@
   <div class="vellano-footer-grid">
     <div class="vellano-footer-col">
       <div class="vellano-footer-block">
-        <img src="{{ 'vellano_logo_black.png' | asset_url }}" alt="Vellano" style="width: 160px; height: auto; display: block; margin-bottom: 20px;">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | image_url: width: 320 }}" alt="{{ section.settings.logo.alt | escape }}" style="max-width: 160px; height: auto; display: block; margin-bottom: 20px;">
+        {% else %}
+          <div style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">{{ shop.name }}</div>
+        {% endif %}
         <div class="vellano-footer-desc">Premium shower hardware for skin and hair health. Elevated daily rituals.</div>
       </div>
     </div>
@@ -150,6 +154,13 @@
 {% schema %}
 {
   "name": "Vellano Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    }
+  ],
   "presets": [{ "name": "Vellano Footer" }]
 }
 {% endschema %}

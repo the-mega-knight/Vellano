@@ -5,7 +5,7 @@
   .vellano-wq-img { width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/5; }
 
   .vellano-wq-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #B8A07A; margin-bottom: 18px; font-weight: 500; }
-  .vellano-wq-title { font-family: 'Bodoni Moda', serif; font-size: clamp(28px, 3.5vw, 44px); color: #111; margin-bottom: 22px; line-height: 1.15; font-weight: 400; }
+  .vellano-wq-title { font-family: var(--font-heading-family); font-size: clamp(28px, 3.5vw, 44px); color: #111; margin-bottom: 22px; line-height: 1.15; font-weight: 400; }
   .vellano-wq-body { font-size: 16px; color: #666; line-height: 1.75; margin-bottom: 40px; }
   
   .vellano-wq-facts { display: flex; flex-direction: column; gap: 18px; margin-bottom: 44px; }
@@ -77,7 +77,11 @@
   <div class="vellano-wq-container">
 
     <div class="vellano-wq-img-wrap vellano-animate-slide-right">
-      <img src="{{ 'vellano_shower_action.png' | asset_url }}" class="vellano-wq-img" alt="Vellano filtered water" onerror="this.src='{{ 'vellano_hero_lifestyle.png' | asset_url }}'">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 800 }}" class="vellano-wq-img" alt="{{ section.settings.image.alt | escape }}">
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'vellano-wq-img' }}
+      {% endif %}
     </div>
 
     <div class="vellano-wq-text vellano-animate-slide-left">
@@ -127,6 +131,13 @@
 {% schema %}
 {
   "name": "Vellano Water Quality",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Section Image"
+    }
+  ],
   "presets": [{ "name": "Vellano Water Quality" }]
 }
 {% endschema %}

@@ -22,7 +22,7 @@
     font-weight: 500;
   }
   .vellano-quiz-title {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: clamp(32px, 4vw, 48px);
     font-weight: 400;
     color: #111;
@@ -54,7 +54,7 @@
     margin-bottom: 20px;
   }
   .vellano-quiz-question {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: clamp(20px, 3vw, 28px);
     color: #111;
     margin-bottom: 36px;
@@ -135,7 +135,7 @@
     margin-bottom: 24px;
   }
   .vellano-quiz-result-title {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 28px;
     color: #111;
     margin-bottom: 12px;
@@ -341,28 +341,44 @@
 
   var vellanoProducts = {
     starter: {
-      name: 'The Handheld Filter',
+      name: `{{ section.settings.product_1_name | default: 'The Handheld Filter' | escape }}`,
       price: '$79.99',
       url: '/products/vellano-filtered-showerhead-starter-kit',
-      img: '{{ "vellano_product_hero.png" | asset_url }}'
+      {% if section.settings.img_1 != blank %}
+        img_tag: `<img src="{{ section.settings.img_1 | image_url: width: 200 }}" class="vellano-quiz-result-product-img" alt="{{ section.settings.product_1_name | default: 'The Handheld Filter' | escape }}">`
+      {% else %}
+        img_tag: `{{ 'product-1' | placeholder_svg_tag: 'vellano-quiz-result-product-img' }}`
+      {% endif %}
     },
     refill: {
-      name: '1-Year Filter Supply',
+      name: `{{ section.settings.product_2_name | default: '1-Year Filter Supply' | escape }}`,
       price: '$49.99',
       url: '/products/1-year-filter-supply',
-      img: '{{ "vellano_refill_cartridge.png" | asset_url }}'
+      {% if section.settings.img_2 != blank %}
+        img_tag: `<img src="{{ section.settings.img_2 | image_url: width: 200 }}" class="vellano-quiz-result-product-img" alt="{{ section.settings.product_2_name | default: '1-Year Filter Supply' | escape }}">`
+      {% else %}
+        img_tag: `{{ 'product-2' | placeholder_svg_tag: 'vellano-quiz-result-product-img' }}`
+      {% endif %}
     },
     cleanser: {
-      name: 'Hard Water Body Cleanser',
+      name: `{{ section.settings.product_3_name | default: 'Hard Water Body Cleanser' | escape }}`,
       price: '$34.99',
       url: '/products/vellano-hard-water-body-cleanser',
-      img: '{{ "vellano_body_cleanser.png" | asset_url }}'
+      {% if section.settings.img_3 != blank %}
+        img_tag: `<img src="{{ section.settings.img_3 | image_url: width: 200 }}" class="vellano-quiz-result-product-img" alt="{{ section.settings.product_3_name | default: 'Hard Water Body Cleanser' | escape }}">`
+      {% else %}
+        img_tag: `{{ 'product-3' | placeholder_svg_tag: 'vellano-quiz-result-product-img' }}`
+      {% endif %}
     },
     vitaminC: {
-      name: 'Vitamin C Attachment',
+      name: `{{ section.settings.product_4_name | default: 'Vitamin C Attachment' | escape }}`,
       price: '$49.99',
       url: '/products/vitamin-c-infusion-attachment',
-      img: '{{ "vellano_vitaminc_attachment.png" | asset_url }}'
+      {% if section.settings.img_4 != blank %}
+        img_tag: `<img src="{{ section.settings.img_4 | image_url: width: 200 }}" class="vellano-quiz-result-product-img" alt="{{ section.settings.product_4_name | default: 'Vitamin C Attachment' | escape }}">`
+      {% else %}
+        img_tag: `{{ 'product-4' | placeholder_svg_tag: 'vellano-quiz-result-product-img' }}`
+      {% endif %}
     }
   };
 
@@ -420,7 +436,7 @@
     var html = '';
     resultProducts.forEach(function(p) {
       html += '<a href="' + p.url + '" class="vellano-quiz-result-product">';
-      html += '<img src="' + p.img + '" class="vellano-quiz-result-product-img" alt="' + p.name + '">';
+      html += p.img_tag;
       html += '<div class="vellano-quiz-result-product-name">' + p.name + '</div>';
       html += '<div class="vellano-quiz-result-product-price">' + p.price + '</div>';
       html += '</a>';
@@ -443,6 +459,52 @@
 {% schema %}
 {
   "name": "Vellano Bundle Quiz",
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_1_name",
+      "label": "Starter Kit Name",
+      "default": "The Handheld Filter"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_1",
+      "label": "Starter Kit Image"
+    },
+    {
+      "type": "text",
+      "id": "product_2_name",
+      "label": "Refill Name",
+      "default": "1-Year Filter Supply"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_2",
+      "label": "Refill Image"
+    },
+    {
+      "type": "text",
+      "id": "product_3_name",
+      "label": "Cleanser Name",
+      "default": "Hard Water Body Cleanser"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_3",
+      "label": "Cleanser Image"
+    },
+    {
+      "type": "text",
+      "id": "product_4_name",
+      "label": "Vitamin C Name",
+      "default": "Vitamin C Attachment"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_4",
+      "label": "Vitamin C Image"
+    }
+  ],
   "presets": [{ "name": "Vellano Bundle Quiz" }]
 }
 {% endschema %}

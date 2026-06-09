@@ -1354,6 +1354,8 @@ function vellanoAddToCart(event, form) {
     // trigger cart update if Dawn uses it
     document.documentElement.dispatchEvent(new CustomEvent('cart:build', {bubbles: true}));
     
+    if (typeof openCart === 'function') openCart();
+    
     setTimeout(() => {
       btn.innerHTML = originalHtml;
       btn.style.background = '';

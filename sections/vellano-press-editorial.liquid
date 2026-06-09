@@ -4,33 +4,116 @@
   .hk-press-img { width: 50%; border-radius: 16px; overflow: hidden; }
   .hk-press-img img { width: 100%; height: 100%; object-fit: cover; }
   .hk-press-content { width: 50%; }
-  .hk-press-title { font-family: 'Bodoni Moda', serif; font-size: 36px; margin-bottom: 30px; color: #111; }
+  .hk-press-title { font-family: var(--font-heading-family); font-size: 36px; margin-bottom: 30px; color: #111; }
   .hk-press-list { list-style: disc; padding-left: 20px; color: #333; line-height: 1.8; font-size: 16px; }
   .hk-press-logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; border-top: 1px solid #EBE7E2; padding-top: 60px; }
   .hk-press-logo { text-align: center; }
-  .hk-press-logo h3 { font-family: 'Bodoni Moda', serif; font-size: 24px; color: #111; margin-bottom: 15px; }
+  .hk-press-logo h3 { font-family: var(--font-heading-family); font-size: 24px; color: #111; margin-bottom: 15px; }
   .hk-press-logo p { font-size: 13px; color: #777; line-height: 1.5; }
+  .hk-press-img-placeholder { width: 100%; height: auto; aspect-ratio: 1; background: #f4f4f4; }
   @media (max-width: 900px) { .hk-press-top { flex-direction: column; } .hk-press-img, .hk-press-content { width: 100%; } .hk-press-logos { grid-template-columns: 1fr; } }
 {%- endstyle -%}
 <div class="hk-press-sec">
   <div class="hk-press-top">
-    <div class="hk-press-img"><img src="{{ 'vellano_suds.png' | asset_url }}" loading="lazy" width="600" height="600" alt="Vellano Suds"></div>
+    <div class="hk-press-img">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 600 }}" loading="lazy" width="600" height="600" alt="{{ section.settings.image.alt | escape }}">
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'hk-press-img-placeholder' }}
+      {% endif %}
+    </div>
     <div class="hk-press-content">
-      <h2 class="hk-press-title">For hair and skin that feel like they used to.</h2>
+      <h2 class="hk-press-title">{{ section.settings.title }}</h2>
       <ul class="hk-press-list">
-        <li>88% noticed softer hair and skin*</li>
-        <li>85% noticed less frizzy and brittle hair*</li>
-        <li>79% noticed less skin dryness and sensitivity*</li>
-        <li>Longer-lasting hair colour</li>
+        {% for block in section.blocks %}
+          {% if block.type == 'list_item' %}
+            <li>{{ block.settings.text }}</li>
+          {% endif %}
+        {% endfor %}
       </ul>
-      <p style="font-size: 12px; margin-top: 20px; color: #999;">*Vellano Consumer Perception Trial</p>
+      <p style="font-size: 12px; margin-top: 20px; color: #999;">{{ section.settings.disclaimer }}</p>
     </div>
   </div>
   <div class="hk-press-logos">
-    <div class="hk-press-logo"><h3>VOGUE</h3><p>Hard water leaves a film of metal, chlorine and impurities... Screw onto your shower hose for softer, less frizzy hair.</p></div>
-    <div class="hk-press-logo"><h3>Women's Health</h3><p>My hair and skin have completely transformed. I still use the same shampoo, but the only thing that's changed? The water.</p></div>
-    <div class="hk-press-logo"><h3>Good Housekeeping</h3><p>Since investing in Vellano's filtered shower head six months ago, my hair feels softer, less tangled and stronger again.</p></div>
-    <div class="hk-press-logo"><h3>The Sun</h3><p>A total breeze to install too, with no tools required. Fits directly onto your existing hose.</p></div>
+    {% for block in section.blocks %}
+      {% if block.type == 'press_logo' %}
+        <div class="hk-press-logo">
+          <h3>{{ block.settings.logo_text }}</h3>
+          <p>{{ block.settings.quote }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
 </div>
-{% schema %}{ "name": "Press Editorial", "presets": [{"name": "Press Editorial"}] }{% endschema %}
+
+{% schema %}
+{
+  "name": "Press Editorial",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "For hair and skin that feel like they used to."
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer text",
+      "default": "*Vellano Consumer Perception Trial"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "list_item",
+      "name": "List Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Benefit text"
+        }
+      ]
+    },
+    {
+      "type": "press_logo",
+      "name": "Press Quote",
+      "settings": [
+        {
+          "type": "text",
+          "id": "logo_text",
+          "label": "Publication Name",
+          "default": "VOGUE"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Hard water leaves a film of metal, chlorine and impurities... Screw onto your shower hose for softer, less frizzy hair."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press Editorial",
+      "blocks": [
+        { "type": "list_item", "settings": { "text": "88% noticed softer hair and skin*" } },
+        { "type": "list_item", "settings": { "text": "85% noticed less frizzy and brittle hair*" } },
+        { "type": "list_item", "settings": { "text": "79% noticed less skin dryness and sensitivity*" } },
+        { "type": "list_item", "settings": { "text": "Longer-lasting hair colour" } },
+        { "type": "press_logo", "settings": { "logo_text": "VOGUE", "quote": "Hard water leaves a film of metal, chlorine and impurities... Screw onto your shower hose for softer, less frizzy hair." } },
+        { "type": "press_logo", "settings": { "logo_text": "Women's Health", "quote": "My hair and skin have completely transformed. I still use the same shampoo, but the only thing that's changed? The water." } },
+        { "type": "press_logo", "settings": { "logo_text": "Good Housekeeping", "quote": "Since investing in Vellano's filtered shower head six months ago, my hair feels softer, less tangled and stronger again." } },
+        { "type": "press_logo", "settings": { "logo_text": "The Sun", "quote": "A total breeze to install too, with no tools required. Fits directly onto your existing hose." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -36,7 +36,7 @@
     background: #B8A07A;
   }
   .vellano-sci-main-title {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: clamp(36px, 4.5vw, 64px);
     font-weight: 400;
     line-height: 1.05;
@@ -94,7 +94,7 @@
   .vellano-sci-stat:nth-child(2) { padding-left: 48px; }
   .vellano-sci-stat:nth-child(3) { padding-left: 48px; }
   .vellano-sci-stat-num {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: clamp(56px, 7vw, 96px);
     font-weight: 400;
     color: #111;
@@ -140,7 +140,7 @@
     padding-left: 48px;
   }
   .vellano-sci-feat-num {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 13px;
     color: rgba(17,17,17,0.3);
     margin-bottom: 32px;
@@ -159,7 +159,7 @@
   }
   .vellano-sci-feat-icon svg { width: 20px; height: 20px; }
   .vellano-sci-feat-title {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: 22px;
     font-weight: 400;
     color: #111;
@@ -212,7 +212,7 @@
     font-weight: 500;
   }
   .vellano-sci-split-title {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-heading-family);
     font-size: clamp(24px, 2.5vw, 36px);
     font-weight: 400;
     color: #111;
@@ -284,97 +284,85 @@
   <!-- PART 1: INTRO -->
   <div class="vellano-sci-intro-block">
     <div class="vellano-sci-intro-left">
-      <p class="vellano-sci-eyebrow">The Science Behind It</p>
-      <h2 class="vellano-sci-main-title">Your water is<br>the problem.<br>We solved it.</h2>
+      <p class="vellano-sci-eyebrow">{{ section.settings.intro_eyebrow | default: "The Science Behind It" }}</p>
+      <h2 class="vellano-sci-main-title">{{ section.settings.intro_title | default: "Your water is<br>the problem.<br>We solved it." }}</h2>
     </div>
     <div class="vellano-sci-intro-right">
-      <p class="vellano-sci-intro-text">Most shower water contains chlorine, heavy metals, and hard mineral deposits. These aren't just cosmetic concerns — they're measurable damage to your hair's cuticle and your skin's barrier function. No serum or conditioner fixes what happens upstream.</p>
-      <a href="/?view=science" class="vellano-sci-intro-link">Read the full research →</a>
+      <p class="vellano-sci-intro-text">{{ section.settings.intro_desc | default: "Most shower water contains chlorine, heavy metals, and hard mineral deposits. These aren't just cosmetic concerns — they're measurable damage to your hair's cuticle and your skin's barrier function. No serum or conditioner fixes what happens upstream." }}</p>
+      <a href="{{ section.settings.intro_btn_link | default: '/?view=science' }}" class="vellano-sci-intro-link">{{ section.settings.intro_btn_text | default: "Read the full research →" }}</a>
     </div>
   </div>
 
   <!-- PART 2: STATS BAR -->
   <div class="vellano-sci-stats-bar">
     <div class="vellano-sci-stat vellano-animate-fade-up">
-      <div class="vellano-sci-stat-num">98<span>%</span></div>
-      <div class="vellano-sci-stat-label">Chlorine Removed</div>
-      <div class="vellano-sci-stat-desc">KDF-55 oxidation-reduction eliminates chlorine within milliseconds of contact at any water temperature</div>
+      <div class="vellano-sci-stat-num">{{ section.settings.stat_1_num | default: "98<span>%</span>" }}</div>
+      <div class="vellano-sci-stat-label">{{ section.settings.stat_1_label | default: "Chlorine Removed" }}</div>
+      <div class="vellano-sci-stat-desc">{{ section.settings.stat_1_desc | default: "KDF-55 oxidation-reduction eliminates chlorine within milliseconds of contact at any water temperature" }}</div>
     </div>
     <div class="vellano-sci-stat vellano-animate-fade-up vellano-animate-stagger-1">
-      <div class="vellano-sci-stat-num">14<span> days</span></div>
-      <div class="vellano-sci-stat-label">To Noticeable Results</div>
-      <div class="vellano-sci-stat-desc">Most customers report measurably softer hair and skin within two weeks of consistent use</div>
+      <div class="vellano-sci-stat-num">{{ section.settings.stat_2_num | default: "14<span> days</span>" }}</div>
+      <div class="vellano-sci-stat-label">{{ section.settings.stat_2_label | default: "To Noticeable Results" }}</div>
+      <div class="vellano-sci-stat-desc">{{ section.settings.stat_2_desc | default: "Most customers report measurably softer hair and skin within two weeks of consistent use" }}</div>
     </div>
     <div class="vellano-sci-stat vellano-animate-fade-up vellano-animate-stagger-2">
-      <div class="vellano-sci-stat-num">6<span>mo</span></div>
-      <div class="vellano-sci-stat-label">Filter Lifespan</div>
-      <div class="vellano-sci-stat-desc">Each cartridge handles up to 10,000 gallons before performance drops below threshold — no early replacing</div>
+      <div class="vellano-sci-stat-num">{{ section.settings.stat_3_num | default: "6<span>mo</span>" }}</div>
+      <div class="vellano-sci-stat-label">{{ section.settings.stat_3_label | default: "Filter Lifespan" }}</div>
+      <div class="vellano-sci-stat-desc">{{ section.settings.stat_3_desc | default: "Each cartridge handles up to 10,000 gallons before performance drops below threshold — no early replacing" }}</div>
     </div>
   </div>
 
   <!-- PART 3: FEATURE LIST -->
   <div class="vellano-sci-features">
-    <div class="vellano-sci-feat">
-      <div class="vellano-sci-feat-num">01</div>
-      <div class="vellano-sci-feat-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+    {% for block in section.blocks %}
+      {% if block.type == 'feature' %}
+        <div class="vellano-sci-feat">
+          <div class="vellano-sci-feat-num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+          <div class="vellano-sci-feat-icon">
+            {{ block.settings.svg_icon | default: '<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>' }}
+          </div>
+          <h3 class="vellano-sci-feat-title">{{ block.settings.title }}</h3>
+          <p class="vellano-sci-feat-text">{{ block.settings.text }}</p>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="vellano-sci-feat">
+        <div class="vellano-sci-feat-num">01</div>
+        <div class="vellano-sci-feat-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+        <h3 class="vellano-sci-feat-title">KDF-55 Electrochemical Filtration</h3>
+        <p class="vellano-sci-feat-text">High-purity copper-zinc alloy strips chlorine, chloramines, and heavy metals through a redox reaction — no chemicals, no maintenance, just physics working in your favour.</p>
       </div>
-      <h3 class="vellano-sci-feat-title">KDF-55 Electrochemical Filtration</h3>
-      <p class="vellano-sci-feat-text">High-purity copper-zinc alloy strips chlorine, chloramines, and heavy metals through a redox reaction — no chemicals, no maintenance, just physics working in your favour. EPA-registered and NSF/ANSI Standard 42 certified.</p>
-    </div>
-
-    <div class="vellano-sci-feat">
-      <div class="vellano-sci-feat-num">02</div>
-      <div class="vellano-sci-feat-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-      </div>
-      <h3 class="vellano-sci-feat-title">Skin Microbiome Protection</h3>
-      <p class="vellano-sci-feat-text">Chlorinated tap water disrupts your skin's natural acid mantle (pH 4.5–5.5). Filtered water lets your skin self-regulate, reducing chronic dryness and the inflammatory response that causes breakouts and sensitivity.</p>
-    </div>
-
-    <div class="vellano-sci-feat">
-      <div class="vellano-sci-feat-num">03</div>
-      <div class="vellano-sci-feat-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      </div>
-      <h3 class="vellano-sci-feat-title">Hair Cuticle Restoration</h3>
-      <p class="vellano-sci-feat-text">Hard water calcium and magnesium bond to the hair shaft, forcing the cuticle open and weighing it down. Filtered water lets the cuticle lie flat — reflecting light, retaining moisture, and breaking significantly less.</p>
-    </div>
+    {% endfor %}
   </div>
 
   <!-- PART 4: SPLIT IMAGE + FACTS -->
   <div class="vellano-sci-split">
     <div class="vellano-sci-split-img-wrap">
-      <img
-        src="{{ 'vellano_science_water.png' | asset_url }}"
-        class="vellano-sci-split-img"
-        alt="Vellano water science"
-        onerror="this.src='{{ 'vellano_hero_lifestyle.png' | asset_url }}'"
-      >
+      {% if section.settings.image != blank %}
+        <img
+          src="{{ section.settings.image | image_url: width: 800 }}"
+          class="vellano-sci-split-img"
+          alt="{{ section.settings.image.alt | escape }}"
+        >
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'vellano-sci-split-img' }}
+      {% endif %}
     </div>
     <div class="vellano-sci-split-content">
-      <p class="vellano-sci-split-eyebrow">How It Actually Works</p>
-      <h3 class="vellano-sci-split-title">The shower is the highest-exposure point in your entire skincare routine.</h3>
-      <p class="vellano-sci-split-body">The average shower runs 8 minutes. At that rate, your skin is in continuous contact with chlorinated, mineral-laden water for over 45 hours per month. No serum reverses that upstream. We filter it before it touches you.</p>
+      <p class="vellano-sci-split-eyebrow">{{ section.settings.split_eyebrow | default: "How It Actually Works" }}</p>
+      <h3 class="vellano-sci-split-title">{{ section.settings.split_title | default: "The shower is the highest-exposure point in your entire skincare routine." }}</h3>
+      <p class="vellano-sci-split-body">{{ section.settings.split_desc | default: "The average shower runs 8 minutes. At that rate, your skin is in continuous contact with chlorinated, mineral-laden water for over 45 hours per month. No serum reverses that upstream. We filter it before it touches you." }}</p>
       <div class="vellano-sci-fact-list">
-        <div class="vellano-sci-fact-item">
-          <span class="vellano-sci-fact-check">✓</span>
-          KDF-55 is EPA-registered and NSF-approved for water treatment
-        </div>
-        <div class="vellano-sci-fact-item">
-          <span class="vellano-sci-fact-check">✓</span>
-          Removes chlorine, heavy metals, iron, hydrogen sulfide, and microorganisms
-        </div>
-        <div class="vellano-sci-fact-item">
-          <span class="vellano-sci-fact-check">✓</span>
-          Maintains full efficacy at shower temperature and pressure
-        </div>
-        <div class="vellano-sci-fact-item">
-          <span class="vellano-sci-fact-check">✓</span>
-          No drop in water pressure — 2.5 GPM maintained throughout filter life
-        </div>
+        {% for block in section.blocks %}
+          {% if block.type == 'fact' %}
+            <div class="vellano-sci-fact-item">
+              <span class="vellano-sci-fact-check">✓</span>
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
-      <a href="/products/vellano-filtered-showerhead-starter-kit" class="vellano-sci-split-link">Explore The System →</a>
+      <a href="{{ section.settings.split_btn_link | default: '/products/vellano-filtered-showerhead-starter-kit' }}" class="vellano-sci-split-link">{{ section.settings.split_btn_text | default: "Explore The System →" }}</a>
     </div>
   </div>
 
@@ -383,6 +371,49 @@
 {% schema %}
 {
   "name": "Vellano Science",
+  "settings": [
+    { "type": "header", "content": "Intro Settings" },
+    { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow" },
+    { "type": "html", "id": "intro_title", "label": "Title (HTML)" },
+    { "type": "textarea", "id": "intro_desc", "label": "Description" },
+    { "type": "text", "id": "intro_btn_text", "label": "Button Text" },
+    { "type": "url", "id": "intro_btn_link", "label": "Button Link" },
+    { "type": "header", "content": "Stats Settings" },
+    { "type": "html", "id": "stat_1_num", "label": "Stat 1 Number (HTML)" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 Label" },
+    { "type": "textarea", "id": "stat_1_desc", "label": "Stat 1 Description" },
+    { "type": "html", "id": "stat_2_num", "label": "Stat 2 Number (HTML)" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 Label" },
+    { "type": "textarea", "id": "stat_2_desc", "label": "Stat 2 Description" },
+    { "type": "html", "id": "stat_3_num", "label": "Stat 3 Number (HTML)" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 Label" },
+    { "type": "textarea", "id": "stat_3_desc", "label": "Stat 3 Description" },
+    { "type": "header", "content": "Split Settings" },
+    { "type": "image_picker", "id": "image", "label": "Split Image" },
+    { "type": "text", "id": "split_eyebrow", "label": "Split Eyebrow" },
+    { "type": "text", "id": "split_title", "label": "Split Title" },
+    { "type": "textarea", "id": "split_desc", "label": "Split Description" },
+    { "type": "text", "id": "split_btn_text", "label": "Split Button Text" },
+    { "type": "url", "id": "split_btn_link", "label": "Split Button Link" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "html", "id": "svg_icon", "label": "SVG Icon Code" }
+      ]
+    },
+    {
+      "type": "fact",
+      "name": "Fact Checklist Item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
   "presets": [{ "name": "Vellano Science" }]
 }
 {% endschema %}

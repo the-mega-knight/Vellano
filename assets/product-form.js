@@ -106,6 +106,10 @@ if (!customElements.get('product-form')) {
             this.querySelector('.loading__spinner').classList.add('hidden');
 
             CartPerformance.measureFromEvent("add:user-action", evt);
+            
+            if (!this.error && typeof openCart === 'function') {
+              openCart();
+            }
           });
       }
 

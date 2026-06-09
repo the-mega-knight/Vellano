@@ -1,7 +1,7 @@
 {%- style -%}
   .hk-specs-page { max-width: 1000px; margin: 100px auto; padding: 0 5%; font-family: 'Jost', sans-serif; color: #111; }
   .hk-specs-header { text-align: center; margin-bottom: 60px; }
-  .hk-specs-title { font-family: 'Bodoni Moda', serif; font-size: 48px; margin-bottom: 20px; }
+  .hk-specs-title { font-family: var(--font-heading-family); font-size: 48px; margin-bottom: 20px; }
   .hk-specs-desc { font-size: 16px; color: #555; max-width: 600px; margin: 0 auto; line-height: 1.6; }
   
   .hk-specs-table { width: 100%; border-collapse: collapse; margin-bottom: 60px; }
@@ -14,29 +14,80 @@
 
 <div class="hk-specs-page">
   <div class="hk-specs-header">
-    <h1 class="hk-specs-title">Technical Specifications</h1>
-    <p class="hk-specs-desc">Precision engineered to optimize your daily routine. Every component of the Vellano system is built for maximum filtration efficiency and premium aesthetic integration.</p>
+    <h1 class="hk-specs-title">{{ section.settings.title | default: "Technical Specifications" }}</h1>
+    <p class="hk-specs-desc">{{ section.settings.description | default: "Precision engineered to optimize your daily routine. Every component of the Vellano system is built for maximum filtration efficiency and premium aesthetic integration." }}</p>
   </div>
   
   <table class="hk-specs-table">
     <tbody>
-      <tr><th>Dimensions</th><td>11.2" (Length) x 3.1" (Width) x 4.5" (Depth)</td></tr>
-      <tr><th>Weight</th><td>1.2 lbs (Empty) / 1.8 lbs (Filled with water)</td></tr>
-      <tr><th>Materials</th><td>Aerospace-grade Aluminum, BPA-Free Tritan, Matte Anodized Finish</td></tr>
-      <tr><th>Filtration Tech</th><td>KDF-55 (Kinetic Degradation Fluxion) & Calcium Sulfite</td></tr>
-      <tr><th>Flow Rate</th><td>1.8 GPM (Gallons Per Minute) - EPA WaterSense Certified</td></tr>
-      <tr><th>Filter Lifespan</th><td>13,000 Gallons (Approximately 3 to 4 months of use)</td></tr>
-      <tr><th>Compatibility</th><td>Universal 1/2" NPT thread. Fits standard shower arms.</td></tr>
-      <tr><th>Certifications</th><td>NSF/ANSI Standard 177 for Free Available Chlorine Reduction</td></tr>
+      {% for block in section.blocks %}
+        <tr><th>{{ block.settings.label }}</th><td>{{ block.settings.value }}</td></tr>
+      {% else %}
+        <tr><th>Dimensions</th><td>11.2" (Length) x 3.1" (Width) x 4.5" (Depth)</td></tr>
+        <tr><th>Weight</th><td>1.2 lbs (Empty) / 1.8 lbs (Filled with water)</td></tr>
+        <tr><th>Materials</th><td>Aerospace-grade Aluminum, BPA-Free Tritan, Matte Anodized Finish</td></tr>
+      {% endfor %}
     </tbody>
   </table>
   
-  <img src="{{ 'vellano_showerheads.png' | asset_url }}" class="hk-specs-img" alt="Vellano Specs Schematic">
+  {% if section.settings.image != blank %}
+    <img src="{{ section.settings.image | image_url: width: 1200 }}" class="hk-specs-img" alt="{{ section.settings.image.alt | escape }}">
+  {% else %}
+    {{ 'lifestyle-1' | placeholder_svg_tag: 'hk-specs-img placeholder-svg' }}
+  {% endif %}
 </div>
 
 {% schema %}
 {
   "name": "Technical Specs",
-  "presets": [{"name": "Technical Specs"}]
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Technical Specifications"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Precision engineered to optimize your daily routine."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Specs Schematic Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Specification Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label (e.g. Dimensions)",
+          "default": "Label"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "Value details here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technical Specs",
+      "blocks": [
+        { "type": "spec", "settings": { "label": "Dimensions", "value": "11.2\" (L) x 3.1\" (W) x 4.5\" (D)" } },
+        { "type": "spec", "settings": { "label": "Weight", "value": "1.2 lbs (Empty)" } },
+        { "type": "spec", "settings": { "label": "Materials", "value": "Aerospace-grade Aluminum, BPA-Free Tritan" } }
+      ]
+    }
+  ]
 }
 {% endschema %}
