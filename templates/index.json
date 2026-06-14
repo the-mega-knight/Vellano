@@ -9,8 +9,8 @@
             "eyebrow": "The intelligent shower",
             "title": "Meet your water's new standard.",
             "subtitle": "The first shower system engineered to protect your skin and hair barrier.",
-            "btn1_label": "Shop The System",
-            "btn1_link": "shopify:\/\/products\/vellano-filtered-showerhead-starter-kit",
+            "btn1_label": "Shop The Collection",
+            "btn1_link": "/collections/all",
             "btn2_label": "Take The Quiz",
             "btn2_link": "shopify:\/\/pages\/quiz"
           }
@@ -53,8 +53,8 @@
         "fallback_image_url": "",
         "image_alignment": "right",
         "title": "Your daily rinse impacts your hair and skin beyond your products. Optimise your water to tackle the real problem, not the symptoms.",
-        "btn_text": "Discover The System",
-        "btn_link": "/?view=system"
+        "btn_text": "Discover The Collection",
+        "btn_link": "/collections/all"
       }
     },
     "editorial_2": {
@@ -134,29 +134,57 @@
         "prod_1": {
           "type": "product",
           "settings": {
-            "product": "vellano-filtered-showerhead-starter-kit",
-            "subtitle": "Complete hard water defense system."
+            "product": "adjustable-strong-supercharged-shower-head",
+            "subtitle": "High-pressure comfort."
           }
         },
         "prod_2": {
           "type": "product",
           "settings": {
-            "product": "vitamin-c-infusion-attachment",
-            "subtitle": "Neutralizes residual chloramines."
+            "product": "shower-water-purifier-filter-element",
+            "subtitle": "Purify your daily rinse."
           }
         },
         "prod_3": {
           "type": "product",
           "settings": {
-            "product": "1-year-filter-supply",
-            "subtitle": "Maintains peak KDF-55 filtration."
+            "product": "filtered-shower",
+            "subtitle": "The signature experience."
           }
         },
         "prod_4": {
           "type": "product",
           "settings": {
-            "product": "vellano-hard-water-body-cleanser",
-            "subtitle": "Soothes and repairs the skin barrier."
+            "product": "household-faucet-water-purifier-with-ceramic-and-membrane-filters",
+            "subtitle": "Clean sink water."
+          }
+        },
+        "prod_5": {
+          "type": "product",
+          "settings": {
+            "product": "stainless-steel-soap-gel-dispenser",
+            "subtitle": "Elegant apothecary design."
+          }
+        },
+        "prod_6": {
+          "type": "product",
+          "settings": {
+            "product": "portable-natural-bamboo-soap-dish-tray-holder",
+            "subtitle": "Eco-friendly natural tray."
+          }
+        },
+        "prod_7": {
+          "type": "product",
+          "settings": {
+            "product": "rice-soap-fragrant-rice-handmade-soap",
+            "subtitle": "Gentle, handmade cleansing."
+          }
+        },
+        "prod_8": {
+          "type": "product",
+          "settings": {
+            "product": "turmeric-kojic-acid-soap",
+            "subtitle": "Brightening formula."
           }
         }
       },
@@ -164,7 +192,11 @@
         "prod_1",
         "prod_2",
         "prod_3",
-        "prod_4"
+        "prod_4",
+        "prod_5",
+        "prod_6",
+        "prod_7",
+        "prod_8"
       ],
       "settings": {}
     },

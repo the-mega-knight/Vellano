@@ -317,6 +317,28 @@
       .vellano-bs-img-wrap, .hk-ba-container, .vellano-ed-img, .hk-carousel-slide, .vellano-sp-card {
         border-radius: 16px !important;
       }
+
+      /* Accessibility Fix */
+      .visually-hidden {
+        position: absolute !important;
+        overflow: hidden;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+        clip: rect(0 0 0 0);
+        word-wrap: normal !important;
+      }
+      .visually-hidden:focus,
+      .visually-hidden:focus-within,
+      .skip-to-content-link:focus {
+        position: static !important;
+        width: auto;
+        height: auto;
+        margin: auto;
+        clip: auto;
+      }
     </style>
 
 
@@ -331,10 +353,12 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% section 'vellano-announcement-bar' %}
-    {% section 'vellano-header' %}
+    <div style="position: sticky; top: 0; z-index: 1000;">
+      {% section 'vellano-announcement-bar' %}
+      {% section 'vellano-header' %}
+    </div>
 
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1" style="padding-top: 104px;">
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 

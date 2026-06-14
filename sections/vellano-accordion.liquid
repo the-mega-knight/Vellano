@@ -14,12 +14,6 @@
       <summary class="hk-acc-header">{{ block.settings.title | escape }} <span class="hk-acc-icon">+</span></summary>
       <div class="hk-acc-content">{{ block.settings.content }}</div>
     </details>
-  {% else %}
-    <!-- Fallback if no blocks -->
-    <details class="hk-acc-item">
-      <summary class="hk-acc-header">Add an accordion item <span class="hk-acc-icon">+</span></summary>
-      <div class="hk-acc-content"><p>Use the section blocks to add your own accordion items.</p></div>
-    </details>
   {% endfor %}
 </div>
 
