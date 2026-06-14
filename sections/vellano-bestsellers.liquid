@@ -113,49 +113,53 @@
     {% for block in section.blocks %}
       {%- assign product = block.settings.product -%}
       {% if product != blank %}
-        <a href="{{ product.url }}" class="vellano-shop-card" {{ block.shopify_attributes }}>
-          <div class="vellano-shop-card-img-wrap">
-            {% if block.settings.badge_text != blank %}
-              <div class="vellano-shop-card-badge {% if block.settings.badge_color == 'gold' %}gold{% endif %}">{{ block.settings.badge_text }}</div>
-            {% endif %}
-            
-            {% if product.featured_image %}
-              {{ product.featured_image | image_url: width: 600 | image_tag: class: 'vellano-shop-card-img', loading: 'lazy' }}
-            {% else %}
-              {{ 'product-1' | placeholder_svg_tag: 'vellano-shop-card-img' }}
-            {% endif %}
-          </div>
-          <div class="vellano-shop-card-body">
-            <div class="vellano-shop-card-name">{{ product.title }}</div>
-            <div class="vellano-shop-card-desc">{{ block.settings.subtitle | default: product.metafields.custom.subtitle | default: 'Enhance your daily routine.' }}</div>
-            <div class="vellano-shop-card-footer">
-              <div class="vellano-shop-card-price">{{ product.price | money }}</div>
-              <form method="post" action="/cart/add" class="vellano-ajax-cart-form" onsubmit="vellanoAddToCart(event, this)">
-                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                <button type="submit" class="vellano-shop-card-add">
-                  <span>Add</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
-                </button>
-              </form>
+        <div class="vellano-shop-card" {{ block.shopify_attributes }}>
+          <a href="{{ product.url }}" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; flex-grow: 1;">
+            <div class="vellano-shop-card-img-wrap">
+              {% if block.settings.badge_text != blank %}
+                <div class="vellano-shop-card-badge {% if block.settings.badge_color == 'gold' %}gold{% endif %}">{{ block.settings.badge_text }}</div>
+              {% endif %}
+              
+              {% if product.featured_image %}
+                {{ product.featured_image | image_url: width: 600 | image_tag: class: 'vellano-shop-card-img', loading: 'lazy' }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'vellano-shop-card-img' }}
+              {% endif %}
             </div>
+            <div class="vellano-shop-card-body" style="padding-bottom: 0;">
+              <div class="vellano-shop-card-name">{{ product.title }}</div>
+              <div class="vellano-shop-card-desc">{{ block.settings.subtitle | default: product.metafields.custom.subtitle | default: 'Enhance your daily routine.' }}</div>
+            </div>
+          </a>
+          <div class="vellano-shop-card-footer" style="padding: 20px;">
+            <div class="vellano-shop-card-price">{{ product.price | money }}</div>
+            <form method="post" action="/cart/add" class="vellano-ajax-cart-form" onsubmit="vellanoAddToCart(event, this)">
+              <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+              <button type="submit" class="vellano-shop-card-add">
+                <span>Add</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+              </button>
+            </form>
           </div>
-        </a>
+        </div>
       {% else %}
         <!-- Mock Card (when product isn't selected) -->
-        <a href="#" class="vellano-shop-card" {{ block.shopify_attributes }}>
-          <div class="vellano-shop-card-img-wrap">
-             {{ 'product-1' | placeholder_svg_tag: 'vellano-shop-card-img' }}
-          </div>
-          <div class="vellano-shop-card-body">
-            <div class="vellano-shop-card-name">Product Title</div>
-            <div class="vellano-shop-card-desc">Your custom product description will appear here.</div>
-            <div class="vellano-shop-card-footer">
-              <div class="vellano-shop-card-price">$0.00</div>
-              <button class="vellano-shop-card-add">
-                Add <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
-              </button>
+        <div class="vellano-shop-card" {{ block.shopify_attributes }}>
+          <a href="#" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; flex-grow: 1;">
+            <div class="vellano-shop-card-img-wrap">
+               {{ 'product-1' | placeholder_svg_tag: 'vellano-shop-card-img' }}
             </div>
+            <div class="vellano-shop-card-body" style="padding-bottom: 0;">
+              <div class="vellano-shop-card-name">Product Title</div>
+              <div class="vellano-shop-card-desc">Your custom product description will appear here.</div>
+            </div>
+          </a>
+          <div class="vellano-shop-card-footer" style="padding: 20px;">
+            <div class="vellano-shop-card-price">$0.00</div>
+            <button class="vellano-shop-card-add">
+              Add <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            </button>
           </div>
-        </a>
+        </div>
       {% endif %}
     {% endfor %}
   </div>
