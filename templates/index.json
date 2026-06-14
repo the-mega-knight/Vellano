@@ -42,7 +42,8 @@
       },
       "block_order": [
         "slide_1",
-        "slide_2"
+        "slide_2",
+        "slide_3"
       ],
       "settings": {}
     },
@@ -134,56 +135,56 @@
         "prod_1": {
           "type": "product",
           "settings": {
-            "product": "adjustable-strong-supercharged-shower-head",
-            "subtitle": "High-pressure comfort."
+            "product": "the-signature-filtered-shower-system",
+            "subtitle": "Complete hard water defense system."
           }
         },
         "prod_2": {
           "type": "product",
           "settings": {
-            "product": "shower-water-purifier-filter-element",
+            "product": "15-layer-shower-water-purifier",
             "subtitle": "Purify your daily rinse."
           }
         },
         "prod_3": {
           "type": "product",
           "settings": {
-            "product": "filtered-shower",
+            "product": "10-16-layer-shower-water-purifier-filter-element",
             "subtitle": "The signature experience."
           }
         },
         "prod_4": {
           "type": "product",
           "settings": {
-            "product": "household-faucet-water-purifier-with-ceramic-and-membrane-filters",
+            "product": "the-ceramic-faucet-purifier",
             "subtitle": "Clean sink water."
           }
         },
         "prod_5": {
           "type": "product",
           "settings": {
-            "product": "stainless-steel-soap-gel-dispenser",
+            "product": "the-stainless-apothecary-dispenser",
             "subtitle": "Elegant apothecary design."
           }
         },
         "prod_6": {
           "type": "product",
           "settings": {
-            "product": "portable-natural-bamboo-soap-dish-tray-holder",
+            "product": "the-natural-bamboo-soap-dish",
             "subtitle": "Eco-friendly natural tray."
           }
         },
         "prod_7": {
           "type": "product",
           "settings": {
-            "product": "rice-soap-fragrant-rice-handmade-soap",
+            "product": "the-fragrant-rice-milk-cleansing-bar",
             "subtitle": "Gentle, handmade cleansing."
           }
         },
         "prod_8": {
           "type": "product",
           "settings": {
-            "product": "turmeric-kojic-acid-soap",
+            "product": "the-turmeric-kojic-brightening-bar",
             "subtitle": "Brightening formula."
           }
         }
