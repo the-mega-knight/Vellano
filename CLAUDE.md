@@ -58,12 +58,16 @@ Think Aesop or premium dermatological brands — minimal clutter, fine 1px borde
 
 ## 3. Conversion Priorities
 
+### Hero Product
+The **Filtered Shower Head + Filtration System** is the core product — everything else orbits it.
+All design, copy, and conversion decisions should serve this product first.
+
 ### 1. Bundle Upsell (Highest Priority)
-Move customers from single product → Complete System:
-- Hardware (Shower Head)
-- 1-Year Filter Refills
-- Hard Water Body Cleanser
-- Vitamin C Attachment
+Entry point is the shower head/filtration system → upsell to the Complete System:
+- **Hero:** Filtered Shower Head + Filtration System (the main sell)
+- 1-Year Filter Refills (recurring revenue)
+- Hard Water Body Cleanser (complementary skincare)
+- Vitamin C Attachment (upgrade/add-on)
 
 ### 2. Quiz Funnel
 Drive traffic to "Take the Quiz" — personalized solution for hair/skin concerns.
