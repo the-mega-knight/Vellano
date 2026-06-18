@@ -552,12 +552,16 @@
             <!-- Right: Product panels -->
             <div class="vellano-mega-panels">
 
+              {%- assign system_handles = 'the-signature-filtered-shower-system,the-supercharged-adjustable-showerhead,the-ceramic-faucet-purifier' | split: ',' -%}
+              {%- assign filter_handles = 'the-purifying-filter-cartridge' | split: ',' -%}
+              {%- assign bodycare_handles = 'the-turmeric-kojic-brightening-bar,the-fragrant-rice-milk-cleansing-bar' | split: ',' -%}
+              {%- assign accessory_handles = 'the-natural-bamboo-soap-dish,the-stainless-apothecary-dispenser' | split: ',' -%}
+
               <!-- The System -->
               <div class="vellano-mega-panel active" id="vellano-panel-system">
-                {%- for i in (1..3) -%}
-                  {%- assign setting_key = 'system_product_' | append: i -%}
-                  {%- assign p = section.settings[setting_key] -%}
-                  {%- if p != blank -%}
+                {%- for handle in system_handles -%}
+                  {%- assign p = all_products[handle] -%}
+                  {%- if p != empty -%}
                     <a href="{{ p.url }}" class="vellano-mega-card">
                       {%- if p.featured_image -%}
                         <img class="vellano-mega-card-img" src="{{ p.featured_image | image_url: width: 300 }}" alt="{{ p.title | escape }}" loading="lazy">
@@ -569,15 +573,14 @@
                     </a>
                   {%- endif -%}
                 {%- endfor -%}
-                <a href="{{ routes.collections_url }}" class="vellano-mega-showall">View all <svg viewBox="0 0 24 24" fill="none" width="12" height="12" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <a href="/collections/all" class="vellano-mega-showall">View all <svg viewBox="0 0 24 24" fill="none" width="12" height="12" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
               </div>
 
               <!-- Filters -->
               <div class="vellano-mega-panel" id="vellano-panel-filters">
-                {%- for i in (1..3) -%}
-                  {%- assign setting_key = 'filter_product_' | append: i -%}
-                  {%- assign p = section.settings[setting_key] -%}
-                  {%- if p != blank -%}
+                {%- for handle in filter_handles -%}
+                  {%- assign p = all_products[handle] -%}
+                  {%- if p != empty -%}
                     <a href="{{ p.url }}" class="vellano-mega-card">
                       {%- if p.featured_image -%}
                         <img class="vellano-mega-card-img" src="{{ p.featured_image | image_url: width: 300 }}" alt="{{ p.title | escape }}" loading="lazy">
@@ -589,15 +592,14 @@
                     </a>
                   {%- endif -%}
                 {%- endfor -%}
-                <a href="{{ routes.collections_url }}" class="vellano-mega-showall">View all filters <svg viewBox="0 0 24 24" fill="none" width="12" height="12" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <a href="/collections/all" class="vellano-mega-showall">View all filters <svg viewBox="0 0 24 24" fill="none" width="12" height="12" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
               </div>
 
               <!-- Body Care -->
               <div class="vellano-mega-panel" id="vellano-panel-bodycare">
-                {%- for i in (1..3) -%}
-                  {%- assign setting_key = 'bodycare_product_' | append: i -%}
-                  {%- assign p = section.settings[setting_key] -%}
-                  {%- if p != blank -%}
+                {%- for handle in bodycare_handles -%}
+                  {%- assign p = all_products[handle] -%}
+                  {%- if p != empty -%}
                     <a href="{{ p.url }}" class="vellano-mega-card">
                       {%- if p.featured_image -%}
                         <img class="vellano-mega-card-img" src="{{ p.featured_image | image_url: width: 300 }}" alt="{{ p.title | escape }}" loading="lazy">
@@ -609,15 +611,14 @@
                     </a>
                   {%- endif -%}
                 {%- endfor -%}
-                <a href="{{ routes.collections_url }}" class="vellano-mega-showall">View all body care <svg viewBox="0 0 24 24" fill="none" width="12" height="12" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <a href="/collections/all" class="vellano-mega-showall">View all body care <svg viewBox="0 0 24 24" fill="none" width="12" height="12" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
               </div>
 
               <!-- Accessories -->
               <div class="vellano-mega-panel" id="vellano-panel-accessories">
-                {%- for i in (1..3) -%}
-                  {%- assign setting_key = 'accessory_product_' | append: i -%}
-                  {%- assign p = section.settings[setting_key] -%}
-                  {%- if p != blank -%}
+                {%- for handle in accessory_handles -%}
+                  {%- assign p = all_products[handle] -%}
+                  {%- if p != empty -%}
                     <a href="{{ p.url }}" class="vellano-mega-card">
                       {%- if p.featured_image -%}
                         <img class="vellano-mega-card-img" src="{{ p.featured_image | image_url: width: 300 }}" alt="{{ p.title | escape }}" loading="lazy">
@@ -629,7 +630,7 @@
                     </a>
                   {%- endif -%}
                 {%- endfor -%}
-                <a href="{{ routes.collections_url }}" class="vellano-mega-showall">View all accessories <svg viewBox="0 0 24 24" fill="none" width="12" height="12" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <a href="/collections/all" class="vellano-mega-showall">View all accessories <svg viewBox="0 0 24 24" fill="none" width="12" height="12" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg></a>
               </div>
 
             </div>
