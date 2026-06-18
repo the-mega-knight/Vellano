@@ -2,13 +2,13 @@
   .vellano-vertical-collection {
     background: #F8F6F3;
     color: #111;
-    padding: 80px 0;
+    padding: 80px 0 0;
     overflow: hidden;
   }
   .vellano-vertical-header {
     text-align: center;
     padding: 0 5%;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
   .vellano-vertical-title {
     font-family: var(--font-heading-family);
@@ -23,19 +23,94 @@
     max-width: 600px;
     margin: 0 auto;
   }
-  
+
+  /* Sticky filter bar */
+  .vellano-filter-bar {
+    position: sticky;
+    top: 68px;
+    z-index: 90;
+    background: #F8F6F3;
+    border-bottom: 1px solid #E8E4DF;
+    border-top: 1px solid #E8E4DF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    margin-bottom: 80px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .vellano-filter-bar::-webkit-scrollbar { display: none; }
+  .vellano-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 28px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #888;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .vellano-filter-btn:hover,
+  .vellano-filter-btn.active {
+    color: #111;
+    border-bottom-color: #B8A07A;
+  }
+
+  /* Category section headers */
+  .vellano-category-header {
+    text-align: center;
+    padding: 20px 5% 60px;
+  }
+  .vellano-category-label {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #B8A07A;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .vellano-category-title {
+    font-family: var(--font-heading-family);
+    font-size: 36px;
+    font-weight: 400;
+    color: #111;
+    margin: 0;
+  }
+  .vellano-category-divider {
+    width: 40px;
+    height: 1px;
+    background: #B8A07A;
+    margin: 20px auto 0;
+  }
+
+  /* Category section wrapper */
+  .vellano-category-section {
+    padding-bottom: 80px;
+  }
+
+  /* Product rows */
   .vellano-vertical-product {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-bottom: 120px;
-    content-visibility: auto;
-    contain-intrinsic-size: 0 800px;
+    margin-bottom: 0;
+    min-height: 500px;
   }
   @media (min-width: 900px) {
     .vellano-vertical-product {
       flex-direction: row;
-      align-items: center;
+      align-items: stretch;
     }
     .vellano-vertical-product.reverse {
       flex-direction: row-reverse;
@@ -62,6 +137,10 @@
     position: absolute;
     top: 0;
     left: 0;
+    transition: transform 0.6s ease;
+  }
+  .vellano-vp-image-wrap:hover .vellano-vp-image {
+    transform: scale(1.03);
   }
 
   .vellano-vp-text-col {
@@ -69,6 +148,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: #fff;
   }
   @media (min-width: 900px) {
     .vellano-vp-text-col {
@@ -76,6 +156,14 @@
     }
   }
 
+  .vellano-vp-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #B8A07A;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
   .vellano-vp-title {
     font-family: var(--font-heading-family);
     font-size: 36px;
@@ -84,16 +172,18 @@
     color: #111;
   }
   .vellano-vp-price {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 500;
     color: #B8A07A;
     margin-bottom: 24px;
+    letter-spacing: 0.5px;
   }
   .vellano-vp-desc {
     font-size: 15px;
-    line-height: 1.6;
-    color: #555;
+    line-height: 1.7;
+    color: #666;
     margin-bottom: 40px;
+    max-width: 420px;
   }
   .vellano-vp-btn {
     display: inline-block;
@@ -101,24 +191,21 @@
     background: #111;
     color: #fff;
     text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 11px;
     border-radius: 30px;
-    transition: background 0.3s, transform 0.3s;
+    transition: background 0.25s;
     align-self: flex-start;
   }
-  .vellano-vp-btn:hover {
-    background: #333;
-    transform: scale(1.02);
-  }
+  .vellano-vp-btn:hover { background: #333; }
 
-  /* Intersection Observer Animation Classes */
+  /* Fade animation */
   .vellano-fade-up {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .vellano-fade-up.is-visible {
     opacity: 1;
@@ -126,68 +213,210 @@
   }
 {%- endstyle -%}
 
+{%- assign system_handles = 'the-signature-filtered-shower-system,the-supercharged-adjustable-showerhead,the-ceramic-faucet-purifier' | split: ',' -%}
+{%- assign filter_handles = 'the-purifying-filter-cartridge' | split: ',' -%}
+{%- assign bodycare_handles = 'the-turmeric-kojic-brightening-bar,the-fragrant-rice-milk-cleansing-bar' | split: ',' -%}
+{%- assign accessory_handles = 'the-natural-bamboo-soap-dish,the-stainless-apothecary-dispenser' | split: ',' -%}
+
 <div class="vellano-vertical-collection">
+
   <div class="vellano-vertical-header vellano-fade-up">
-    <h1 class="vellano-vertical-title">{{ collection.title }}</h1>
-    {% if collection.description != blank %}
-      <div class="vellano-vertical-desc">{{ collection.description }}</div>
-    {% endif %}
+    <h1 class="vellano-vertical-title">The Collection</h1>
+    <div class="vellano-vertical-desc">Premium water filtration hardware and body care — engineered for skin and hair health.</div>
   </div>
 
-  <div class="vellano-vertical-products">
-    {% for product in collection.products %}
-      {% assign mod = forloop.index | modulo: 2 %}
-      <div class="vellano-vertical-product {% if mod == 0 %}reverse{% endif %} vellano-fade-up">
-        <div class="vellano-vp-image-col">
-          <div class="vellano-vp-image-wrap">
-            {% if product.featured_image %}
-              {% if forloop.first %}
-                {{ product.featured_image | image_url: width: 1200 | image_tag: class: 'vellano-vp-image', fetchpriority: 'high', widths: '600, 900, 1200' }}
-              {% else %}
-                {{ product.featured_image | image_url: width: 1200 | image_tag: class: 'vellano-vp-image', loading: 'lazy', widths: '600, 900, 1200' }}
-              {% endif %}
-            {% else %}
-              <div style="width: 100%; height: 100%; min-height: 500px; background: rgba(var(--color-foreground), 0.04);"></div>
-            {% endif %}
-          </div>
-        </div>
-        <div class="vellano-vp-text-col">
-          <h2 class="vellano-vp-title">{{ product.title }}</h2>
-          <div class="vellano-vp-price">{{ product.price | money }}</div>
-          <div class="vellano-vp-desc">
-            {{ product.description | strip_html | truncatewords: 50 | default: 'Enhance your daily routine with our premium hard water defense hardware.' }}
-          </div>
-          <a href="{{ product.url }}" class="vellano-vp-btn">Explore Product</a>
-        </div>
-      </div>
-    {% else %}
-      <div class="vellano-vertical-product vellano-fade-up" style="text-align: center; padding: 100px 5%; display: block;">
-        <p style="color: #888;">No products found in this collection.</p>
-      </div>
-    {% endfor %}
+  <!-- Sticky filter/category nav -->
+  <div class="vellano-filter-bar">
+    <a href="#section-system" class="vellano-filter-btn active" data-filter="system">The System</a>
+    <a href="#section-filters" class="vellano-filter-btn" data-filter="filters">Filters</a>
+    <a href="#section-bodycare" class="vellano-filter-btn" data-filter="bodycare">Body Care</a>
+    <a href="#section-accessories" class="vellano-filter-btn" data-filter="accessories">Accessories</a>
   </div>
+
+  <!-- THE SYSTEM -->
+  <div class="vellano-category-section" id="section-system">
+    <div class="vellano-category-header vellano-fade-up">
+      <span class="vellano-category-label">Hardware</span>
+      <h2 class="vellano-category-title">The System</h2>
+      <div class="vellano-category-divider"></div>
+    </div>
+    {%- assign row = 0 -%}
+    {%- for handle in system_handles -%}
+      {%- assign p = all_products[handle] -%}
+      {%- if p != empty -%}
+        {%- assign row = row | plus: 1 -%}
+        <div class="vellano-vertical-product {% if row == 2 %}reverse{% endif %} vellano-fade-up">
+          <div class="vellano-vp-image-col">
+            <div class="vellano-vp-image-wrap">
+              {%- if p.featured_image -%}
+                {%- if row == 1 -%}
+                  {{ p.featured_image | image_url: width: 1200 | image_tag: class: 'vellano-vp-image', fetchpriority: 'high', widths: '600, 900, 1200' }}
+                {%- else -%}
+                  {{ p.featured_image | image_url: width: 1200 | image_tag: class: 'vellano-vp-image', loading: 'lazy', widths: '600, 900, 1200' }}
+                {%- endif -%}
+              {%- else -%}
+                <div style="width:100%;height:100%;min-height:500px;background:#EDEAE5;"></div>
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="vellano-vp-text-col">
+            <div class="vellano-vp-eyebrow">The System</div>
+            <h2 class="vellano-vp-title">{{ p.title }}</h2>
+            <div class="vellano-vp-price">{{ p.price | money }}</div>
+            <div class="vellano-vp-desc">{{ p.description | strip_html | truncatewords: 45 }}</div>
+            <a href="{{ p.url }}" class="vellano-vp-btn">Explore Product</a>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <!-- FILTERS -->
+  <div class="vellano-category-section" id="section-filters">
+    <div class="vellano-category-header vellano-fade-up">
+      <span class="vellano-category-label">Consumables</span>
+      <h2 class="vellano-category-title">Filters</h2>
+      <div class="vellano-category-divider"></div>
+    </div>
+    {%- assign row = 0 -%}
+    {%- for handle in filter_handles -%}
+      {%- assign p = all_products[handle] -%}
+      {%- if p != empty -%}
+        {%- assign row = row | plus: 1 -%}
+        <div class="vellano-vertical-product {% if row == 2 %}reverse{% endif %} vellano-fade-up">
+          <div class="vellano-vp-image-col">
+            <div class="vellano-vp-image-wrap">
+              {%- if p.featured_image -%}
+                {{ p.featured_image | image_url: width: 1200 | image_tag: class: 'vellano-vp-image', loading: 'lazy', widths: '600, 900, 1200' }}
+              {%- else -%}
+                <div style="width:100%;height:100%;min-height:500px;background:#EDEAE5;"></div>
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="vellano-vp-text-col">
+            <div class="vellano-vp-eyebrow">Filters</div>
+            <h2 class="vellano-vp-title">{{ p.title }}</h2>
+            <div class="vellano-vp-price">{{ p.price | money }}</div>
+            <div class="vellano-vp-desc">{{ p.description | strip_html | truncatewords: 45 }}</div>
+            <a href="{{ p.url }}" class="vellano-vp-btn">Explore Product</a>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <!-- BODY CARE -->
+  <div class="vellano-category-section" id="section-bodycare">
+    <div class="vellano-category-header vellano-fade-up">
+      <span class="vellano-category-label">Skincare</span>
+      <h2 class="vellano-category-title">Body Care</h2>
+      <div class="vellano-category-divider"></div>
+    </div>
+    {%- assign row = 0 -%}
+    {%- for handle in bodycare_handles -%}
+      {%- assign p = all_products[handle] -%}
+      {%- if p != empty -%}
+        {%- assign row = row | plus: 1 -%}
+        <div class="vellano-vertical-product {% if row == 2 %}reverse{% endif %} vellano-fade-up">
+          <div class="vellano-vp-image-col">
+            <div class="vellano-vp-image-wrap">
+              {%- if p.featured_image -%}
+                {{ p.featured_image | image_url: width: 1200 | image_tag: class: 'vellano-vp-image', loading: 'lazy', widths: '600, 900, 1200' }}
+              {%- else -%}
+                <div style="width:100%;height:100%;min-height:500px;background:#EDEAE5;"></div>
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="vellano-vp-text-col">
+            <div class="vellano-vp-eyebrow">Body Care</div>
+            <h2 class="vellano-vp-title">{{ p.title }}</h2>
+            <div class="vellano-vp-price">{{ p.price | money }}</div>
+            <div class="vellano-vp-desc">{{ p.description | strip_html | truncatewords: 45 }}</div>
+            <a href="{{ p.url }}" class="vellano-vp-btn">Explore Product</a>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <!-- ACCESSORIES -->
+  <div class="vellano-category-section" id="section-accessories">
+    <div class="vellano-category-header vellano-fade-up">
+      <span class="vellano-category-label">Lifestyle</span>
+      <h2 class="vellano-category-title">Accessories</h2>
+      <div class="vellano-category-divider"></div>
+    </div>
+    {%- assign row = 0 -%}
+    {%- for handle in accessory_handles -%}
+      {%- assign p = all_products[handle] -%}
+      {%- if p != empty -%}
+        {%- assign row = row | plus: 1 -%}
+        <div class="vellano-vertical-product {% if row == 2 %}reverse{% endif %} vellano-fade-up">
+          <div class="vellano-vp-image-col">
+            <div class="vellano-vp-image-wrap">
+              {%- if p.featured_image -%}
+                {{ p.featured_image | image_url: width: 1200 | image_tag: class: 'vellano-vp-image', loading: 'lazy', widths: '600, 900, 1200' }}
+              {%- else -%}
+                <div style="width:100%;height:100%;min-height:500px;background:#EDEAE5;"></div>
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="vellano-vp-text-col">
+            <div class="vellano-vp-eyebrow">Accessories</div>
+            <h2 class="vellano-vp-title">{{ p.title }}</h2>
+            <div class="vellano-vp-price">{{ p.price | money }}</div>
+            <div class="vellano-vp-desc">{{ p.description | strip_html | truncatewords: 45 }}</div>
+            <a href="{{ p.url }}" class="vellano-vp-btn">Explore Product</a>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const fadeElements = document.querySelectorAll('.vellano-fade-up');
-    
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15
-    };
-    
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // Fade-up on scroll
+    var fadeEls = document.querySelectorAll('.vellano-fade-up');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
           observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
-    
-    fadeElements.forEach(el => observer.observe(el));
+    }, { threshold: 0.1 });
+    fadeEls.forEach(function(el) { observer.observe(el); });
+
+    // Smooth scroll for filter bar links
+    document.querySelectorAll('.vellano-filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        var offset = 68 + 53; // header + filter bar height
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    });
+
+    // Highlight active filter on scroll
+    var sections = document.querySelectorAll('.vellano-category-section');
+    var filterBtns = document.querySelectorAll('.vellano-filter-btn');
+    var scrollObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id.replace('section-', '');
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          var active = document.querySelector('[data-filter="' + id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(function(s) { scrollObserver.observe(s); });
+
   });
 </script>
 
@@ -195,10 +424,6 @@
 {
   "name": "Collection Vertical",
   "settings": [],
-  "presets": [
-    {
-      "name": "Collection Vertical Narrative"
-    }
-  ]
+  "presets": [{ "name": "Collection Vertical Narrative" }]
 }
 {% endschema %}

@@ -67,13 +67,15 @@
     opacity: 0;
     visibility: hidden;
     transform: translateY(-6px);
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
     z-index: 997;
+    pointer-events: none;
   }
-  .vellano-hdr-dropdown-wrap:hover .vellano-mega {
+  .vellano-mega.is-open {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    pointer-events: all;
   }
   .vellano-mega-inner {
     display: grid;
@@ -639,7 +641,7 @@
         <!-- END MEGA MENU -->
       </div>
 
-      <a href="{{ routes.collections_url }}">The Collection</a>
+      <a href="/collections/all">The Collection</a>
       <a href="{{ pages['the-science'].url | default: '/pages/the-science' }}">The Science</a>
       <a href="{{ pages['quiz'].url | default: '/pages/quiz' }}">Take the Quiz</a>
     </nav>
@@ -709,7 +711,31 @@
 </div>
 
 <script>
-  // Mega menu category switching
+  // Mega menu — open/close controlled by JS only (not CSS hover)
+  var vellanoMegaWrap = document.querySelector('.vellano-hdr-dropdown-wrap');
+  var vellanoMega = document.querySelector('.vellano-mega');
+  var vellanoCloseTimer = null;
+
+  function vellanoOpenMega() {
+    clearTimeout(vellanoCloseTimer);
+    if (vellanoMega) vellanoMega.classList.add('is-open');
+  }
+  function vellanoCloseMega() {
+    vellanoCloseTimer = setTimeout(function() {
+      if (vellanoMega) vellanoMega.classList.remove('is-open');
+    }, 120);
+  }
+
+  if (vellanoMegaWrap) {
+    vellanoMegaWrap.addEventListener('mouseenter', vellanoOpenMega);
+    vellanoMegaWrap.addEventListener('mouseleave', vellanoCloseMega);
+  }
+  if (vellanoMega) {
+    vellanoMega.addEventListener('mouseenter', vellanoOpenMega);
+    vellanoMega.addEventListener('mouseleave', vellanoCloseMega);
+  }
+
+  // Category panel switching
   document.querySelectorAll('.vellano-mega-cat').forEach(function(cat) {
     cat.addEventListener('mouseenter', function() {
       var panel = this.dataset.panel;
@@ -720,6 +746,11 @@
       if (target) target.classList.add('active');
     });
   });
+
+  // Close on scroll
+  window.addEventListener('scroll', function() {
+    if (vellanoMega) vellanoMega.classList.remove('is-open');
+  }, { passive: true });
 
   function vellanoToggleMobileMenu() {
     const burger = document.getElementById('vellano-burger');
