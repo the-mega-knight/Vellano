@@ -105,14 +105,14 @@
       }
 
       :root {
-        --font-body-family: 'Montserrat', sans-serif;
+        --font-body-family: 'Jost', sans-serif;
         --font-body-style: normal;
         --font-body-weight: 400;
-        --font-body-weight-bold: 600;
+        --font-body-weight-bold: 500;
 
-        --font-heading-family: 'Montserrat', sans-serif;
+        --font-heading-family: 'Cormorant Garamond', serif;
         --font-heading-style: normal;
-        --font-heading-weight: 600;
+        --font-heading-weight: 500;
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -307,11 +307,32 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
 
 
     <style>
+      /* Typography refinements */
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        line-height: 1.15;
+      }
+      body, p, li, input, button, select, textarea, label, span, a {
+        font-family: 'Jost', sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+      }
+      /* Eyebrow / caption labels */
+      .caption, .caption-with-letter-spacing, .eyebrow {
+        font-family: 'Jost', sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+      }
+
       /* Global Luxury Rounding */
       .hk-bento-grid { border-radius: 16px; overflow: hidden; }
       .vellano-bs-img-wrap, .hk-ba-container, .vellano-ed-img, .hk-carousel-slide, .vellano-sp-card {
