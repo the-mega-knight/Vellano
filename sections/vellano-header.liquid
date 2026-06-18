@@ -402,26 +402,34 @@
     <nav class="vellano-hdr-nav" aria-label="Main">
       <!-- Dropdown 1: Shop -->
       <div class="vellano-hdr-dropdown-wrap">
-        <a href="/collections/all">
+        <a href="{{ routes.collections_url }}">
           Shop
           <svg viewBox="0 0 14 8" fill="none" width="10" height="6"><path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.5"/></svg>
         </a>
         <div class="vellano-hdr-dropdown">
-          <a href="/collections/all" style="font-weight: 600; border-bottom: 1px solid #E8E4DF; padding-bottom: 14px; margin-bottom: 6px;">Shop All</a>
-          <a href="/products/the-signature-filtered-shower-system">The Hardware</a>
-          <a href="/products/15-layer-shower-water-purifier">Filter Refills</a>
-          <a href="/products/the-turmeric-kojic-brightening-bar">Body Care</a>
-          <a href="/products/the-natural-bamboo-soap-dish">Accessories</a>
+          <a href="{{ routes.collections_url }}" style="font-weight: 600; border-bottom: 1px solid #E8E4DF; padding-bottom: 14px; margin-bottom: 6px;">Shop All</a>
+          {%- if section.settings.nav_product_1 != blank -%}
+            <a href="{{ section.settings.nav_product_1.url }}">{{ section.settings.nav_product_1.title }}</a>
+          {%- endif -%}
+          {%- if section.settings.nav_product_2 != blank -%}
+            <a href="{{ section.settings.nav_product_2.url }}">{{ section.settings.nav_product_2.title }}</a>
+          {%- endif -%}
+          {%- if section.settings.nav_product_3 != blank -%}
+            <a href="{{ section.settings.nav_product_3.url }}">{{ section.settings.nav_product_3.title }}</a>
+          {%- endif -%}
+          {%- if section.settings.nav_product_4 != blank -%}
+            <a href="{{ section.settings.nav_product_4.url }}">{{ section.settings.nav_product_4.title }}</a>
+          {%- endif -%}
         </div>
       </div>
 
-      <a href="/collections/all">The Collection</a>
-      <a href="/?view=science">The Science</a>
-      <a href="/pages/quiz">Take the Quiz</a>
+      <a href="{{ routes.collections_url }}">The Collection</a>
+      <a href="{{ pages['the-science'].url | default: '/pages/the-science' }}">The Science</a>
+      <a href="{{ pages['quiz'].url | default: '/pages/quiz' }}">Take the Quiz</a>
     </nav>
 
     <!-- CENTER LOGO -->
-    <a href="/" class="vellano-hdr-logo" aria-label="Vellano Home">
+    <a href="{{ routes.root_url }}" class="vellano-hdr-logo" aria-label="Vellano Home">
       {% if section.settings.logo != blank %}
         <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ section.settings.logo.alt | escape }}">
       {% elsif section.settings.logo_text != blank %}
@@ -470,7 +478,7 @@
         {% endfor %}
       {% endif %}
     {% endfor %}
-    <a href="/?view=about" class="vellano-mobile-nav-link" onclick="vellanoToggleMobileMenu()">About Vellano</a>
+    <a href="{{ pages['about'].url | default: routes.root_url }}" class="vellano-mobile-nav-link" onclick="vellanoToggleMobileMenu()">About Vellano</a>
   </div>
 
   <div class="vellano-mobile-ctas">
@@ -479,8 +487,8 @@
     {% else %}
       <div style="width: 100%; height: 180px; border-radius: 12px; margin-bottom: 12px; background: rgba(var(--color-foreground), 0.04);"></div>
     {% endif %}
-    <a href="/pages/quiz" class="vellano-mobile-cta-quiz" onclick="vellanoToggleMobileMenu()">Take The Quiz</a>
-    <a href="/collections/all" class="vellano-mobile-cta-shop" onclick="vellanoToggleMobileMenu()">Shop The Collection</a>
+    <a href="{{ pages['quiz'].url | default: '/pages/quiz' }}" class="vellano-mobile-cta-quiz" onclick="vellanoToggleMobileMenu()">Take The Quiz</a>
+    <a href="{{ routes.collections_url }}" class="vellano-mobile-cta-shop" onclick="vellanoToggleMobileMenu()">Shop The Collection</a>
   </div>
 </div>
 
@@ -532,6 +540,30 @@
       "type": "image_picker",
       "id": "mobile_hero",
       "label": "Mobile Menu Hero Image"
+    },
+    {
+      "type": "header",
+      "content": "Shop Dropdown Links"
+    },
+    {
+      "type": "product",
+      "id": "nav_product_1",
+      "label": "Dropdown Link 1"
+    },
+    {
+      "type": "product",
+      "id": "nav_product_2",
+      "label": "Dropdown Link 2"
+    },
+    {
+      "type": "product",
+      "id": "nav_product_3",
+      "label": "Dropdown Link 3"
+    },
+    {
+      "type": "product",
+      "id": "nav_product_4",
+      "label": "Dropdown Link 4"
     }
   ],
   "presets": [{ "name": "Vellano Header" }]

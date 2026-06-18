@@ -120,8 +120,8 @@
       </div>
 
       <div class="vellano-wq-ctas">
-        <a href="/products/vellano-filtered-showerhead-starter-kit" class="vellano-wq-btn">Fix My Water</a>
-        <a href="/?view=science" class="vellano-wq-btn-secondary">Read The Science</a>
+        <a href="{{ section.settings.cta_product_url | default: routes.collections_url }}" class="vellano-wq-btn">Fix My Water</a>
+        <a href="{{ pages['the-science'].url | default: '/pages/the-science' }}" class="vellano-wq-btn-secondary">Read The Science</a>
       </div>
     </div>
 
@@ -136,6 +136,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "Section Image"
+    },
+    {
+      "type": "url",
+      "id": "cta_product_url",
+      "label": "\"Fix My Water\" Button URL"
     }
   ],
   "presets": [{ "name": "Vellano Water Quality" }]

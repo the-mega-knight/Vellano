@@ -341,7 +341,7 @@
     starter: {
       name: `{{ section.settings.product_1_name | default: 'The Handheld Filter' | escape }}`,
       price: '$79.99',
-      url: '/products/vellano-filtered-showerhead-starter-kit',
+      url: '{{ section.settings.product_1_url | default: routes.collections_url }}',
       {% if section.settings.img_1 != blank %}
         img_tag: `<img src="{{ section.settings.img_1 | image_url: width: 200 }}" class="vellano-quiz-result-product-img" alt="{{ section.settings.product_1_name | default: 'The Handheld Filter' | escape }}">`
       {% else %}
@@ -351,7 +351,7 @@
     refill: {
       name: `{{ section.settings.product_2_name | default: '1-Year Filter Supply' | escape }}`,
       price: '$49.99',
-      url: '/products/1-year-filter-supply',
+      url: '{{ section.settings.product_2_url | default: routes.collections_url }}',
       {% if section.settings.img_2 != blank %}
         img_tag: `<img src="{{ section.settings.img_2 | image_url: width: 200 }}" class="vellano-quiz-result-product-img" alt="{{ section.settings.product_2_name | default: '1-Year Filter Supply' | escape }}">`
       {% else %}
@@ -361,7 +361,7 @@
     cleanser: {
       name: `{{ section.settings.product_3_name | default: 'Hard Water Body Cleanser' | escape }}`,
       price: '$34.99',
-      url: '/products/vellano-hard-water-body-cleanser',
+      url: '{{ section.settings.product_3_url | default: routes.collections_url }}',
       {% if section.settings.img_3 != blank %}
         img_tag: `<img src="{{ section.settings.img_3 | image_url: width: 200 }}" class="vellano-quiz-result-product-img" alt="{{ section.settings.product_3_name | default: 'Hard Water Body Cleanser' | escape }}">`
       {% else %}
@@ -371,7 +371,7 @@
     vitaminC: {
       name: `{{ section.settings.product_4_name | default: 'Vitamin C Attachment' | escape }}`,
       price: '$49.99',
-      url: '/products/vitamin-c-infusion-attachment',
+      url: '{{ section.settings.product_4_url | default: routes.collections_url }}',
       {% if section.settings.img_4 != blank %}
         img_tag: `<img src="{{ section.settings.img_4 | image_url: width: 200 }}" class="vellano-quiz-result-product-img" alt="{{ section.settings.product_4_name | default: 'Vitamin C Attachment' | escape }}">`
       {% else %}
@@ -409,22 +409,22 @@
       title = 'The Hair Revival System';
       desc = 'Hard water calcium is the #1 cause of brittle, dull hair. Your KDF-55 filter removes up to 98% of chlorine and heavy metals — so your hair gets clean water, not chemical-stripped water.';
       resultProducts = [vellanoProducts.starter, vellanoProducts.refill];
-      ctaUrl = '/products/vellano-filtered-showerhead-starter-kit';
+      ctaUrl = vellanoProducts.starter.url;
     } else if (concern === 'skin') {
       title = 'The Skin Barrier Bundle';
       desc = 'Chlorinated water strips your skin\'s natural acid mantle, causing tightness and breakouts. Filter your water and wash with our hard-water cleanser — formulated specifically for mineral-heavy water.';
       resultProducts = [vellanoProducts.starter, vellanoProducts.cleanser];
-      ctaUrl = '/products/vellano-filtered-showerhead-starter-kit';
+      ctaUrl = vellanoProducts.starter.url;
     } else if (concern === 'both') {
       title = 'The Complete System';
       desc = 'For full-body transformation. Filtered water at the source, 1-year refill supply, and a body cleanser formulated to work with purified water — the complete Vellano ecosystem.';
       resultProducts = [vellanoProducts.starter, vellanoProducts.cleanser, vellanoProducts.refill];
-      ctaUrl = '/collections/all';
+      ctaUrl = '{{ routes.collections_url }}';
     } else {
       title = 'Maximum Filtration Setup';
       desc = 'For those who want the most clinical-grade filtration. KDF-55 removes chlorine, chloramines, and heavy metals. Add the Vitamin C attachment for residual chloramine neutralisation.';
       resultProducts = [vellanoProducts.starter, vellanoProducts.vitaminC, vellanoProducts.refill];
-      ctaUrl = '/products/vitamin-c-infusion-attachment';
+      ctaUrl = vellanoProducts.vitaminC.url;
     }
 
     document.getElementById('vellano-result-title').textContent = title;
@@ -470,6 +470,11 @@
       "label": "Starter Kit Image"
     },
     {
+      "type": "url",
+      "id": "product_1_url",
+      "label": "Starter Kit URL"
+    },
+    {
       "type": "text",
       "id": "product_2_name",
       "label": "Refill Name",
@@ -479,6 +484,11 @@
       "type": "image_picker",
       "id": "img_2",
       "label": "Refill Image"
+    },
+    {
+      "type": "url",
+      "id": "product_2_url",
+      "label": "Refill URL"
     },
     {
       "type": "text",
@@ -492,6 +502,11 @@
       "label": "Cleanser Image"
     },
     {
+      "type": "url",
+      "id": "product_3_url",
+      "label": "Cleanser URL"
+    },
+    {
       "type": "text",
       "id": "product_4_name",
       "label": "Vitamin C Name",
@@ -501,6 +516,11 @@
       "type": "image_picker",
       "id": "img_4",
       "label": "Vitamin C Image"
+    },
+    {
+      "type": "url",
+      "id": "product_4_url",
+      "label": "Vitamin C URL"
     }
   ],
   "presets": [{ "name": "Vellano Bundle Quiz" }]
