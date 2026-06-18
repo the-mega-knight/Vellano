@@ -1,9 +1,17 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "",
         "image_alignment": "right",
         "title": "Expert Advice: How Water Quality Impacts Your Skin",
         "description": "<p>Dermatologists and trichologists consistently identify hard water as a silent contributor to dry skin, scalp irritation, and product inefficiency. The fix is simpler than you think.</p>",
@@ -18,7 +26,6 @@
     "cta": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "",
         "image_alignment": "left",
         "title": "Dermatologists agree: start with the water.",
         "description": "<p>Our filter removes the chlorine and minerals that strip the skin barrier and cause follicular damage. The result: softer skin, stronger hair, and products that finally work the way they should.</p>",

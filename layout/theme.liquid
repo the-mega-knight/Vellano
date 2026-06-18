@@ -105,12 +105,12 @@
       }
 
       :root {
-        --font-body-family: 'Inter', sans-serif;
+        --font-body-family: 'Montserrat', sans-serif;
         --font-body-style: normal;
         --font-body-weight: 400;
         --font-body-weight-bold: 600;
 
-        --font-heading-family: 'Playfair Display', serif;
+        --font-heading-family: 'Montserrat', sans-serif;
         --font-heading-style: normal;
         --font-heading-weight: 600;
 
@@ -246,7 +246,7 @@
         min-height: 100%;
         margin: 0;
         font-size: 1.5rem;
-        letter-spacing: 0.06rem;
+        letter-spacing: 0;
         line-height: calc(1 + 0.8 / var(--font-body-scale));
         font-family: var(--font-body-family);
         font-style: var(--font-body-style);
@@ -307,8 +307,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
 
 
     <style>
@@ -327,8 +327,8 @@
         margin: -1px;
         padding: 0;
         border: 0;
-        clip: rect(0 0 0 0);
-        word-wrap: normal !important;
+        clip-path: inset(50%);
+        white-space: nowrap !important;
       }
       .visually-hidden:focus,
       .visually-hidden:focus-within,
@@ -337,7 +337,8 @@
         width: auto;
         height: auto;
         margin: auto;
-        clip: auto;
+        clip-path: none;
+        white-space: normal !important;
       }
     </style>
 

@@ -1,5 +1,5 @@
 {%- style -%}
-  .vellano-shop { padding: 80px 5%; background: #F8F6F3; font-family: 'Jost', sans-serif; }
+  .vellano-shop { padding: 80px 5%; background: #F8F6F3; }
   .vellano-shop-header { text-align: center; margin-bottom: 40px; }
   .vellano-shop-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #B8A07A; margin-bottom: 14px; font-weight: 500; }
   .vellano-shop-title { font-family: var(--font-heading-family); font-size: 42px; font-weight: 400; color: #111; margin-bottom: 10px; }
@@ -7,7 +7,7 @@
   /* Responsive Grid/Carousel */
   .vellano-shop-carousel {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     width: 100%;
     margin: 0 auto;
@@ -36,6 +36,7 @@
     }
   }
   @media (max-width: 600px) {
+    .vellano-shop { padding: 48px 5%; }
     .vellano-shop-card-name { font-size: 15px; }
     .vellano-shop-card-price { font-size: 14px; }
     .vellano-shop-card-add { padding: 8px 12px; font-size: 10px; }
@@ -74,11 +75,11 @@
   }
   .vellano-shop-card-badge.gold { background: #B8A07A; }
   
-  .vellano-shop-card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+  .vellano-shop-card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; text-align: center; justify-content: center; align-items: center; }
   .vellano-shop-card-cat { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #B8A07A; margin-bottom: 6px; font-weight: 500; }
   .vellano-shop-card-name { font-family: var(--font-heading-family); font-size: 18px; color: #111; margin-bottom: 8px; font-weight: 400; line-height: 1.25; }
   .vellano-shop-card-desc { font-size: 12px; color: #888; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
-  .vellano-shop-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+  .vellano-shop-card-footer { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; margin-top: auto; padding-top: 0; }
   .vellano-shop-card-price { font-size: 16px; font-weight: 600; color: #111; }
   
   .vellano-shop-card-add {
@@ -123,10 +124,10 @@
               {% if product.featured_image %}
                 {{ product.featured_image | image_url: width: 600 | image_tag: class: 'vellano-shop-card-img', loading: 'lazy' }}
               {% else %}
-                {{ 'product-1' | placeholder_svg_tag: 'vellano-shop-card-img' }}
+                <div style="width: 100%; height: 100%; background: rgba(var(--color-foreground), 0.04);"></div>
               {% endif %}
             </div>
-            <div class="vellano-shop-card-body" style="padding-bottom: 0;">
+            <div class="vellano-shop-card-body" style="padding-bottom: 0; text-align: center;">
               <div class="vellano-shop-card-name">{{ product.title }}</div>
               <div class="vellano-shop-card-desc">{{ block.settings.subtitle | default: product.metafields.custom.subtitle | default: 'Enhance your daily routine.' }}</div>
             </div>
@@ -146,9 +147,9 @@
         <div class="vellano-shop-card" {{ block.shopify_attributes }}>
           <a href="#" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; flex-grow: 1;">
             <div class="vellano-shop-card-img-wrap">
-               {{ 'product-1' | placeholder_svg_tag: 'vellano-shop-card-img' }}
+               <div style="width: 100%; height: 100%; background: rgba(var(--color-foreground), 0.04);"></div>
             </div>
-            <div class="vellano-shop-card-body" style="padding-bottom: 0;">
+            <div class="vellano-shop-card-body" style="padding-bottom: 0; text-align: center;">
               <div class="vellano-shop-card-name">Product Title</div>
               <div class="vellano-shop-card-desc">Your custom product description will appear here.</div>
             </div>

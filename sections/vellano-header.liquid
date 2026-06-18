@@ -9,7 +9,6 @@
     position: relative;
     width: 100%;
     z-index: 998;
-    font-family: 'Jost', sans-serif;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
   }
   .vellano-hdr-inner {
@@ -173,7 +172,6 @@
     background: none;
     border: none;
     cursor: pointer;
-    font-family: 'Jost', sans-serif;
     font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -299,7 +297,7 @@
     position: fixed;
     top: 68px; /* mobile header height is usually smaller, but let's use 68px grid height */
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: calc(100vh - 68px);
     background: #F8F6F3;
     transform: translateX(-100%);
@@ -334,7 +332,6 @@
   .vellano-mobile-nav-link:hover { color: #B8A07A; padding-left: 10px; }
   .vellano-mobile-sub-link {
     display: block;
-    font-family: 'Jost', sans-serif;
     font-size: 16px;
     color: #777;
     text-decoration: none;
@@ -355,7 +352,6 @@
     padding: 16px;
     border: 1.5px solid #111;
     border-radius: 30px;
-    font-family: 'Jost', sans-serif;
     font-size: 13px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -368,7 +364,6 @@
     padding: 16px;
     background: #111;
     border-radius: 30px;
-    font-family: 'Jost', sans-serif;
     font-size: 13px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -482,7 +477,7 @@
     {% if section.settings.mobile_hero != blank %}
       <img src="{{ section.settings.mobile_hero | image_url: width: 800 }}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px;" alt="{{ section.settings.mobile_hero.alt | escape }}">
     {% else %}
-      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' | replace: '<svg', '<svg style="width: 100%; height: 180px; border-radius: 12px; margin-bottom: 12px;"' }}
+      <div style="width: 100%; height: 180px; border-radius: 12px; margin-bottom: 12px; background: rgba(var(--color-foreground), 0.04);"></div>
     {% endif %}
     <a href="/pages/quiz" class="vellano-mobile-cta-quiz" onclick="vellanoToggleMobileMenu()">Take The Quiz</a>
     <a href="/collections/all" class="vellano-mobile-cta-shop" onclick="vellanoToggleMobileMenu()">Shop The Collection</a>

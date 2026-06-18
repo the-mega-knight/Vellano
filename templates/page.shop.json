@@ -1,10 +1,17 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_top": {
       "type": "vellano-home-hero",
-      "settings": {
-        "btn_link": "/products/vellano-filtered-showerhead-starter-kit"
-      }
+      "settings": {}
     },
     "bestsellers": {
       "type": "vellano-bestsellers",
@@ -12,29 +19,25 @@
         "product_1": {
           "type": "product",
           "settings": {
-            "product": "vellano-filtered-showerhead-starter-kit",
-            "kicker": "STARTER KIT"
+            "product": "vellano-filtered-showerhead-starter-kit"
           }
         },
         "product_2": {
           "type": "product",
           "settings": {
-            "product": "1-year-filter-supply",
-            "kicker": "REFILLS"
+            "product": "1-year-filter-supply"
           }
         },
         "product_3": {
           "type": "product",
           "settings": {
-            "product": "vellano-hard-water-body-cleanser",
-            "kicker": "BODY CARE"
+            "product": "vellano-hard-water-body-cleanser"
           }
         },
         "product_4": {
           "type": "product",
           "settings": {
-            "product": "vitamin-c-infusion-attachment",
-            "kicker": "WELLNESS"
+            "product": "vitamin-c-infusion-attachment"
           }
         }
       },
@@ -66,7 +69,6 @@
       "type": "vellano-editorial",
       "settings": {
         "image_alignment": "right",
-        "fallback_image_url": "",
         "title": "Hard water damages the skin barrier. The Vellano filter prevents dryness at the source.",
         "btn_text": "Read the Science",
         "btn_link": "/products/vellano-filtered-showerhead-starter-kit"
@@ -78,14 +80,7 @@
     },
     "hero_bottom": {
       "type": "vellano-home-hero",
-      "settings": {
-        "fallback_image_url": "",
-        "title": "Purer water. Better beauty.",
-        "text": "Stop washing with heavy metals. The Vellano system guarantees a noticeable difference in 14 days.",
-        "kicker": "JOIN THE REVOLUTION",
-        "btn_text": "Shop the Collection",
-        "btn_link": "/products/vellano-filtered-showerhead-starter-kit"
-      }
+      "settings": {}
     },
     "press_bar": {
       "type": "vellano-press-bar",

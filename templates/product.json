@@ -1,20 +1,76 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "vellano-product-hero",
-      "settings": {}
+      "blocks": {
+        "variant_picker_QxgCLW": {
+          "type": "variant_picker",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "variant_picker_QxgCLW"
+      ],
+      "settings": {
+        "review_count": "428 Reviews",
+        "show_bundle_box": false,
+        "bundle_title": "Starter Kit + Gift",
+        "gift_label": "Choose Your Gift"
+      }
     },
     "accordion": {
       "type": "vellano-accordion",
+      "blocks": {
+        "accordion_item_9qJbp3": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Standard vs. Pro Architecture",
+            "content": "<p><strong>Standard Edition:</strong> Utilizes a high-density ceramic core to mechanically trap heavy sediment, neutralize harsh chlorine, and inhibit hard water scale buildup.<br/><strong>Pro Edition (White & Silver):</strong> Upgrades the core to a medical-grade Ultrafiltration (UF) membrane to trap microscopic impurities. Features an integrated digital LED interface for real-time temperature tracking and precise filter-life monitoring.</p>"
+          }
+        },
+        "accordion_item_xVyk87": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Installation & Compatibility",
+            "content": "<p>Engineered for a universal fit. Adapts to 99% of standard household sink fixtures in under two minutes. No professional plumbing modifications or specialized tools required.</p>"
+          }
+        },
+        "accordion_item_ddkX9X": {
+          "type": "accordion_item",
+          "settings": {
+            "title": "The Refill Protocol",
+            "content": "<p>For optimal barrier defense, filter elements must be replaced every 3 to 6 months depending on local municipal water hardness.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_item_9qJbp3",
+        "accordion_item_xVyk87",
+        "accordion_item_ddkX9X"
+      ],
       "settings": {}
     },
     "grid": {
       "type": "vellano-product-grid",
-      "settings": {}
+      "settings": {
+        "title": "Recommended For You"
+      }
     },
     "press": {
       "type": "vellano-press-editorial",
-      "settings": {}
+      "settings": {
+        "title": "Your skincare routine is useless if your water is toxic.",
+        "disclaimer": "Hard water and municipal chlorine strip your skin barrier before your serums even touch your face. The Vellano Faucet Purifier intercepts heavy metals and scale at the source, ensuring every daily wash acts as a restorative treatment."
+      }
     }
   },
   "order": [

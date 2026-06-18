@@ -2,7 +2,6 @@
   .vellano-science {
     background: #F8F6F3;
     color: #111;
-    font-family: 'Jost', sans-serif;
     overflow: hidden;
   }
 
@@ -345,7 +344,7 @@
           alt="{{ section.settings.image.alt | escape }}"
         >
       {% else %}
-        {{ 'image' | placeholder_svg_tag: 'vellano-sci-split-img' }}
+        <div style="width: 100%; height: 100%; min-height: 400px; background: rgba(var(--color-foreground), 0.04);"></div>
       {% endif %}
     </div>
     <div class="vellano-sci-split-content">

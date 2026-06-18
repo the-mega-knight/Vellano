@@ -255,13 +255,27 @@
       <span>{{ section.settings.review_count | default: '0 Reviews' }}</span>
     </div>
     
-    <!-- Static color swatches for visual structure for now -->
-    <span class="hk-color-label">Color Options</span>
-    <div class="hk-swatches">
-      <div class="hk-swatch active" style="background: #E0E0E0;"></div>
-      <div class="hk-swatch" style="background: #111111;"></div>
-      <div class="hk-swatch" style="background: #D4AF37;"></div>
-    </div>
+    {% for block in section.blocks %}
+      {% if block.type == 'variant_picker' %}
+        {% unless product.has_only_default_variant %}
+          <div class="hk-variant-picker" {{ block.shopify_attributes }}>
+            {% for option in product.options_with_values %}
+              <div class="hk-option-group" style="margin-bottom: 20px;">
+                <span class="hk-color-label">{{ option.name }}</span>
+                <div class="hk-option-values" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  {% for value in option.values %}
+                    <label style="cursor: pointer; display: flex; align-items: center; border: 1px solid #E8E4DF; padding: 8px 16px; border-radius: 4px; font-size: 13px; transition: border-color 0.2s; {% if option.selected_value == value %}border-color: #111;{% endif %}" onclick="document.querySelectorAll('label[data-option=\'{{ option.name | escape }}\']').forEach(l => l.style.borderColor = '#E8E4DF'); this.style.borderColor = '#111';" data-option="{{ option.name | escape }}">
+                      <input type="radio" name="{{ option.name }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} class="hk-sr-only">
+                      <span style="font-weight: 500;">{{ value }}</span>
+                    </label>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
     
     <div class="hk-product-desc">
       {% if product.description != blank %}
@@ -318,18 +332,68 @@
     <div class="hk-cta-row" style="display:flex; gap:15px; margin-bottom:40px; width:100%;">
       <div style="display:flex; align-items:center; border:1px solid #111; border-radius:30px; padding:0 5px; background:#fff; height:60px;">
         <button type="button" onclick="let q=document.getElementById('hk-qty'); if(q.value>1){q.value--; updateButtonPrice();}" style="background:none; border:none; font-size:20px; cursor:pointer; outline:none; padding: 0 20px; height: 100%;">-</button>
-        <input type="number" id="hk-qty" value="1" min="1" onchange="updateButtonPrice()" oninput="updateButtonPrice()" style="width:40px; text-align:center; border:none; background:none; font-family:'Jost', sans-serif; font-size:16px; outline:none; -moz-appearance:textfield;">
+        <input type="number" id="hk-qty" value="1" min="1" onchange="updateButtonPrice()" oninput="updateButtonPrice()" style="width:40px; text-align:center; border:none; background:none; font-size:16px; outline:none; -moz-appearance:textfield;">
         <button type="button" onclick="let q=document.getElementById('hk-qty'); q.value++; updateButtonPrice();" style="background:none; border:none; font-size:20px; cursor:pointer; outline:none; padding: 0 20px; height: 100%;">+</button>
       </div>
-      <button id="hk-add-btn" style="flex:1; background:#111111; color:#fff; border-radius:30px; justify-content:center; padding:0 20px; font-size:14px; font-family:'Jost', sans-serif; letter-spacing:1px; text-transform:uppercase; border:none; cursor:pointer; height:60px; display:flex; align-items:center;" onclick="addToCartAjax('{{ product.variants.first.id }}', parseInt(document.getElementById('hk-qty').value))">
+      <button id="hk-add-btn" style="flex:1; background:#111111; color:#fff; border-radius:30px; justify-content:center; padding:0 20px; font-size:14px; letter-spacing:1px; text-transform:uppercase; border:none; cursor:pointer; height:60px; display:flex; align-items:center;" onclick="addToCartAjax('{{ product.variants.first.id }}', parseInt(document.getElementById('hk-qty').value))">
         ADD TO CART &mdash; {{ product.price | money }}
       </button>
     </div>
     
     {% render 'product-mini-reviews' %}
     
+    <script type="application/json" id="hk-product-variants">
+      {{ product.variants | json }}
+    </script>
     <script>
-      // Gift selection
+      let currentVariantPrice = {{ product.price | default: 0 }};
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const variantsDataEl = document.getElementById('hk-product-variants');
+        if(!variantsDataEl) return;
+        const variants = JSON.parse(variantsDataEl.textContent);
+        
+        const optionRadios = document.querySelectorAll('.hk-variant-picker input[type="radio"]');
+        if(optionRadios.length === 0) return;
+
+        function onOptionChange() {
+          const selectedOptions = [];
+          document.querySelectorAll('.hk-variant-picker input[type="radio"]:checked').forEach(radio => {
+            selectedOptions.push(radio.value);
+          });
+          
+          const matchedVariant = variants.find(variant => {
+            return selectedOptions.every((opt, index) => variant.options[index] === opt);
+          });
+          
+          if(matchedVariant) {
+            const idInput = document.getElementById('hk-variant-id');
+            if(idInput) idInput.value = matchedVariant.id;
+            
+            if(history.replaceState) {
+              const newUrl = new URL(window.location.href);
+              newUrl.searchParams.set('variant', matchedVariant.id);
+              window.history.replaceState({path: newUrl.href}, '', newUrl.href);
+            }
+            
+            currentVariantPrice = matchedVariant.price;
+            updateButtonPrice();
+            
+            const bundlePriceEl = document.querySelector('.hk-bundle-price');
+            if(bundlePriceEl) {
+              const formattedBundle = '$' + (matchedVariant.price / 100).toFixed(2);
+              let compareHtml = '';
+              if(matchedVariant.compare_at_price > matchedVariant.price) {
+                compareHtml = '<span>$' + (matchedVariant.compare_at_price / 100).toFixed(2) + '</span>';
+              }
+              bundlePriceEl.innerHTML = formattedBundle + ' ' + compareHtml;
+            }
+          }
+        }
+        
+        optionRadios.forEach(radio => radio.addEventListener('change', onOptionChange));
+      });
+
       function selectGift(el) {
         document.querySelectorAll('.hk-gift-item').forEach(function(el){
           el.classList.remove('active');
@@ -341,26 +405,29 @@
         if (selectedRadio) selectedRadio.checked = true;
       }
 
-      // Price updater
       function updateButtonPrice() {
-        const basePrice = {{ product.price | default: 0 }};
+        const basePrice = currentVariantPrice;
         const qty = parseInt(document.getElementById('hk-qty').value) || 1;
         const total = basePrice * qty;
         const formattedPrice = '$' + (total / 100).toFixed(2);
         const btn = document.getElementById('hk-add-btn');
-        if(btn) btn.innerHTML = 'ADD TO CART &mdash; ' + formattedPrice;
+        if(btn && !btn.innerHTML.includes('ADDING...')) {
+          btn.innerHTML = 'ADD TO CART &mdash; ' + formattedPrice;
+        }
       }
 
-      // Add to cart
-      function addToCartAjax(variantId, qty) {
+      function addToCartAjax(variantIdFallback, qty) {
         const giftRadio = document.querySelector('input[name="welcome_gift"]:checked');
         const gift = giftRadio ? giftRadio.value : '';
         const btn = document.getElementById('hk-add-btn');
+        const idInput = document.getElementById('hk-variant-id');
+        const finalVariantId = idInput ? idInput.value : variantIdFallback;
+        
         btn.innerHTML = 'ADDING...';
         btn.disabled = true;
         
         let itemsData = {
-          id: variantId,
+          id: finalVariantId,
           quantity: qty
         };
         if (gift !== '') {
@@ -389,7 +456,6 @@
         });
       }
 
-      // Sticky Cart Intersection Observer
       document.addEventListener("DOMContentLoaded", function() {
         const addBtn = document.getElementById('hk-add-btn');
         const stickyCart = document.getElementById('hk-sticky-cart');
@@ -411,7 +477,7 @@
 
     <!-- Mobile Sticky Cart -->
     <div class="hk-sticky-cart" id="hk-sticky-cart">
-      <button style="flex:1; background:#111111; color:#fff; border-radius:30px; justify-content:center; padding:0 20px; font-size:14px; font-family:'Jost', sans-serif; letter-spacing:1px; text-transform:uppercase; border:none; cursor:pointer; height:50px; display:flex; align-items:center;" onclick="document.getElementById('hk-add-btn').click();">
+      <button style="flex:1; background:#111111; color:#fff; border-radius:30px; justify-content:center; padding:0 20px; font-size:14px; letter-spacing:1px; text-transform:uppercase; border:none; cursor:pointer; height:50px; display:flex; align-items:center;" onclick="document.getElementById('hk-add-btn').click();">
         ADD TO CART
       </button>
     </div>
@@ -449,6 +515,11 @@
     }
   ],
   "blocks": [
+    {
+      "type": "variant_picker",
+      "name": "Variant Picker",
+      "limit": 1
+    },
     {
       "type": "bullet_point",
       "name": "Bundle Feature",

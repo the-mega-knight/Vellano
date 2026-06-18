@@ -1,14 +1,22 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "",
         "image_alignment": "right",
-        "title": "The Science of KDF-55 Filtration",
-        "description": "<p>Hard water minerals, chlorine, and heavy metals accumulate in your pipes and flow directly onto your skin every day. Vellano's proprietary KDF-55 media neutralises these threats at the molecular level.</p>",
-        "btn_text": "Shop The Collection",
-        "btn_link": "/products/vellano-filtered-showerhead-starter-kit"
+        "title": "Stop Showering in Heavy Metals.",
+        "description": "<p>Hard water minerals and hidden chlorine strip your hair of natural oils and trigger skin flare-ups. Our proprietary filtration core neutralizes these daily threats before they touch your body, restoring your skin's natural barrier.</p>",
+        "btn_text": "Upgrade Your Shower",
+        "btn_link": "/products/the-signature-filtered-shower-system"
       }
     },
     "accordion": {
@@ -22,7 +30,6 @@
     "shop_cta": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "",
         "image_alignment": "left",
         "title": "Clinically proven. Dermatologist recommended.",
         "description": "<p>Independent laboratory testing confirms a 98% reduction in chlorine and a 95% reduction in heavy metals after a single pass through the Vellano filter cartridge.</p>",

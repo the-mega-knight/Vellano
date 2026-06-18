@@ -158,7 +158,7 @@ quick-order-list .pagination-wrapper {
 .variant-item__name {
   display: block;
   font-size: 1.6rem;
-  letter-spacing: 0.06rem;
+  letter-spacing: 0;
   line-height: calc(1 + 0.5 / var(--font-body-scale));
 }
 
@@ -210,7 +210,7 @@ quick-order-list .pagination-wrapper {
 
 .quick-order-list__button-cancel {
   font-size: 1.5rem;
-  letter-spacing: 0.06rem;
+  letter-spacing: 0;
 }
 
 @media screen and (min-width: 750px) and (max-width: 989px) {

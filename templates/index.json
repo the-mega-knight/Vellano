@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "home_hero": {
@@ -8,11 +17,11 @@
           "settings": {
             "eyebrow": "The intelligent shower",
             "title": "Meet your water's new standard.",
-            "subtitle": "The first shower system engineered to protect your skin and hair barrier.",
-            "btn1_label": "Shop The Collection",
-            "btn1_link": "/collections/all",
-            "btn2_label": "Take The Quiz",
-            "btn2_link": "shopify:\/\/pages\/quiz"
+            "subtitle": "The first shower head engineered to protect your skin and hair barrier.",
+            "btn1_label": "Shop The Shower Head",
+            "btn1_link": "/products/the-signature-filtered-shower-system",
+            "btn2_label": "Shop All Hardware",
+            "btn2_link": "/collections/all"
           }
         },
         "slide_2": {
@@ -20,9 +29,9 @@
           "settings": {
             "eyebrow": "Hard water defense",
             "title": "Neutralize heavy metals & chlorine.",
-            "subtitle": "Our 3-step filtration process purifies water before it touches your body.",
-            "btn1_label": "Explore The Science",
-            "btn1_link": "/?view=science",
+            "subtitle": "Our high-pressure purifier filters water before it touches your body.",
+            "btn1_label": "Shop The Purifier",
+            "btn1_link": "/products/15-layer-shower-water-purifier",
             "btn2_label": "Take The Quiz",
             "btn2_link": "/pages/quiz"
           }
@@ -31,10 +40,10 @@
           "type": "slide",
           "settings": {
             "eyebrow": "Effortless Maintenance",
-            "title": "Smart Refill Plans. Zero Hassle.",
+            "title": "Fresh Filters. Zero Hassle.",
             "subtitle": "Delivered exactly when you need them. Cancel anytime.",
-            "btn1_label": "Shop Refills",
-            "btn1_link": "/products/15-layer-shower-water-purifier",
+            "btn1_label": "Shop Filter Refills",
+            "btn1_link": "/products/10-16-layer-shower-water-purifier-filter-element",
             "btn2_label": "Take The Quiz",
             "btn2_link": "/pages/quiz"
           }
@@ -47,25 +56,55 @@
       ],
       "settings": {}
     },
-
+    "bestsellers": {
+      "type": "vellano-bestsellers",
+      "blocks": {
+        "prod_1": {
+          "type": "product",
+          "settings": {
+            "product": "the-signature-filtered-shower-system",
+            "subtitle": "Premium hard water defense shower head.",
+            "badge_text": "",
+            "badge_color": "black"
+          }
+        },
+        "prod_2": {
+          "type": "product",
+          "settings": {
+            "product": "15-layer-shower-water-purifier",
+            "subtitle": "High pressure, personalized flow.",
+            "badge_text": "",
+            "badge_color": "black"
+          }
+        },
+        "prod_3": {
+          "type": "product",
+          "settings": {
+            "product": "10-16-layer-shower-water-purifier-filter-element",
+            "subtitle": "Clean water, fresh skin.",
+            "badge_text": "",
+            "badge_color": "black"
+          }
+        }
+      },
+      "block_order": [
+        "prod_1",
+        "prod_2",
+        "prod_3"
+      ],
+      "settings": {
+        "eyebrow": "Shop The Collection",
+        "title": "Bestsellers"
+      }
+    },
     "editorial_1": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "",
         "image_alignment": "right",
-        "title": "Your daily rinse impacts your hair and skin beyond your products. Optimise your water to tackle the real problem, not the symptoms.",
-        "btn_text": "Discover The Collection",
-        "btn_link": "/collections/all"
-      }
-    },
-    "editorial_2": {
-      "type": "vellano-editorial",
-      "settings": {
-        "fallback_image_url": "",
-        "image_alignment": "left",
-        "title": "Most routines treat surface symptoms. We start with water: tackling dryness, dullness, and buildup at their source.",
-        "btn_text": "Read The Science",
-        "btn_link": "/?view=science"
+        "title": "Stop Showering in Heavy Metals.",
+        "description": "<p>Hard water minerals and hidden chlorine strip your hair of natural oils and trigger skin flare-ups. Our proprietary filtration core neutralizes these daily threats before they touch your body, restoring your skin's natural barrier.</p>",
+        "btn_text": "Upgrade Your Shower",
+        "btn_link": "/products/the-signature-filtered-shower-system"
       }
     },
     "press_banner": {
@@ -126,84 +165,20 @@
         "post_5",
         "post_6"
       ],
-      "settings": {}
-    },
-
-    "bestsellers": {
-      "type": "vellano-bestsellers",
-      "blocks": {
-        "prod_1": {
-          "type": "product",
-          "settings": {
-            "product": "the-signature-filtered-shower-system",
-            "subtitle": "Complete hard water defense system."
-          }
-        },
-        "prod_2": {
-          "type": "product",
-          "settings": {
-            "product": "15-layer-shower-water-purifier",
-            "subtitle": "Purify your daily rinse."
-          }
-        },
-        "prod_3": {
-          "type": "product",
-          "settings": {
-            "product": "10-16-layer-shower-water-purifier-filter-element",
-            "subtitle": "The signature experience."
-          }
-        },
-        "prod_4": {
-          "type": "product",
-          "settings": {
-            "product": "the-ceramic-faucet-purifier",
-            "subtitle": "Clean sink water."
-          }
-        },
-        "prod_5": {
-          "type": "product",
-          "settings": {
-            "product": "the-stainless-apothecary-dispenser",
-            "subtitle": "Elegant apothecary design."
-          }
-        },
-        "prod_6": {
-          "type": "product",
-          "settings": {
-            "product": "the-natural-bamboo-soap-dish",
-            "subtitle": "Eco-friendly natural tray."
-          }
-        },
-        "prod_7": {
-          "type": "product",
-          "settings": {
-            "product": "the-fragrant-rice-milk-cleansing-bar",
-            "subtitle": "Gentle, handmade cleansing."
-          }
-        },
-        "prod_8": {
-          "type": "product",
-          "settings": {
-            "product": "the-turmeric-kojic-brightening-bar",
-            "subtitle": "Brightening formula."
-          }
-        }
-      },
-      "block_order": [
-        "prod_1",
-        "prod_2",
-        "prod_3",
-        "prod_4",
-        "prod_5",
-        "prod_6",
-        "prod_7",
-        "prod_8"
-      ],
-      "settings": {}
+      "disabled": true,
+      "settings": {
+        "heading": "Real Results from Real People",
+        "subheading": "Join 10,000+ others who upgraded their shower."
+      }
     },
     "before_after": {
       "type": "vellano-quiz",
-      "settings": {}
+      "settings": {
+        "product_1_name": "The Handheld Filter",
+        "product_2_name": "1-Year Filter Supply",
+        "product_3_name": "Hard Water Body Cleanser",
+        "product_4_name": "Vitamin C Attachment"
+      }
     }
   },
   "order": [
@@ -212,7 +187,6 @@
     "editorial_1",
     "press_banner",
     "ugc_grid",
-    "editorial_2",
     "before_after"
   ]
 }

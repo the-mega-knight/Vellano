@@ -1,9 +1,17 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "",
         "image_alignment": "left",
         "title": "Our Story: The End of Hard Water",
         "description": "<p>I spent thousands on premium serums and salon treatments, only to watch my hair break and my skin break out. The culprit wasn't my routine—it was the hard, chlorinated water coming out of my shower head. I built Vellano because I couldn't find a filter that actually stripped away heavy metals without destroying water pressure or looking cheap. This isn't just a shower head; it's the foundation of your entire beauty routine.</p>",
@@ -18,7 +26,6 @@
     "cta": {
       "type": "vellano-editorial",
       "settings": {
-        "fallback_image_url": "",
         "image_alignment": "right",
         "title": "A new standard for the daily ritual.",
         "description": "<p>Every product in the Vellano range is conceived for people who understand that true wellness starts at the source. Pure water. Pure skin. Pure intent.</p>",

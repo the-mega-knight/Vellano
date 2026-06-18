@@ -60,7 +60,7 @@
   }
   @media (max-width: 768px) {
     .vellano-exit-content {
-      padding: 40px 30px;
+      padding: 30px 20px;
     }
     .vellano-exit-image {
       display: none; /* Hide image on mobile to save space */
@@ -86,7 +86,6 @@
     margin-top: 0;
   }
   .vellano-exit-content p {
-    font-family: 'Jost', sans-serif;
     font-size: 15px;
     color: #555;
     line-height: 1.5;
@@ -102,7 +101,6 @@
     padding: 16px;
     border: 1px solid #D9D4CE;
     border-radius: 8px;
-    font-family: 'Jost', sans-serif;
     font-size: 14px;
     outline: none;
     background: #fff;
@@ -114,10 +112,9 @@
     border: none;
     border-radius: 8px;
     padding: 16px;
-    font-family: 'Jost', sans-serif;
     font-size: 13px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s;
@@ -128,7 +125,6 @@
   .vellano-exit-success {
     display: none;
     color: #B8A07A;
-    font-family: 'Jost', sans-serif;
     font-weight: 500;
     margin-top: 20px;
   }
@@ -139,7 +135,7 @@
     <button class="vellano-exit-close" id="vellanoExitClose" aria-label="Close modal">&times;</button>
     <div class="vellano-exit-image">
       {% if section.settings.image == blank %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        <div style="width: 100%; height: 100%; background: rgba(var(--color-foreground), 0.04);"></div>
       {% endif %}
     </div>
     <div class="vellano-exit-content">
