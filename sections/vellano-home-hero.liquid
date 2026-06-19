@@ -1,4 +1,4 @@
-{%- style -%}
+﻿{%- style -%}
   .vellano-hero-slider {
     position: relative;
     width: 100%;
@@ -202,8 +202,16 @@
       {% elsif block.settings.image != blank %}
         {{ block.settings.image | image_url: width: 2400 | image_tag: class: 'vellano-hero-bg', fetchpriority: 'high' }}
       {% else %}
-        <!-- Placeholder fallback -->
-        {{ 'lifestyle-1' | placeholder_svg_tag: 'vellano-hero-bg' }}
+        {% case forloop.index %}
+          {% when 1 %}
+            <img src="{{ 'vellano_hero_lifestyle.png' | asset_url }}" class="vellano-hero-bg" alt="Vellano filtered shower experience" fetchpriority="high">
+          {% when 2 %}
+            <img src="{{ 'vellano_science_water.png' | asset_url }}" class="vellano-hero-bg" alt="Clean water filtration science">
+          {% when 3 %}
+            <img src="{{ 'vellano_refill_cartridge.png' | asset_url }}" class="vellano-hero-bg" alt="Vellano filter cartridge refill">
+          {% else %}
+            <img src="{{ 'vellano_hero_lifestyle.png' | asset_url }}" class="vellano-hero-bg" alt="Vellano">
+        {% endcase %}
       {% endif %}
       
       <div class="vellano-hero-overlay"></div>

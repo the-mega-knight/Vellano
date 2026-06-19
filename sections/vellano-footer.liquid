@@ -1,4 +1,4 @@
-{%- style -%}
+﻿{%- style -%}
   .vellano-footer {
     background: #F8F6F3;
     color: #111;
@@ -99,24 +99,25 @@
         {% if section.settings.logo != blank %}
           <img src="{{ section.settings.logo | image_url: width: 320 }}" alt="{{ section.settings.logo.alt | escape }}" style="max-width: 160px; height: auto; display: block; margin-bottom: 20px;">
         {% else %}
-          <div style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">{{ shop.name }}</div>
+          <div style="font-size: 20px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; color: #111;">VELLANO</div>
         {% endif %}
         <div class="vellano-footer-desc">Premium shower hardware for skin and hair health. Elevated daily rituals.</div>
       </div>
     </div>
-    <div class="vellano-footer-col">
+        <div class="vellano-footer-col">
       <h4>Shop</h4>
-      <a href="/products/the-signature-filtered-shower-system" class="vellano-footer-link">The Signature System</a>
-      <a href="/products/15-layer-shower-water-purifier" class="vellano-footer-link">Filter Refills</a>
-      <a href="/products/the-turmeric-kojic-brightening-bar" class="vellano-footer-link">Body Care</a>
-      <a href="/products/the-natural-bamboo-soap-dish" class="vellano-footer-link">Accessories</a>
+      <a href="/collections/all" class="vellano-footer-link">The Collection</a>
+      <a href="/products/the-signature-filtered-shower-system" class="vellano-footer-link">Signature Shower System</a>
+      <a href="/products/the-supercharged-adjustable-showerhead" class="vellano-footer-link">Adjustable Showerhead</a>
+      <a href="/products/the-purifying-filter-cartridge" class="vellano-footer-link">Filter Cartridge</a>
+      <a href="/pages/quiz" class="vellano-footer-link">Find Your Match</a>
     </div>
     <div class="vellano-footer-col">
       <h4>Support</h4>
-      <a href="/?view=about" class="vellano-footer-link">Our Story</a>
-      <a href="/?view=science" class="vellano-footer-link">The Science</a>
-      <a href="/pages/contact" class="vellano-footer-link">Contact Us</a>
-      <a href="/pages/faq" class="vellano-footer-link">FAQ</a>
+      <a href="/pages/quiz" class="vellano-footer-link">Take the Quiz</a>
+      <a href="{{ pages['the-science'].url | default: '/pages/the-science' }}" class="vellano-footer-link">The Science</a>
+      <a href="{{ pages['contact'].url | default: '/pages/contact' }}" class="vellano-footer-link">Contact Us</a>
+      <a href="{{ pages['faq'].url | default: '/pages/faq' }}" class="vellano-footer-link">FAQ</a>
     </div>
     <div class="vellano-footer-col">
       <h4>Join The Ritual</h4>
@@ -124,7 +125,7 @@
       {% form 'customer', class: 'vellano-footer-newsletter' %}
         <input type="hidden" name="contact[tags]" value="newsletter">
         <input type="email" name="contact[email]" class="vellano-footer-input" placeholder="Email Address" required>
-        <button type="submit" class="vellano-footer-submit">→</button>
+        <button type="submit" class="vellano-footer-submit">?</button>
       {% endform %}
     </div>
   </div>
@@ -145,8 +146,8 @@
         </button>
       </div>
       <div>
-        <a href="/pages/terms-of-service" style="color:inherit; text-decoration:none; margin-right: 12px;">Terms of Service</a>
-        <a href="/pages/privacy-policy" style="color:inherit; text-decoration:none;">Privacy Policy</a>
+        <a href="{{ pages['terms-of-service'].url | default: '/policies/terms-of-service' }}" style="color:inherit; text-decoration:none; margin-right: 12px;">Terms of Service</a>
+        <a href="{{ pages['privacy-policy'].url | default: '/policies/privacy-policy' }}" style="color:inherit; text-decoration:none;">Privacy Policy</a>
       </div>
     </div>
   </div>
@@ -160,6 +161,30 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo Image"
+    },
+    {
+      "type": "header",
+      "content": "Shop Column Links"
+    },
+    {
+      "type": "product",
+      "id": "footer_product_1",
+      "label": "Shop Link 1"
+    },
+    {
+      "type": "product",
+      "id": "footer_product_2",
+      "label": "Shop Link 2"
+    },
+    {
+      "type": "product",
+      "id": "footer_product_3",
+      "label": "Shop Link 3"
+    },
+    {
+      "type": "product",
+      "id": "footer_product_4",
+      "label": "Shop Link 4"
     }
   ],
   "presets": [{ "name": "Vellano Footer" }]

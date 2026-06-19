@@ -1,8 +1,8 @@
-<style>
+﻿<style>
   .vellano-test-section {
     background-color: #faf9f5;
-    padding: 0 20px 80px 20px;
-    }
+    padding: 0 20px 48px 20px;
+  }
   .vellano-test-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -12,11 +12,12 @@
     color: #fff;
   }
   .vellano-test-kicker {
-    font-size: 11px;
+    font-size: 13px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
     color: #B8A07A;
     margin-bottom: 40px;
+    font-weight: 600;
   }
   .vellano-test-grid {
     display: grid;
@@ -27,7 +28,27 @@
     font-size: 20px;
     font-family: var(--font-heading-family);
     line-height: 1.5;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+  }
+  .vellano-test-author-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .vellano-test-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(184,160,122,0.15);
+    border: 1.5px solid rgba(184,160,122,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #B8A07A;
+    letter-spacing: 0.5px;
   }
   .vellano-test-author {
     font-size: 10px;
@@ -37,31 +58,29 @@
   }
 
   @media(max-width: 768px) {
-    .vellano-test-container {
-      padding: 40px 30px;
-    }
-    .vellano-test-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-    .vellano-test-quote {
-      font-size: 18px;
-    }
+    .vellano-test-container { padding: 40px 30px; }
+    .vellano-test-grid { grid-template-columns: 1fr; gap: 40px; }
+    .vellano-test-quote { font-size: 18px; }
   }
 </style>
 
 <div class="vellano-test-section">
   <div class="vellano-test-container">
-    <div class="vellano-test-kicker">ENDORSED BY PROFESSIONALS</div>
-    
+    <div class="vellano-test-kicker">Endorsed by Professionals</div>
     <div class="vellano-test-grid">
       <div class="vellano-test-slide">
-        <div class="vellano-test-quote">"Hard water calcium is the number one cause of disrupted skin barriers. Vellano's high-pressure purifier is the first thing I recommend to patients struggling with dry, reactive skin."</div>
-        <div class="vellano-test-author">- DR. ELENA ROSTOVA, DERMATOLOGIST</div>
+        <div class="vellano-test-quote">&ldquo;Hard water calcium is the number one cause of disrupted skin barriers. Vellano&rsquo;s high-pressure purifier is the first thing I recommend to patients struggling with dry, reactive skin.&rdquo;</div>
+        <div class="vellano-test-author-row">
+          <div class="vellano-test-avatar">ER</div>
+          <div class="vellano-test-author">Dr. Elena Rostova &mdash; Dermatologist</div>
+        </div>
       </div>
       <div class="vellano-test-slide">
-        <div class="vellano-test-quote">"I've tested every shower filter on the market. Nothing strips away heavy metals while maintaining water pressure quite like Vellano. It's an absolute game-changer for colour-treated hair."</div>
-        <div class="vellano-test-author">- MARCUS CHEN, CELEBRITY STYLIST</div>
+        <div class="vellano-test-quote">&ldquo;I&rsquo;ve tested every shower filter on the market. Nothing strips away heavy metals while maintaining water pressure quite like Vellano. It&rsquo;s an absolute game-changer for colour-treated hair.&rdquo;</div>
+        <div class="vellano-test-author-row">
+          <div class="vellano-test-avatar">MC</div>
+          <div class="vellano-test-author">Marcus Chen &mdash; Celebrity Stylist</div>
+        </div>
       </div>
     </div>
   </div>
